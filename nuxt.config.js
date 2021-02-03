@@ -14,7 +14,8 @@ export default {
     base: '/knowledge-base/'
   },
   generate:{
-    fallback: true
+    fallback: true,
+    dir:"docs"
   },
   /*
   ** Headers of the page
