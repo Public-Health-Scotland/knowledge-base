@@ -1,0 +1,209 @@
+[
+  {
+    "title": "Introduction to R",
+    "description": "A beginner's course for learning R from the basics.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-intro/",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Introduction to R",
+    "description": "A beginner's course for learning R from the basics.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-intro/",
+    "image": "",
+    "type": "In-Person Course",
+    "packages": ["base"],
+    "tags": ["r"]
+  },
+  {
+    "title": "GitHub Guidance",
+    "description": "Guidance for using git and GitHub within PHS.",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/GitHub-guidance/master/README.md",
+    "image": "",
+    "type": "Guidance",
+    "packages": [""],
+    "tags": ["git"]
+  },
+  {
+    "title": "Introduction to git",
+    "description": "A beginner's course for learning git (including GitHub and Gitea) from the basics.",
+    "link": "https://scotland.shinyapps.io/phs-learngit/",
+    "image": "",
+    "type": "Online Course",
+    "packages": [],
+    "tags": ["git"]
+  },
+  {
+    "title": "PHSMethods R Package",
+    "description": "The first step in taking R further. Learn about the `phsmethods` package created for PHS analysts.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-phsmethods/",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "phsmethods"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Git Guide",
+    "description": "Textbook for using git and GitHub within PHS.",
+    "link": "https://public-health-scotland.github.io/git-guide/",
+    "image": "",
+    "type": "Textbook",
+    "packages": [""],
+    "tags": ["git"]
+  },
+  {
+    "title": "R Style Guide",
+    "description": "Coding style guidance for PHS staff using R.",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/PHS%20R%20style%20guide.md",
+    "image": "",
+    "type": "Guidance",
+    "packages": [""],
+    "tags": ["r"]
+  },
+  {
+    "title": "Introduction to Python",
+    "description": "A beginner's course for learning Python from the basics.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": [],
+    "tags": ["python"]
+  },
+  {
+    "title": "R Functions",
+    "description": "R is a functional programming language. So let's learn how to write some functions.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Python Functions",
+    "description": "Learn how to write functions in Python.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": [],
+    "tags": ["python"]
+  },
+  {
+    "title": "Dates & Times in R",
+    "description": "Learn how to work with dates and times in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "lubridate"],
+    "tags": ["r"]
+  },
+  {
+    "title": "R Control Structures",
+    "description": "Learn how to control the flow of execution in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "purrr"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Python Control Structures",
+    "description": "Learn how to control the flow of execution in Python.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": [],
+    "tags": ["python"]
+  },
+  {
+    "title": "R Markdown",
+    "description": "Learn about building reports and other functionality of R Markdown.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "rmarkdown"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Data Cleaning in R",
+    "description": "Learn about data cleaning in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "stringr", "forcats", "tidyr", "tidylog", "janitor"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Testing in R",
+    "description": "Learn about testing in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "testthat"],
+    "tags": ["r"]
+  },
+  {
+    "title": "Reproducible Environments in R",
+    "description": "Learn about creating and using reproducible environments in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "renv"],
+    "tags": ["r"]
+  },
+  {
+    "title": "SQL in R",
+    "description": "Learn about writing and using SQL commands in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base"],
+    "tags": ["r", "sql"]
+  },
+  {
+    "title": "Data Viz in R",
+    "description": "Learn about data visualisation using R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "ggplot2", "esquisse"],
+    "tags": ["r", "viz"]
+  },
+  {
+    "title": "Data Viz in Python",
+    "description": "Learn about data visualisation using Python.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["plotly"],
+    "tags": ["python", "viz"]
+  },
+  {
+    "title": "R Dashboards",
+    "description": "Learn how to create dashboards in R.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "flexdashboard"],
+    "tags": ["r"]
+  },
+  {
+    "title": "R Web Apps",
+    "description": "Learn how to develop web apps using R Shiny.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "shiny"],
+    "tags": ["r"]
+  },
+  {
+    "title": "R Packages",
+    "description": "Learn how to build your own R packages and get them ready for CRAN.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base"],
+    "tags": ["r"]
+  }
+]
