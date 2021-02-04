@@ -219,7 +219,7 @@ export default {
   },
   methods:{
     async showGuidance(course){
-      course.md = await this.$axios.$get(course.link)
+      course.md = await this.$axios.$get('https://cors-anywhere.herokuapp.com/'+course.link)
       this.selectedCourse=course
     }
   }

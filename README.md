@@ -3,7 +3,7 @@
 [![GitHub release (latest by
 date)](https://img.shields.io/github/v/release/Public-Health-Scotland/knowledge-base)](https://github.com/Public-Health-Scotland/knowledge-base/releases/latest)
 
-The PHS Data Science Knowledge Base is a collection of all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes booking for in-person and access to online training, guidance documents, and internally developed textbooks. There is also a social page for annoucements related to Data Science in the organisation, social links, and a list of relevant external materials such as textbooks and blogs.
+The PHS Data Science Knowledge Base is a collection of all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes booking for in-person and access to online training, guidance documents, and internally developed textbooks. There is also a social page for announcements related to Data Science in the organisation, social links, and a list of relevant external materials such as textbooks and blogs.
 
 
 ## Directory structure
@@ -42,4 +42,3 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
