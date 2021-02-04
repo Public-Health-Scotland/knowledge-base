@@ -27,15 +27,6 @@
     "tags": ["git"]
   },
   {
-    "title": "Introduction to git",
-    "description": "A beginner's course for learning git (including GitHub and Gitea) from the basics.",
-    "link": "https://scotland.shinyapps.io/phs-learngit/",
-    "image": "",
-    "type": "Online Course",
-    "packages": [],
-    "tags": ["git"]
-  },
-  {
     "title": "PHSMethods R Package",
     "description": "The first step in taking R further. Learn about the `phsmethods` package created for PHS analysts.",
     "link": "https://scotland.shinyapps.io/phs-learnr-phsmethods/",
@@ -61,6 +52,15 @@
     "type": "Guidance",
     "packages": [""],
     "tags": ["r"]
+  },
+  {
+    "title": "Introduction to git",
+    "description": "A beginner's course for learning git (including GitHub and Gitea) from the basics.",
+    "link": "",
+    "image": "",
+    "type": "Online Course",
+    "packages": [],
+    "tags": ["git"]
   },
   {
     "title": "Introduction to Python",
