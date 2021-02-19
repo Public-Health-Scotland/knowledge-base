@@ -45,4 +45,4 @@ $ npm run generate
 
 ## Contributing
 
-This app currently has been one developer, [Russell McCreath](https://github.com/rmccreath) and has oversight from the [PHS Data Science team](phs.datascience@phs.scot). For details on how to contrinbute, please see the [contribution guidance](https://github.com/Public-Health-Scotland/knowledge-base/blob/master/CONTRIBUTING.md).
+This app currently has one developer, [Russell McCreath](https://github.com/rmccreath) with oversight from the [PHS Data Science team](mailto:phs.datascience@phs.scot). For details on how to contribute, please see the [contribution guidance](https://github.com/Public-Health-Scotland/knowledge-base/blob/master/CONTRIBUTING.md).
