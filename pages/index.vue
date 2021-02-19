@@ -131,6 +131,8 @@
     </b-row>
 
     <b-modal id="guidance-modal" size="xl" scrollable :title="selectedCourse.title">
+      If this content doesn't load, <a :href="selectedCourse.richLink">click here</a> to open in a browser tab.
+      </br>
       <vue-markdown class="guidance-md" :source="selectedCourse.md"></vue-markdown>
     </b-modal>
 
@@ -219,7 +221,7 @@ export default {
   },
   methods:{
     async showGuidance(course){
-      course.md = await this.$axios.$get('https://cors-anywhere.herokuapp.com/'+course.link)
+      course.md = await this.$axios.$get('https://secret-ocean-49799.herokuapp.com/'+course.link)
       this.selectedCourse=course
     }
   }
