@@ -99,7 +99,8 @@
               <b-button
                 v-else-if="course.type == 'In-Person Course'"
                 v-b-modal.booking-modal
-                variant="primary">
+                variant="primary"
+                @click="selectedCourse = course">
                 Book
               </b-button>
 
@@ -137,7 +138,10 @@
     </b-modal>
 
     <b-modal id="booking-modal" size="xl">
-      <iframe width="640px" height= "1550px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=veDvEDCgykuAnLXmdF5JmmiLaHlezqJOh-fBWH8cGyhUQUlQMVNZMk1aTjdCMllRTFJNWkZKTFNSMy4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; width:100%" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+      <div v-if="selectedCourse.link">
+        <iframe width="640px" height= "1550px" :src= "selectedCourse.link" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; width:100%" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+      </div>
+
     </b-modal>
 
 
