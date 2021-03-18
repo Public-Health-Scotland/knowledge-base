@@ -70,7 +70,7 @@
         </br>
           <h6>Package Development</h6>
           <div class="d-flex">
-            <p>PHS have an internally developed R package for common tasks related to Public Health data. Check out <a href="https://github.com/Public-Health-Scotland/phsmethods" target="_blank">phsmethods</a> on GitHub or get familiar with the <a href="https://scotland.shinyapps.io/phs-learnr-phsmethods/">online course</a>. Also, feel free to get in touch with the <a href="mailto:phs.transformingpublishing@phs.scot?Subject=DSKB - phsmethods">Transforming Publishing team</a> with any questions or suggestions!</p>
+            <p>PHS have an internally developed R package for common tasks related to Public Health data. Check out <a href="https://github.com/Public-Health-Scotland/phsmethods" target="_blank">phsmethods</a> on GitHub or get familiar with the <a target="_blank" href="https://scotland.shinyapps.io/phs-learnr-phsmethods/">online course</a>. Also, feel free to get in touch with the <a href="mailto:phs.transformingpublishing@phs.scot?Subject=DSKB - phsmethods">Transforming Publishing team</a> with any questions or suggestions!</p>
           </div>
         </b-card>
       </b-col>
@@ -89,7 +89,7 @@
               <eva-icon name="book-outline" fill="#bd27b9"></eva-icon>
             </b-col>
             <b-col>
-              <a href="https://r4ds.had.co.nz/index.html">R for Data Science (R4DS)</a>
+              <a target="_blank" href="https://r4ds.had.co.nz/index.html">R for Data Science (R4DS)</a>
               <i>Hadley Wickham & Garrett Grolemund</i>
               <p class="mb-0">"This book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it, visualise it and model it. In this book, you will find a practicum of skills for data science."</p>
             </b-col>
@@ -100,7 +100,7 @@
               <eva-icon name="book-outline" fill="#bd27b9"></eva-icon>
             </b-col>
             <b-col>
-              <a href="http://adv-r.had.co.nz/">Advanced R</a>
+              <a target="_blank" href="http://adv-r.had.co.nz/">Advanced R</a>
               <i>Hadley Wickham</i>
               <p class="mb-0">"This book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages..."</p>
             </b-col>
@@ -111,7 +111,7 @@
               <eva-icon name="file-text-outline" fill="#bd27b9"></eva-icon>
             </b-col>
             <b-col>
-              <a href="https://colinfay.me/explain-environments-eli5/">Explain R environments like I’m 5</a>
+              <a target="_blank" href="https://colinfay.me/explain-environments-eli5/">Explain R environments like I’m 5</a>
               <i>All Code No Brain, Collin Fay</i>
               <p class="mb-0">"A blog post explaining environments in R that assumes nothing about the readers experience."</p>
             </b-col>
