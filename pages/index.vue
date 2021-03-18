@@ -26,10 +26,10 @@
                   :aria-describedby="ariaDescribedby"
                   name="filterSelected"
                   stacked>
-                  <b-form-checkbox value="Online Course">Online Course</b-form-checkbox>
                   <b-form-checkbox value="In-Person Course">In-Person Course</b-form-checkbox>
-                  <b-form-checkbox value="Textbook">Textbook</b-form-checkbox>
+                  <b-form-checkbox value="Online Course">Online Course</b-form-checkbox>
                   <b-form-checkbox value="Guidance">Guidance</b-form-checkbox>
+                  <b-form-checkbox value="Textbook">Textbook</b-form-checkbox>
                   <b-form-checkbox value="Coming Soon"><i>Coming Soon</i></b-form-checkbox>
                 </b-form-checkbox-group>
               </b-form-group>
