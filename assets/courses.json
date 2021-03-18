@@ -18,6 +18,15 @@
     "tags": ["r"]
   },
   {
+    "title": "Introduction to Git ",
+    "description": "A beginner's course for learning git (including GitHub and Gitea) from the basics.",
+    "link": "https://forms.office.com/Pages/ResponsePage.aspx?id=veDvEDCgykuAnLXmdF5JmlMENbvENPtAs5eceNN9kYdUMklXNzQ3SjZUVDdEVzlIUUJHWVBSMVFMTC4u&embed=true",
+    "image": "",
+    "type": "In-Person Course",
+    "packages": [],
+    "tags": ["git"]
+  },
+  {
     "title": "GitHub Guidance",
     "description": "Guidance for using git and GitHub within PHS.",
     "link": "http://raw.githubusercontent.com/Public-Health-Scotland/GitHub-guidance/master/README.md",
