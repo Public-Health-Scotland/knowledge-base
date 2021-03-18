@@ -132,7 +132,7 @@
     </b-row>
 
     <b-modal id="guidance-modal" size="xl" scrollable :title="selectedCourse.title">
-      If this content doesn't load, <a :href="selectedCourse.richLink">click here</a> to open in a browser tab.
+      If this content doesn't load, <a target="_blank" :href="selectedCourse.richLink">click here</a> to open in a browser tab.
       </br>
       <vue-markdown class="guidance-md" :source="selectedCourse.md"></vue-markdown>
     </b-modal>
