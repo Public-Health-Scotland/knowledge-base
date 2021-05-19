@@ -188,14 +188,14 @@ export default {
           course.link != "")
       }
 
-      if(this.search.length > 0 && this.search.length <= 3){
+      if(this.search.length > 0 && this.search.length <= 1){
         courses = courses.filter( course => {
           if(course.tags.includes(this.search.toLowerCase())) return true
           else return false
         })
-      } else if (this.search.length > 4){
+      } else if (this.search.length > 1){
         courses = courses.filter( course => {
-          if(course.title.toLowerCase().includes(this.search.toLowerCase()+' ')) return true
+          if(course.title.toLowerCase().includes(this.search.toLowerCase())) return true
           else if(course.description.toLowerCase().includes(this.search.toLowerCase()+' ')) return true
           else return false
         })
