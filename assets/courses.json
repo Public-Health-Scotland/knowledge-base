@@ -27,6 +27,15 @@
     "tags": ["git"]
   },
   {
+    "title": "Introduction to R Markdown",
+    "description": "Learn about building reports and other functionality of R Markdown.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-rmarkdown/",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "rmarkdown"],
+    "tags": ["r"]
+  },
+  {
     "title": "GitHub Guidance",
     "description": "Guidance for using git and GitHub within PHS.",
     "link": "http://raw.githubusercontent.com/Public-Health-Scotland/GitHub-guidance/master/README.md",
@@ -126,15 +135,6 @@
     "type": "Online Course",
     "packages": [],
     "tags": ["python"]
-  },
-  {
-    "title": "R Markdown",
-    "description": "Learn about building reports and other functionality of R Markdown.",
-    "link": "",
-    "image": "",
-    "type": "Online Course",
-    "packages": ["base", "rmarkdown"],
-    "tags": ["r"]
   },
   {
     "title": "Data Cleaning in R",
