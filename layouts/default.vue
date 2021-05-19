@@ -41,7 +41,7 @@
 
                 <p class="my-4"><strong>Training Request</strong> - If you can't find what you're looking for or have a specific training requirement, use this link to <a href="mailto:phs.staffdevelopment@phs.scot?Subject=DSKB - Training Request">email Staff Development.</a></p>
 
-                <p class="my-4"><strong>Knowledge Base Enquiry</strong> - Feedback, issues, or suggestions for the knowledge base? <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry">Email the Data Science team.</a></p>
+                <p class="my-4"><strong>Knowledge Base Enquiry</strong> - Feedback, issues, or suggestions for the knowledge base? <a href="https://github.com/Public-Health-Scotland/knowledge-base/issues/new/choose">Open an issue</a> on the GitHub repo or <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry">email the Data Science team.</a></p>
               </b-modal>
             </b-navbar-nav>
           </b-collapse>
