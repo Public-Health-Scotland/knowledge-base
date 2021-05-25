@@ -1,3 +1,5 @@
 # STATIC
 
-This directory contains built outputs for the hosting of the application. This shouldn't be directly edited.
+This directory contains your static files.
+Each file inside this directory is mapped to `/`. Example: `/static/robots.txt` is mapped as `/robots.txt`.
+There is no requirement to keep this on production. 

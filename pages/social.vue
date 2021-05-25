@@ -31,13 +31,9 @@
             <h4>Announcements</h4><eva-icon name="alert-circle-outline" fill="#bd27b9"></eva-icon>
           </div>
         </br>
-          <h6>RStudio Version</h6>
-          <div class="d-flex">
-            <p>Currently, v4.0.3 of RStudio is being tested for rollout in March.</p>
-          </div>
           <h6>Data Science Strategy</h6>
           <div class="d-flex">
-            <p>Work is currently underway around the organisation's Data Science strategy. This work involves key areas around Training/Development, IT/Infrastructure, Tools/Techniques/Methodologies, and Communications/Engagement. </p>
+            <p>Work is currently underway around the organisation's Data Science strategy. This work involves key areas around Training/Development, IT/Infrastructure, Tools/Techniques/Methodologies, and Communications/Engagement. If you have any queries or comments, please contact the <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - DSRG">Data Science Team</a>.</p>
           </div>
         </b-card>
       </b-col>
