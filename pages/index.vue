@@ -123,9 +123,6 @@
 
               <div v-else class="coming-soon"><i>Coming Soon</i></div>
             </template>
-            <b-tooltip target="tooltip-start-course" triggers="hover" placement="bottom">
-              This will open the training app in a new tab!
-            </b-tooltip>
           </b-card>
         </b-card-group>
       </b-col>
@@ -134,6 +131,7 @@
     <b-modal id="guidance-modal" size="xl" scrollable :title="selectedCourse.title">
       If this content doesn't load, <a target="_blank" :href="selectedCourse.richLink">click here</a> to open in a browser tab.
       </br>
+    </br>
       <vue-markdown class="guidance-md" :source="selectedCourse.md"></vue-markdown>
     </b-modal>
 
@@ -177,6 +175,7 @@ export default {
       this.courses.forEach(course => types = types.concat(course.type))
       return [...new Set(types)]
     },
+
     displayCourses(){
       // Add all the courses that have at least 1 matching tags
       // to the list of selectedTags
@@ -196,7 +195,7 @@ export default {
       } else if (this.search.length > 1){
         courses = courses.filter( course => {
           if(course.title.toLowerCase().includes(this.search.toLowerCase())) return true
-          else if(course.description.toLowerCase().includes(this.search.toLowerCase()+' ')) return true
+          else if(course.description.toLowerCase().includes(this.search.toLowerCase())) return true
           else return false
         })
       }
@@ -206,29 +205,21 @@ export default {
         else return false
       })
 
-
-
-      // if(this.selectedTags.length){
-      //   courses = this.courses.filter(course =>
-      //      course.tags.some(tag => this.selectedTags.includes(tag))
-      //   )
-      // }
-      //
-      // if(this.selectedTypes.length){
-      //   courses = this.courses.filter(course =>
-      //     this.selectedTypes.includes(course.type)
-      //   )
-      // }
-
       return courses
     }
   },
+
+
+
   methods:{
     async showGuidance(course){
       course.md = await this.$axios.$get('https://secret-ocean-49799.herokuapp.com/'+course.link)
       this.selectedCourse=course
     }
   }
+
+
+
 }
 </script>
 

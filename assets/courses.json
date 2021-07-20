@@ -27,6 +27,15 @@
     "tags": ["git"]
   },
   {
+    "title": "Data Visualisation in R",
+    "description": "Learn about data viz using R. This course has a focus on ggplot2 but includes an introduction to plotly.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-dataviz/",
+    "image": "",
+    "type": "Online Course",
+    "packages": ["base", "ggplot2", "plotly"],
+    "tags": ["r", "viz"]
+  },
+  {
     "title": "Introduction to R Markdown",
     "description": "Learn about building reports and other functionality of R Markdown.",
     "link": "https://scotland.shinyapps.io/phs-learnr-rmarkdown/",
@@ -171,15 +180,6 @@
     "type": "Online Course",
     "packages": ["base"],
     "tags": ["r", "sql"]
-  },
-  {
-    "title": "Data Viz in R",
-    "description": "Learn about data visualisation using R.",
-    "link": "",
-    "image": "",
-    "type": "Online Course",
-    "packages": ["base", "ggplot2", "esquisse"],
-    "tags": ["r", "viz"]
   },
   {
     "title": "Data Viz in Python",
