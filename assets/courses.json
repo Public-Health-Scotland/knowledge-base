@@ -83,7 +83,7 @@
     "tags": ["r"]
   },
   {
-    "title": "Introduction to git",
+    "title": "Introduction to Git",
     "description": "A beginner's course for learning git (including GitHub and Gitea) from the basics.",
     "link": "",
     "image": "",
@@ -191,17 +191,8 @@
     "tags": ["python", "viz"]
   },
   {
-    "title": "R Dashboards",
-    "description": "Learn how to create dashboards in R.",
-    "link": "",
-    "image": "",
-    "type": "Online Course",
-    "packages": ["base", "flexdashboard"],
-    "tags": ["r"]
-  },
-  {
-    "title": "R Web Apps",
-    "description": "Learn how to develop web apps using R Shiny.",
+    "title": "R Shiny Apps",
+    "description": "Learn how to develop web apps and dashboards using R Shiny.",
     "link": "",
     "image": "",
     "type": "Online Course",
