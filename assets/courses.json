@@ -55,8 +55,8 @@
     "tags": ["git"]
   },
   {
-    "title": "PHSMethods R Package",
-    "description": "The first step in taking R further. Learn about the `phsmethods` package created for PHS analysts.",
+    "title": "PHS Methods",
+    "description": "The first step in taking R further. Learn about the `phsmethods` package created by and for staff in PHS.",
     "link": "https://scotland.shinyapps.io/phs-learnr-phsmethods/",
     "image": "",
     "type": "Online Course",
