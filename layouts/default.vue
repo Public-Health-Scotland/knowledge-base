@@ -11,6 +11,7 @@
 
         gtag('config', 'G-3D55TZR6QM');
       </script>
+      <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
     </head>
 
     <div class="header-container">
@@ -43,7 +44,7 @@
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
 
-              <NuxtLink to="/" tag="b-nav-item">Develop</NuxtLink>
+              <NuxtLink to="/develop" tag="b-nav-item">Develop</NuxtLink>
               <NuxtLink to="/social" tag="b-nav-item">Social</NuxtLink>
 
               <!-- <b-nav-item href=""><strong>Develop</strong></b-nav-item>

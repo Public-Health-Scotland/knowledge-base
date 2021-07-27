@@ -1,49 +1,11 @@
 <template>
   <div>
-    <b-row align-h="end">
-
-      <b-col cols='12' md='5'>
-        <div class="filter-row">
-          <b-form-input class="search" type="search" v-model="search" placeholder="Search"/>
-
-          <b-dropdown
-            class="filter"
-            size="lg"
-            variant="link"
-            toggle-class="text-decoration-none"
-            no-caret
-            right
-            offset='-15'>
-            <template #button-content>
-              <eva-icon name="funnel-outline" fill="#bd27b9"></eva-icon><span class="sr-only">Filter</span>
-            </template>
-            <b-dropdown-form style="width: 200px">
-              <b-form-group
-                label="Filter"
-                v-slot="{ ariaDescribedby }">
-                <b-form-checkbox-group
-                  v-model="filterSelected"
-                  :aria-describedby="ariaDescribedby"
-                  name="filterSelected"
-                  stacked>
-                  <b-form-checkbox value="In-Person Course">In-Person Course</b-form-checkbox>
-                  <b-form-checkbox value="Online Course">Online Course</b-form-checkbox>
-                  <b-form-checkbox value="Guidance">Guidance</b-form-checkbox>
-                  <b-form-checkbox value="Textbook">Textbook</b-form-checkbox>
-                  <b-form-checkbox value="Coming Soon"><i>Coming Soon</i></b-form-checkbox>
-                </b-form-checkbox-group>
-              </b-form-group>
-            </b-dropdown-form>
-          </b-dropdown>
-        </div>
-      </b-col>
-    </b-row>
 
     <div class="title-container">
       <b-card no-body class="overflow-hidden head-card">
         <b-row no-gutters>
 
-          <b-col md="7">
+          <b-col sm="12" md="7">
             <b-card-body title="Hey, you ready to learn?">
               <b-card-text>
                 Welcome to the PHS Data Science Knowledge Base. It is here that you'll find access to all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes in-person and online training, guidance documents, and internally developed textbooks.
@@ -54,96 +16,79 @@
           <b-col md="1">
           </b-col>
 
-          <b-col md="4" align-self='center'>
-            <div class="tag-cloud">
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'R'">R</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'git'">git</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'Python'">Python</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'SQL'">SQL</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'Viz'">Viz</b-button>
-            </div>
-          </b-col>
-
         </b-row>
       </b-card>
+
+        <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
+          <b-col>
+            <lord-icon
+              src="https://cdn.lordicon.com/zpxybbhl.json"
+              trigger="hover"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke=25
+              style="width:200px;height:200px">
+            </lord-icon>
+            <h5>In-Person Courses</h5>
+            <p>Internally developed courses ran by the PHS staff who use the tools in their day-to-day jobs.</p>
+          </b-col>
+          <b-col>
+            <lord-icon
+              src="https://cdn.lordicon.com/qhgmphtg.json"
+              trigger="hover"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke=25
+              style="width:200px;height:200px">
+            </lord-icon>
+            <h5>Online Courses</h5>
+            <p>The same courses available online in addition to or instead of the in-person options.</p>
+          </b-col>
+          <b-col>
+            <lord-icon
+              src="https://cdn.lordicon.com/nocovwne.json"
+              trigger="hover"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke=25
+              style="width:200px;height:200px">
+            </lord-icon>
+            <h5>Guidance</h5>
+            <p>Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.</p>
+          </b-col>
+          <b-col>
+            <lord-icon
+              src="https://cdn.lordicon.com/wxnxiano.json"
+              trigger="morph-two-way"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke=25
+              style="width:200px;height:200px">
+            </lord-icon>
+            <h5>Textbooks</h5>
+            <p>For learning or reference, see a complete textbook on one of the technologies.</p>
+          </b-col>
+        </b-row>
+
+        <div class="mt-5">
+          <b-row justify-content-between>
+            <b-col>
+              <b-card class="mb-4"
+              title="Learning Pathways">
+                <div class="d-flex">
+                  <b-card-text>Sometimes it's easier to get started when you can plan for the road ahead...</b-card-text>
+                </div>
+              </br>
+                  <b-row>
+                    <b-col>
+                      <b-button block variant="outline-primary">R Pathway</b-button>
+                    </b-col>
+                    <b-col cols="12" md="10">
+                      <p>The R content has been desgined to be topic-led, letting you pick up the concepts and tools for when you need them. However, the R pathway page outlines a structure for all of the R content. This includes training modules, guidance, and related technologies.</p>
+                    </b-col>
+                  </b-row>
+              </b-card>
+            </b-col>
+          </b-row>
+        </div>
+
     </div>
-
-    <b-row cols="1" cols-sm="2" cols-lg="3">
-      <b-col
-        class="grid"
-        v-for="course in displayCourses"
-        :key="course.title">
-        <b-card-group deck>
-          <b-card
-            :title="course.title"
-            :sub-title="course.type"
-            :img-src="course.image"
-            :img-alt="course.title"
-            img-top
-            tag="article"
-            class="mb-4"
-            >
-            <b-card-text>
-              {{course.description}}
-            </b-card-text>
-
-            <template v-slot:footer>
-              <b-button
-                v-if="course.type == 'Guidance'"
-                v-b-modal.guidance-modal
-                variant="primary"
-                @click="showGuidance(course)">
-                View
-              </b-button>
-
-              <b-button
-                v-else-if="course.type == 'In-Person Course'"
-                v-b-modal.booking-modal
-                variant="primary"
-                @click="selectedCourse = course">
-                Book
-              </b-button>
-
-              <b-button
-                v-else-if="course.type == 'Textbook'"
-                :href="course.link"
-                target="_blank"
-                variant="primary">
-                Open
-              </b-button>
-
-              <b-button
-                v-else-if="course.link"
-                :href="course.link"
-                target="_blank"
-                variant="primary"
-                id="tooltip-start-course">
-                Start
-              </b-button>
-
-              <div v-else class="coming-soon"><i>Coming Soon</i></div>
-            </template>
-          </b-card>
-        </b-card-group>
-      </b-col>
-    </b-row>
-
-    <b-modal id="guidance-modal" size="xl" scrollable :title="selectedCourse.title">
-      If this content doesn't load, <a target="_blank" :href="selectedCourse.richLink">click here</a> to open in a browser tab.
-      </br>
-    </br>
-      <vue-markdown class="guidance-md" :source="selectedCourse.md"></vue-markdown>
-    </b-modal>
-
-    <b-modal id="booking-modal" size="xl">
-      <div v-if="selectedCourse.link">
-        <iframe width="640px" height= "1550px" :src= "selectedCourse.link" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; width:100%" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
-      </div>
-
-    </b-modal>
-
-
-
   </div>
 </template>
 
