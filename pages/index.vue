@@ -4,91 +4,91 @@
     <div class="title-container">
       <b-card no-body class="overflow-hidden head-card">
         <b-row no-gutters>
-
-          <b-col sm="12" md="7">
+          <b-col sm="12" md="9">
             <b-card-body title="Hey, you ready to learn?">
               <b-card-text>
                 Welcome to the PHS Data Science Knowledge Base. It is here that you'll find access to all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes in-person and online training, guidance documents, and internally developed textbooks.
               </b-card-text>
             </b-card-body>
           </b-col>
-
-          <b-col md="1">
-          </b-col>
-
         </b-row>
       </b-card>
-
-        <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
-          <b-col>
-            <lord-icon
-              src="https://cdn.lordicon.com/zpxybbhl.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke=25
-              style="width:200px;height:200px">
-            </lord-icon>
-            <h5>In-Person Courses</h5>
-            <p>Internally developed courses ran by the PHS staff who use the tools in their day-to-day jobs.</p>
-          </b-col>
-          <b-col>
-            <lord-icon
-              src="https://cdn.lordicon.com/qhgmphtg.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke=25
-              style="width:200px;height:200px">
-            </lord-icon>
-            <h5>Online Courses</h5>
-            <p>The same courses available online in addition to or instead of the in-person options.</p>
-          </b-col>
-          <b-col>
-            <lord-icon
-              src="https://cdn.lordicon.com/nocovwne.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke=25
-              style="width:200px;height:200px">
-            </lord-icon>
-            <h5>Guidance</h5>
-            <p>Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.</p>
-          </b-col>
-          <b-col>
-            <lord-icon
-              src="https://cdn.lordicon.com/wxnxiano.json"
-              trigger="morph-two-way"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke=25
-              style="width:200px;height:200px">
-            </lord-icon>
-            <h5>Textbooks</h5>
-            <p>For learning or reference, see a complete textbook on one of the technologies.</p>
-          </b-col>
-        </b-row>
-
-        <div class="mt-5">
-          <b-row justify-content-between>
-            <b-col>
-              <b-card class="mb-4"
-              title="Learning Pathways">
-                <div class="d-flex">
-                  <b-card-text>Sometimes it's easier to get started when you can plan for the road ahead...</b-card-text>
-                </div>
-              </br>
-                  <b-row>
-                    <b-col>
-                      <b-button block variant="outline-primary">R Pathway</b-button>
-                    </b-col>
-                    <b-col cols="12" md="10">
-                      <p>The R content has been desgined to be topic-led, letting you pick up the concepts and tools for when you need them. However, the R pathway page outlines a structure for all of the R content. This includes training modules, guidance, and related technologies.</p>
-                    </b-col>
-                  </b-row>
-              </b-card>
-            </b-col>
-          </b-row>
-        </div>
-
     </div>
+
+    <div>
+      <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
+        <b-col>
+          <lord-icon
+            src="https://cdn.lordicon.com/zpxybbhl.json"
+            trigger="hover"
+            colors="primary:#3f3685,secondary:#80ba27"
+            stroke=25
+            style="width:200px;height:200px"
+            title="In-person course icon">
+          </lord-icon>
+          <h5>In-Person Courses</h5>
+          <p>Internally developed courses ran by the PHS staff who use the tools in their day-to-day jobs.</p>
+        </b-col>
+        <b-col>
+          <lord-icon
+            src="https://cdn.lordicon.com/qhgmphtg.json"
+            trigger="hover"
+            colors="primary:#3f3685,secondary:#80ba27"
+            stroke=25
+            style="width:200px;height:200px"
+            title="Online course icon">
+          </lord-icon>
+          <h5>Online Courses</h5>
+          <p>The same courses available online in addition to or instead of the in-person options.</p>
+        </b-col>
+        <b-col>
+          <lord-icon
+            src="https://cdn.lordicon.com/nocovwne.json"
+            trigger="hover"
+            colors="primary:#3f3685,secondary:#80ba27"
+            stroke=25
+            style="width:200px;height:200px"
+            title="Guidance document icon">
+          </lord-icon>
+          <h5>Guidance</h5>
+          <p>Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.</p>
+        </b-col>
+        <b-col>
+          <lord-icon
+            src="https://cdn.lordicon.com/wxnxiano.json"
+            trigger="morph-two-way"
+            colors="primary:#3f3685,secondary:#80ba27"
+            stroke=25
+            style="width:200px;height:200px"
+            title="Textbook icon">
+          </lord-icon>
+          <h5>Textbooks</h5>
+          <p>For learning or reference, see a complete textbook on one of the technologies.</p>
+        </b-col>
+      </b-row>
+    </div>
+
+    <div class="mt-5">
+      <b-row justify-content-between>
+        <b-col>
+          <b-card class="mb-4"
+          title="Learning Pathways">
+            <div class="d-flex mb-4">
+              <b-card-text>Sometimes it's easier to get started when you can plan for the road ahead...</b-card-text>
+            </div>
+            <b-row class="mb-3">
+              <b-col>
+                <b-button block variant="outline-primary" class="mt-2">R Pathway</b-button>
+              </b-col>
+              <b-col cols="12" md="10">
+                <b-card-text>The R content has been desgined to be topic-led, letting you pick up the concepts and tools for when you need them. However, the R pathway page outlines a structure for all of the R content. This includes training modules, guidance, and related technologies.</b-card-text>
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
+    </div>
+
   </div>
 </template>
 

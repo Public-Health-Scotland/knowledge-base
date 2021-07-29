@@ -1,5 +1,6 @@
 [
   {
+    "slug": "introduction-to-r",
     "title": "Introduction to R",
     "description": "A beginner's course for learning R from the basics.",
     "link": "https://scotland.shinyapps.io/phs-learnr-intro/",
