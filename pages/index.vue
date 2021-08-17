@@ -4,10 +4,13 @@
     <div class="title-container">
       <b-card no-body class="overflow-hidden head-card">
         <b-row no-gutters>
-          <b-col sm="12" md="9">
+          <b-col sm="12">
             <b-card-body title="Hey, you ready to learn?">
               <b-card-text>
                 Welcome to the PHS Data Science Knowledge Base. It is here that you'll find access to all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes in-person and online training, guidance documents, and internally developed textbooks.
+              </b-card-text>
+              <b-card-text>
+                <strong>Data Science</strong> is used in the broadest possible sense, capturing introductory content to technologies, and pulling existing and creating new more advanced content from the topic experts across the organisation. If you have something to offer, get in touch by <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry">emailing the Data Science team.</a>
               </b-card-text>
             </b-card-body>
           </b-col>
@@ -78,7 +81,7 @@
             </div>
             <b-row class="mb-3">
               <b-col>
-                <b-button block variant="outline-primary" class="mt-2">R Pathway</b-button>
+                <b-button block variant="outline-primary" class="mt-2" @click="$router.push('/develop/r-pathway')">R Pathway</b-button>
               </b-col>
               <b-col cols="12" md="10">
                 <b-card-text>The R content has been desgined to be topic-led, letting you pick up the concepts and tools for when you need them. However, the R pathway page outlines a structure for all of the R content. This includes training modules, guidance, and related technologies.</b-card-text>

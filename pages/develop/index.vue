@@ -44,17 +44,18 @@
         <b-row no-gutters>
 
           <b-col md="7">
-            <b-card-body title="Hey, you ready to learn?">
+            <b-card-body title="Develop knowledge and skills...">
               <b-card-text>
-                Welcome to the PHS Data Science Knowledge Base. It is here that you'll find access to all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes in-person and online training, guidance documents, and internally developed textbooks.
+                Internal contents related to using and learning data science tools in PHS are below, take a look and continue your development now. For a specific learning pathway use the links here:
               </b-card-text>
+              <b-button variant="outline-primary" class="mt-2" @click="$router.push('/develop/r-pathway')">R Pathway</b-button>
             </b-card-body>
           </b-col>
 
           <b-col md="1">
           </b-col>
 
-          <b-col md="4" align-self='center'>
+          <b-col md="4" align-self='center' class="d-none d-sm-none d-md-block">
             <div class="tag-cloud">
               <b-button class="tag-button" variant="outline-secondary" @click="search = 'R'">R</b-button>
               <b-button class="tag-button" variant="outline-secondary" @click="search = 'git'">git</b-button>
