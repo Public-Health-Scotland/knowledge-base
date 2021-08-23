@@ -47,12 +47,12 @@
 
       <div>
         <b-row cols="1" cols-lg="2">
-          <b-col cols="12" lg="8" class="pl-5 pr-5">
+          <b-col cols="12" lg="9">
             <b-row>
               <b-col>
                 <a id="get_started"></a>
                 <h4 class="mt-5">Get Started</h4>
-                <b-row cols="1" cols-md="2">
+                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
                   <b-col class="grid">
                     <b-card
                     title="Introduction to R"
@@ -94,7 +94,7 @@
                 <a id="take_it_further"></a>
                 <h4 class="mt-5">Take it Further</h4>
 
-                <b-row cols="1" cols-md="2">
+                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
                   <b-col class="grid">
                     <b-card
                     title="R Markdown"
@@ -133,12 +133,13 @@
 
               </b-col>
             </b-row>
+
             <b-row>
               <b-col>
                 <a id="get_advanced"></a>
                 <h4 class="mt-5">Get Advanced</h4>
 
-                <b-row cols="1" cols-md="2">
+                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
                   <b-col class="grid">
                     <b-card
                     title="R Shiny"
@@ -157,63 +158,47 @@
                   </b-col>
                 </b-row>
 
+              </b-col>
+            </b-row>
+
+            <b-row>
+              <b-col>
+                <h4 class="mt-5">Related Technologies</h4>
+
+                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
+                  <b-col class="grid">
+                    <b-card
+                    title="Introduction to Git"
+                    sub-title="In-Person Course"
+                    tag="article"
+                    class="mb-4">
+                      <b-card-text>
+                        Learn how to develop web apps and dashboards using R Shiny.
+                      </b-card-text>
+                      <template v-slot:footer>
+                        <b-button variant="primary">
+                          Book
+                        </b-button>
+                      </template>
+                    </b-card>
+                  </b-col>
+                </b-row>
 
               </b-col>
             </b-row>
+
           </b-col>
-          <b-col cols="12" lg="4" class="pl-5 pr-5">
+
+          <b-col cols="12" lg="3">
             <b-row>
               <b-col>
                 <h4 class="mt-5">Guidance</h4>
-                <b-card
-                title="R Style Guide"
-                sub-title="Guidance"
-                tag="article"
-                class="mb-4">
-                  <b-card-text>
-                    Coding style guidance for PHS staff using R.
-                  </b-card-text>
-                  <template v-slot:footer>
-                    <b-button variant="primary">
-                      View
-                    </b-button>
-                  </template>
-                </b-card>
 
-                <b-card
-                title="R Textbook"
-                sub-title="Guidance"
-                tag="article"
-                class="mb-4">
-                  <b-card-text>
-                    Textbook for R.
-                  </b-card-text>
-                  <template v-slot:footer>
-                    <b-button variant="primary">
-                      View
-                    </b-button>
-                  </template>
-                </b-card>
-              </b-col>
-            </b-row>
+                <b-list-group>
+                  <b-list-group-item href="#">R Style Guide<eva-icon class="float-right" name="file-text-outline" fill="#bd27b9"></eva-icon></b-list-group-item>
+                  <b-list-group-item href="#">R Textbook<eva-icon class="float-right" name="book-outline" fill="#bd27b9"></eva-icon></b-list-group-item>
+                </b-list-group>
 
-            <b-row>
-              <b-col>
-                <h4 class="mt-5">Related Tech</h4>
-                <b-card
-                title="Introduction to Git"
-                sub-title="In-Person Course"
-                tag="article"
-                class="mb-4">
-                  <b-card-text>
-                    A beginner's course for learning git (including GitHub and Gitea) from the basics.
-                  </b-card-text>
-                  <template v-slot:footer>
-                    <b-button variant="primary">
-                      Book
-                    </b-button>
-                  </template>
-                </b-card>
               </b-col>
             </b-row>
 
