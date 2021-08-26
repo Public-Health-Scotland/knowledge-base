@@ -5,7 +5,8 @@
       <b-card no-body class="overflow-hidden head-card">
         <b-row no-gutters>
           <b-col sm="12">
-            <b-card-body title="Hey, you ready to learn?">
+            <b-card-body>
+              <h3>Hey, you ready to learn?</h3>
               <b-card-text>
                 Welcome to the PHS Data Science Knowledge Base. It is here that you'll find access to all resources related to Data Science (R, Python, git, etc.) created by and for PHS staff. This includes in-person and online training, guidance documents, and internally developed textbooks.
               </b-card-text>
@@ -21,50 +22,50 @@
     <div>
       <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
         <b-col>
-          <lord-icon
+          <NuxtLink :to="{path:'/develop', query: {type: ['In-Person Course']}}" ><lord-icon
             src="https://cdn.lordicon.com/zpxybbhl.json"
             trigger="hover"
             colors="primary:#3f3685,secondary:#80ba27"
             stroke=25
             style="width:200px;height:200px"
             title="In-person course icon">
-          </lord-icon>
+          </lord-icon></NuxtLink>
           <h5>In-Person Courses</h5>
           <p>Internally developed courses ran by the PHS staff who use the tools in their day-to-day jobs.</p>
         </b-col>
         <b-col>
-          <lord-icon
+          <NuxtLink :to="{path:'/develop', query: {type: ['Online Course']}}" ><lord-icon
             src="https://cdn.lordicon.com/qhgmphtg.json"
             trigger="hover"
             colors="primary:#3f3685,secondary:#80ba27"
             stroke=25
             style="width:200px;height:200px"
             title="Online course icon">
-          </lord-icon>
+          </lord-icon></NuxtLink>
           <h5>Online Courses</h5>
           <p>The same courses available online in addition to or instead of the in-person options.</p>
         </b-col>
         <b-col>
-          <lord-icon
+          <NuxtLink :to="{path:'/develop', query: {type: ['Guidance']}}" ><lord-icon
             src="https://cdn.lordicon.com/nocovwne.json"
             trigger="hover"
             colors="primary:#3f3685,secondary:#80ba27"
             stroke=25
             style="width:200px;height:200px"
             title="Guidance document icon">
-          </lord-icon>
+          </lord-icon></NuxtLink>
           <h5>Guidance</h5>
           <p>Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.</p>
         </b-col>
         <b-col>
-          <lord-icon
+          <NuxtLink :to="{path:'/develop', query: {type: ['Textbook']}}" ><lord-icon
             src="https://cdn.lordicon.com/wxnxiano.json"
             trigger="morph-two-way"
             colors="primary:#3f3685,secondary:#80ba27"
             stroke=25
             style="width:200px;height:200px"
             title="Textbook icon">
-          </lord-icon>
+          </lord-icon></NuxtLink>
           <h5>Textbooks</h5>
           <p>For learning or reference, see a complete textbook on one of the technologies.</p>
         </b-col>
