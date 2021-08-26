@@ -62,12 +62,12 @@
       </b-navbar>
     </div>
 
-  <div class="container">
+  <div class="container body">
     <Nuxt />
   </div>
 
   <div class="container">
-    <footer>
+    <footer class="footer">
       <div class="copyright-container">
 
         <b-nav>
@@ -124,6 +124,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  position: relative;
+  min-height: 100%;
+}
+
+.body {
+  margin-bottom: 150px;
 }
 
 *,
@@ -171,6 +177,12 @@ img.logo{
 
 .nuxt-link-exact-active{
   font-weight: bold;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  height: 50px;
 }
 
 
