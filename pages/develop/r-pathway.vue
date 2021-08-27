@@ -40,9 +40,7 @@
         </b-col>
         <b-col cols="12" lg="6">
             <b-embed
-              type="iframe"
-              aspect="16by9"
-              src="https://www.youtube.com/embed/9kYUGMg_14s"
+              src="~/static/phs-coming-soon.mp4"
               allowfullscreen
             ></b-embed>
         </b-col>
