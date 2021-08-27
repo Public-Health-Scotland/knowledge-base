@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
     <b-breadcrumb>
-      <b-breadcrumb-item href="/">Home</b-breadcrumb-item>
-      <b-breadcrumb-item href="/develop">Develop</b-breadcrumb-item>
+      <b-breadcrumb-item @click="$router.push('/')">Home</b-breadcrumb-item>
+      <b-breadcrumb-item @click="$router.push('/develop')">Develop</b-breadcrumb-item>
       <b-breadcrumb-item active>{{course.title}}</b-breadcrumb-item>
     </b-breadcrumb>
 
@@ -45,7 +45,7 @@
         </b-card>
 
         <b-card class="mb-5 pathway-notice" v-if="course.technology == 'R'">
-            <h6 class="pathway-notice">Part of the <strong><b-link class="pathway-notice" href="/develop/r-pathway">R technology pathway</b-link></strong></h6>
+            <h6 class="pathway-notice">Part of the <strong><NuxtLink class="pathway-notice" to="/develop/r-pathway">R technology pathway</NuxtLink></strong></h6>
         </b-card>
 
       </b-col>
