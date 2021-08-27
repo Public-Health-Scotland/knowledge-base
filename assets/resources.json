@@ -1,0 +1,36 @@
+[
+  {
+    "title": "GitHub Guidance",
+    "slug": "github-guidance",
+    "description": "Guidance for using git and GitHub within PHS.",
+    "link": "http://raw.githubusercontent.com/Public-Health-Scotland/GitHub-guidance/master/README.md",
+    "richLink": "https://github.com/Public-Health-Scotland/GitHub-guidance/blob/master/README.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "Git",
+    "tags": ["git"]
+  },
+  {
+    "title": "Git Guide",
+    "slug": "git-guide",
+    "description": "Textbook for using git and GitHub within PHS.",
+    "link": "https://public-health-scotland.github.io/git-guide/",
+    "richLink": "",
+    "image": "",
+    "type": "Textbook",
+    "technology": "Git",
+    "tags": ["git"]
+  },
+  {
+    "title": "R Style Guide",
+    "slug": "r-style-guide",
+    "description": "Coding style guidance for PHS staff using R.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/PHS%20R%20style%20guide.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/PHS%20R%20style%20guide.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  }
+]

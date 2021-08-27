@@ -14,7 +14,8 @@
         <b-row no-gutters>
 
           <b-col md="7">
-            <b-card-body title="Hey, it's time to get sociable!">
+            <b-card-body>
+              <h3>Hey, it's time to get sociable!</h3>
               <b-card-text>
                 Below you will find a curated assortment of Data Science content and links for social and support channels.
               </b-card-text>
