@@ -95,6 +95,25 @@
     "related": []
   },
   {
+    "title": "Introduction to Open Data",
+    "slug": "introduction-to-open-data",
+    "description": "Learn about open data, what it is, why we use it, and how to interact with our open data using R.",
+    "overview": "Open data is the name for publicly released data which is made freely available to everyone to use and reuse in any way they like. With open data, anyone is able to make use of its potential: improving, innovating, and making better decisions. In this course, we provide a theoretical background of open data, building on PHS practices, and then getting practical with some coding examples in R. ",
+    "link": "https://scotland.shinyapps.io/phs-learnr-opendata",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learnr-opendata",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "R",
+    "level": "2",
+    "packages": ["base", "ckanr"],
+    "tags": ["r"],
+    "prereqs": ["Introduction to R"],
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "Introduction to Python",
     "slug": "introduction-to-python",
     "description": "A beginner's course for learning Python from the basics.",
