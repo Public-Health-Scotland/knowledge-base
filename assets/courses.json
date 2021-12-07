@@ -114,6 +114,25 @@
     "related": []
   },
   {
+    "title": "SPSS to R",
+    "slug": "spss-to-r",
+    "description": "A companion to the Intro to R course for SPSS users, understanding the differences and how to start translating SPSS to R.",
+    "overview": "While not repeating the content of the Introduction to R course, this course attempts to support existing SPSS users to transition to R. The course follows the same structure to allow you to compare and see how the code varies between the different technologies.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-spsstor/",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learnr-spsstor/",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "R",
+    "level": "1",
+    "packages": ["base"],
+    "tags": ["r"],
+    "prereqs": ["Introduction to R"],
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "R Shiny",
     "slug": "r-shiny",
     "description": "Learn how to develop web apps and dashboards using R Shiny.",
