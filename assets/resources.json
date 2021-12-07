@@ -32,5 +32,17 @@
     "type": "Guidance",
     "technology": "R",
     "tags": ["r"]
+  },
+  {
+    "title": "Recommended R Packages",
+    "slug": "recommended-r-packages",
+    "description": "Common packages for R used across PHS.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/Recommended%20R%20Packages.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/Recommended%20R%20Packages.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
   }
 ]

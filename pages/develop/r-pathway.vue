@@ -215,23 +215,6 @@
                   </b-card-group>
 
                   </b-col>
-
-                  <b-col class="grid">
-                    <b-card
-                    title="R Shiny"
-                    class="mb-4">
-                      <b-card-text>
-                        Learn how to develop web apps and dashboards using R Shiny.
-                      </b-card-text>
-                      <template v-slot:footer>
-                        <b-list-group flush>
-                          <b-list-group-item class="coming-soon ml-auto">
-                            <i>Coming Soon</i>
-                          </b-list-group-item>
-                        </b-list-group>
-                      </template>
-                    </b-card>
-                  </b-col>
                 </b-row>
 
               </b-col>
@@ -298,21 +281,23 @@
           <b-col cols="12" lg="3">
             <b-row>
               <b-col
-                class="grid"
+                class="grid">
+                <h4 class="mt-5">Other Resources</h4>
+                <b-list-group
                 v-for="resource in resources.filter(resource => resource.technology == 'R')"
                 :key="resource.title">
-                <h4 class="mt-5">Other Resources</h4>
-                <b-list-group>
                   <b-list-group-item
                     v-if="resource.type == 'Guidance'"
                     v-b-modal.guidance-modal
-                    @click="showGuidance(resource)">
+                    @click="showGuidance(resource)"
+                    class="mb-2 d-flex justify-content-between align-items-center">
                     {{resource.title}}
                     <eva-icon class="float-right" name="file-text-outline" fill="#bd27b9"></eva-icon>
                   </b-list-group-item>
                   <b-list-group-item
                     v-else-if="resource.type == 'Textbook'"
-                    :href="resource.link">
+                    :href="resource.link"
+                    class="mb-2 d-flex justify-content-between align-items-center">
                     {{resource.title}}
                     <eva-icon class="float-right" name="book-outline" fill="#bd27b9"></eva-icon>
                   </b-list-group-item>
