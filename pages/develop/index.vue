@@ -164,9 +164,9 @@
                 <b-list-group-item class="d-flex justify-content-between align-items-center" v-if="resource.type == 'Guidance'">
                   Guidance
                   <b-button
-                    v-b-modal.guidance-modal
-                    variant="primary"
-                    @click="showGuidance(resource)">
+                    :href="resource.richLink"
+                    target="_blank"
+                    variant="primary">
                     Open
                   </b-button>
                 </b-list-group-item>

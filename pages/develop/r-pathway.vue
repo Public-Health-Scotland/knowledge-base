@@ -288,8 +288,8 @@
                 :key="resource.title">
                   <b-list-group-item
                     v-if="resource.type == 'Guidance'"
-                    v-b-modal.guidance-modal
-                    @click="showGuidance(resource)"
+                    :href="resource.richLink"
+                    target="_blank"
                     class="mb-2 d-flex justify-content-between align-items-center">
                     {{resource.title}}
                     <eva-icon class="float-right" name="file-text-outline" fill="#bd27b9"></eva-icon>
