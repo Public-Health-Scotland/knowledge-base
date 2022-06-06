@@ -39,10 +39,10 @@
 
         </b-col>
         <b-col cols="12" lg="6">
-            <b-embed
-              src="~/static/phs-coming-soon.mp4"
-              allowfullscreen
-            ></b-embed>
+          <video width="100%" controls>
+            <source src="~/static/phs-r-overview.mp4" type="video/mp4">
+            <track kind="subtitles" srclang="en" src="phs-r-overview_vtt_English.vtt" label="English">
+          </video>
         </b-col>
       </b-row>
 
