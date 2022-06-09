@@ -42,7 +42,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    "@/plugins/eva-icons"
+    "@/plugins/eva-icons",
+    "@/plugins/google-analytics"
   ],
   /*
   ** Auto import components
