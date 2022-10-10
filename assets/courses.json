@@ -171,6 +171,25 @@
     "related": []
   },
   {
+    "title": "OpenXLSX",
+    "slug": "openxlsx",
+    "description": "Learn about the openxlsx package to work with Excel files within R.",
+    "overview": "The openxlsx package is a great way to work with Excel files within R. It allows you to read, write, and modify Excel files, and is a great alternative to the readxl and writexl packages. This course is a complete introduction to the openxlsx package, from the foundations up. It covers the basics of working with Excel files, including reading, writing, and modifying data. It also covers some more advanced topics, such as working with multiple worksheets, formatting, and using functions to automate tasks. This course is designed to be a complete introduction to the openxlsx package, so you can use the first few chapters to learn about the package and leave it there. However, the course continues and shows how that openxlsx code can be integrated into R, making your coding experience much more seamless. This will be particularly useful for adopting RAP principles, or ensuring the full pipeline is managed within R.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-openxlsx/",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learnr-openxlsx/",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "R",
+    "level": "2",
+    "packages": ["base", "openxlsx"],
+    "tags": ["r", "excel"],
+    "prereqs": ["Introduction to R"],
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "Introduction to Python",
     "slug": "introduction-to-python",
     "description": "A beginner's course for learning Python from the basics.",
