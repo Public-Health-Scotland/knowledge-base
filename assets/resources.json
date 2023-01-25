@@ -44,5 +44,17 @@
     "type": "Guidance",
     "technology": "R",
     "tags": ["r"]
+  },
+  {
+    "title": "Posit Workbench Login Guidance",
+    "slug": "workbench-login-guidance",
+    "description": "Understanding the requirements and process to logging into the PHS Posit Workbench.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_login_guidance.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_login_guidance.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
   }
 ]
