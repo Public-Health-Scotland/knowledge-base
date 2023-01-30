@@ -16,6 +16,7 @@
     "eva-icons": "^1.1.3",
     "jquery": "^1.9.1",
     "nuxt": "^2.14.12",
+    "octokit": "^2.0.14",
     "vue-analytics": "^5.22.1",
     "vue-eva-icons": "^1.1.1",
     "vue-markdown": "^2.1.2",
