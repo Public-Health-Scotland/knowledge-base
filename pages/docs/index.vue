@@ -28,11 +28,12 @@ export default {
     }
   },
   async created(){
-    let docs = await this.$axios.get('/repos/Public-Health-Scotland/R-Resources/contents/',{
+    let docs = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/',{
       baseURL: 'https://api.github.com'
     }).then(r => r.data)
 
      docs = docs.filter(d => !d.name.startsWith('.'))
+     docs = docs.filter(d => !d.name.startsWith('README'))
 
     this.docs = docs
   }
