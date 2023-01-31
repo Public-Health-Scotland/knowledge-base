@@ -44,5 +44,77 @@
     "type": "Guidance",
     "technology": "R",
     "tags": ["r"]
+  },
+  {
+    "title": "Posit Workbench Login Guidance",
+    "slug": "workbench-login-guidance",
+    "description": "Understanding the requirements and process to logging into the PHS Posit Workbench.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_login_guidance.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_login_guidance.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  },
+  {
+    "title": "Getting Support with Posit",
+    "slug": "posit-support",
+    "description": "The process for getting support with Posit applications in PHS.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_team_contact_info.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_team_contact_info.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  },
+  {
+    "title": "Recommended Global Options for RStudio",
+    "slug": "recommended-global-options",
+    "description": "Recommended settings for RStudio Global Options in Posit Workbench",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_and_global_options.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_and_global_options.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  },
+  {
+    "title": "Best Practice with R in Posit Workbench",
+    "slug": "r-best-practice-in-posit",
+    "description": "Best practice guidance for R development in Posit Workbench.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_best_practice_with_r.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_best_practice_with_r.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  },
+  {
+    "title": "What is Kubernetes?",
+    "slug": "posit-kubernetes",
+    "description": "Understand some of the infrastucture behind the Posit Workbench.",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_and_kubernetes.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_and_kubernetes.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
+  },
+  {
+    "title": "PHS Posit Workbench Acceptable Use Policy",
+    "slug": "posit-wb-acceptable-use-policy",
+    "description": "The Acceptable Use Policy for PHS Posit Workbench",
+    "overview": "",
+    "link": "https://raw.githubusercontent.com/Public-Health-Scotland/R-Resources/master/posit_workbench_acceptable_use_policy.md",
+    "richLink": "https://github.com/Public-Health-Scotland/R-Resources/blob/master/posit_workbench_acceptable_use_policy.md",
+    "image": "",
+    "type": "Guidance",
+    "technology": "R",
+    "tags": ["r"]
   }
 ]
