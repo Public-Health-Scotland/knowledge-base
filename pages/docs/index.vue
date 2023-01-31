@@ -28,16 +28,6 @@ export default {
     }
   },
   async created(){
-    // this.login = await octokit.rest.users.getAuthenticated()
-    // this.login = this.login.data
-    // console.log(this.login);
-
-    // let docs = await octokit.rest.repos.getContent({
-    //   owner: 'Public-Health-Scotland',
-    //   repo: 'R-Resources',
-    //   path: '.'
-    // }).then(r => r.data)
-
     let docs = await this.$axios.get('/repos/Public-Health-Scotland/R-Resources/contents/',{
       baseURL: 'https://api.github.com'
     }).then(r => r.data)
