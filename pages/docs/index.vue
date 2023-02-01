@@ -8,6 +8,10 @@
         <b-nav vertical class="w-25">
           <b-nav-item v-for="item in docs" :key="item.name" :to="item.path">
             {{ item.name }}
+            <eva-icon v-if="item.type == 'dir'" name="chevron-down-outline" fill="#bd27b9"></eva-icon>
+            <b-nav-item v-for="child in item.children" :key="child.name" :to="child.path">
+              {{ child.name }}
+            </b-nav-item>
           </b-nav-item>
         </b-nav>
         
@@ -25,8 +29,6 @@ export default {
       docs: []
     }
   },
-
-  
 
   async created(){
     let docs = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/',{
