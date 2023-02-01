@@ -9,24 +9,37 @@
           <b-nav-item v-for="item in docs" :key="item.name" :to="item.path">
             {{ item.name }}
             <eva-icon v-if="item.type == 'dir'" name="chevron-down-outline" fill="#bd27b9"></eva-icon>
-            <b-nav-item v-for="child in item.children" :key="child.name" :to="child.path">
+            <b-nav-item v-for="child in item.children" :key="child.name" @click="getMarkdownFile(child)">
               {{ child.name }}
             </b-nav-item>
           </b-nav-item>
         </b-nav>
-        
+      </div>
+
+      <div>
+        <vue-markdown :source="mdContent"></vue-markdown>
       </div>
     <pre>{{ docs }}</pre>
   </div>
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 export default {
   name: 'Docs',
+  components: { VueMarkdown },
   data(){
     return {
       login: null,
-      docs: []
+      docs: [],
+      mdContent : "Boo"
+    }
+  },
+
+  methods:{
+    async getMarkdownFile(doc){
+      this.mdContent = await this.$axios.get(doc.download_url).then(r => r.data)
     }
   },
 
@@ -51,13 +64,9 @@ export default {
           getSubDocs(subDocs)
         }
       }
-
       return docs
     }
-
     this.docs = await getSubDocs(docs)
   }
-
 }
-
 </script>
