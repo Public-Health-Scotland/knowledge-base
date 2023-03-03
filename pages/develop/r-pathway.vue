@@ -227,7 +227,7 @@
                 <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
                   <b-col
                   class="grid"
-                  v-for="course in courses.filter( course => course.related.includes('R'))">
+                  v-for="course in courses.filter( course => course.related.includes('R'))" :key="course.title">
                     <b-card-group deck>
                       <b-card class="mb-4">
                         <b-card-title>
