@@ -1,6 +1,5 @@
 <template>
 <div>
-    <hr>
     <vue-markdown :source="source"></vue-markdown>
 </div>   
 </template>
@@ -16,33 +15,31 @@ export default{
         }
     },
     watch:{
-        '$route.params.doc': function(doc)  {
-            this.getMarkdownFile(doc)
+        '$route': function()  {
+            this.getMarkdownFile()
         }
     },
     methods:{
-    async getMarkdownFile(doc){
-        if(!doc) return
+    async getMarkdownFile(){
+        this.$route.query.doc = this.$route.query.doc || 'README.md'
+        let path = this.$route.params.doc + '/' + this.$route.query.doc
 
-        let path = doc.split('-')[0]
-
-        let subDocs = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/' + path,{
+        let doc = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/' + path,{
             baseURL: 'https://api.github.com'
-        }).then(r => r.data)
-        doc = subDocs.find(d => 
-            d.path.replace(/\//g, '-').replace(/\s/g, '_').split('.')[0] == doc
-        )
-
+        }).then(r => r.data).catch(e => ({}))
+        
         console.log('download_url', doc.download_url);
 
         if(doc.type == 'file'){
-            this.source = await this.$axios.get(doc.download_url).then(r => r.data)
+            this.source = await this.$axios.get(doc.download_url).then(r => r.data).catch(e => '')
+        }else{
+            this.source = ''
         }
       
     }
   },
   created(){
-    this.getMarkdownFile(this.$route.params.doc)
+    this.getMarkdownFile()
   }
 
 }
