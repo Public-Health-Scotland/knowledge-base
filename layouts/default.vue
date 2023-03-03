@@ -37,6 +37,7 @@
 
                   <NuxtLink to="/develop" tag="b-nav-item">Develop</NuxtLink>
                   <NuxtLink to="/social" tag="b-nav-item">Social</NuxtLink>
+                  <!-- <NuxtLink to="/docs" tag="b-nav-item">Docs</NuxtLink> -->
 
                   <!-- <b-nav-item href=""><strong>Develop</strong></b-nav-item>
                   <b-nav-item href=""><strong>Social</strong></b-nav-item> -->

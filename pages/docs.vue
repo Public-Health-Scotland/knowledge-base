@@ -36,7 +36,7 @@
             <b-nav-item
               v-for="item in docs"
               :key="item.name"
-              :to="{ path: '/docs/' + item._path}"
+              :to="{ path: '/docs/' + item.path}"
               :active="$route.params.doc ? $route.params.doc == item._path : false"
               @click="selectedDoc = item"
             >
@@ -72,7 +72,7 @@
        
       </b-col>
 
-      <b-col md="8" fluid>
+      <b-col md="8" fluid v-if="!loadingNav">
         <nuxt-child></nuxt-child>
       </b-col>
     </b-row>
@@ -82,6 +82,12 @@
 <script>
 export default {
   name: "Docs",
+  watch: {
+    $route() {
+      this.selectedDoc = {};
+    },
+  },
+
   data() {
     return {
       login: null,
