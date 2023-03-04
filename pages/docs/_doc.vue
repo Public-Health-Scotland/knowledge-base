@@ -22,16 +22,20 @@ export default{
     methods:{
     async getMarkdownFile(){
         this.$route.query.doc = this.$route.query.doc || 'README.md'
-        let path = this.$route.params.doc + '/' + this.$route.query.doc
+        let path = this.$route.params.doc //+ '/' + this.$route.query.doc
 
         let doc = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/' + path,{
-            baseURL: 'https://api.github.com'
+            baseURL: 'https://api.github.com',
+            headers: {
+            }
         }).then(r => r.data).catch(e => ({}))
-        
-        console.log('download_url', doc.download_url);
+
+        doc = doc.find(d => d.name == this.$route.query.doc)
 
         if(doc.type == 'file'){
-            this.source = await this.$axios.get(doc.download_url).then(r => r.data).catch(e => '')
+            this.source = await this.$axios.get(doc.git_url)
+            .then(r => Buffer.from(r.data.content, 'base64').toString('ascii'))
+            .catch(e => '')
         }else{
             this.source = ''
         }

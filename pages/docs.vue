@@ -102,7 +102,6 @@ export default {
     openGithub() {
 
       let link = this.selectedDoc.children.find((d) => d.name == this.$route.query.doc);
-      console.log('link', link);
 
       window.open(link.html_url,'_blank')
     },
@@ -112,6 +111,8 @@ export default {
     let docs = await this.$axios
       .get("/repos/Public-Health-Scotland/technical-docs/contents/", {
         baseURL: "https://api.github.com",
+        headers: {
+        }
       })
       .then((r) => r.data);
 
@@ -131,6 +132,9 @@ export default {
                 doc.path,
               {
                 baseURL: "https://api.github.com",
+                headers: {
+
+                }
               }
             )
             .then((r) => r.data);
