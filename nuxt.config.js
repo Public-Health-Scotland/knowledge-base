@@ -1,4 +1,3 @@
-
 export default {
   /*
   ** Nuxt rendering mode
