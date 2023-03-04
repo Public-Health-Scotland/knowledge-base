@@ -117,6 +117,7 @@ export default {
       .then((r) => r.data);
 
     docs = docs.filter((d) => !d.name.startsWith("."));
+    docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
     docs = docs.filter((d) => !d.name.startsWith("README"));
 
     let getSubDocs = async (docs) => {
