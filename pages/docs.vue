@@ -1,38 +1,65 @@
 <template>
   <div>
     <div class="top-row">
-    <div>
-    <h1>Docs</h1>
-    <p>Some docs</p>
+      <div class="title-container">
+        <b-card no-body class="overflow-hidden head-card">
+          <b-row no-gutters align-v="center">
+
+            <b-col md="7">
+              <b-card-body>
+                <h3>Docs</h3>
+                <b-card-text>
+                  <p>for information related to Data Science in PHS</p>
+                </b-card-text>
+              </b-card-body>
+            </b-col>
+
+            <b-col md="1">
+            </b-col>
+
+            <b-col md="4">
+                <b-form-input class="search mb-2 d-none d-md-block" type="search" v-model="search" placeholder="Search"/>
+            </b-col>
+
+          </b-row>
+        </b-card>
+      </div>
     </div>
-    
-    <div @click="openGithub" v-show="$route.query.doc && $route.query.doc != 'README.md'">
-      <b-button variant="outline-dark" class="d-flex justify-content-between">
-      <eva-icon name="github-outline" fill="#000"></eva-icon>
-      View on GitHub
-    </b-button>
-    </div>
-  </div>
 
     <b-row>
-      <b-col cols="12" md="3" >
+      <b-col cols="12" md="4" lg="3">
         
         <!-- Make this nav collapse when the breakpoint is < md -->
-        <div class="d-flex justify-content-start">        
+        <b-row class="mt-3 mx-1">
+        <div class="d-flex justify-content-between w-100">        
+          <div>
           <b-button
             v-b-toggle.collapse-1
             variant="outline-dark"
-            class="d-flex justify-content-between d-md-none mb-2"
+            class="d-md-none mx-1"
           >
             <span class="when-closed"><eva-icon name="menu-outline" fill="#000" class="mr-2"></eva-icon></span>
             <span class="when-open"><eva-icon name="close-outline" fill="#000" class="mr-2"></eva-icon></span>
-            
             {{ selectedDoc.name ||'Docs' }}
           </b-button>
         </div>
+        <div>
+          <b-button-toolbar v-b-toggle.collapse-1 v-show="$route.query.doc && $route.query.doc != 'README.md'" class="d-md-none">
+
+            <b-button-group class="mx-1">
+              <b-button variant="outline-dark" class="" @click="openGithub" id="gh-button">
+                <eva-icon name="github-outline"></eva-icon>
+              </b-button>
+            </b-button-group>
+
+          </b-button-toolbar>
+        </div>
+        </div>
+      </b-row>
 
         <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
-          <b-nav vertical>
+          <b-nav vertical class="mt-3">
+            <b-form-input class="search mb-2 d-md-none" type="search" v-model="search" placeholder="Search"/>
             <b-nav-item
               v-for="item in docs"
               :key="item.name"
@@ -68,14 +95,26 @@
         <div v-else class="d-flex justify-content-center mt-3">
           <b-spinner variant="primary" label="Loading..."></b-spinner>
         </div>
-      
-       
       </b-col>
 
-      <b-col md="8" fluid v-if="!loadingNav">
-        <nuxt-child></nuxt-child>
+      <b-col md="8" lg="9" fluid v-if="!loadingNav">
+        <div id="collapse-1" class="d-md-block d-none d-md-block">
+          <b-button-toolbar v-show="$route.query.doc && $route.query.doc != 'README.md'" class="justify-content-end">
+
+            <b-button-group class="gh-button mx-1">
+              <b-button variant="outline-dark" class="d-flex align-self-end" @click="openGithub" id="gh-button-2">
+                <eva-icon name="github-outline"></eva-icon>
+              </b-button>
+            </b-button-group>
+
+          </b-button-toolbar>
+        </div> 
+        <nuxt-child class="mt-3"></nuxt-child>
       </b-col>
     </b-row>
+
+    <b-tooltip target="gh-button" title="View on GitHub"></b-tooltip>
+    <b-tooltip target="gh-button-2" title="View on GitHub"></b-tooltip>
   </div>
 </template>
 
@@ -187,16 +226,17 @@ export default {
 .active{
   font-weight: bold ;
 }
+
 .not-active{
   font-weight: normal ;
 }
 
-.top-row{
+.gh-button{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
+
 a li{
   font-weight: 400;
 }
