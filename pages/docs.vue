@@ -1,35 +1,76 @@
 <template>
   <div>
     <div class="top-row">
-    <div>
-    <h1>Docs</h1>
-    <p>Some docs</p>
+      <div class="title-container">
+        <b-card no-body class="overflow-hidden head-card">
+          <b-row no-gutters align-v="center">
+
+            <b-col md="7">
+              <b-card-body>
+                <h3 @click="$router.push('/docs')" style="cursor: pointer;">Docs</h3>
+                <b-card-text>
+                  <p>Data Science information and guidance</p>
+                </b-card-text>
+              </b-card-body>
+            </b-col>
+
+            <b-col md="1">
+            </b-col>
+
+            <b-col md="4">
+                <b-form-input class="search mt-2" type="search" v-model="search" placeholder="Search"/>
+            </b-col>
+
+          </b-row>
+        </b-card>
+      </div>
     </div>
-    
-    <div @click="openGithub" v-show="$route.query.doc && $route.query.doc != 'README.md'">
-      <b-button variant="outline-dark" class="d-flex justify-content-between">
-      <eva-icon name="github-outline" fill="#000"></eva-icon>
-      View on GitHub
-    </b-button>
-    </div>
-  </div>
+
+    <b-row class="d-flex" align-h="end">
+      <b-col cols="12" md="7" lg="6" xl="5" >
+         <b-list-group v-if="searchResults.length" class="search-results flex-fill" style="position: absolute; background-color: white; z-index: 500;">
+          <b-list-group-item v-for="r in searchResults" :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search=''">
+            <div class="d-flex flex-row">
+              <i class="mx-2">{{ r.path.split('/')[0] }}:  </i>
+              <NuxtLink :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search = ''" class="mx-2 align-middle">
+                <div>{{ r.name.split('.')[0] }}</div>
+              </NuxtLink>
+            </div>
+          </b-list-group-item>
+        </b-list-group>
+      </b-col>
+    </b-row>
 
     <b-row>
-      <b-col cols="12" md="3" >
+      <b-col cols="12" md="4" lg="3">
         
         <!-- Make this nav collapse when the breakpoint is < md -->
-        <div class="d-flex justify-content-start">        
+        <b-row class="mt-3 mx-1">
+        <div class="d-flex justify-content-between w-100">        
+          <div>
           <b-button
             v-b-toggle.collapse-1
             variant="outline-dark"
-            class="d-flex justify-content-between d-md-none mb-2"
+            class="d-md-none mx-1"
           >
             <span class="when-closed"><eva-icon name="menu-outline" fill="#000" class="mr-2"></eva-icon></span>
             <span class="when-open"><eva-icon name="close-outline" fill="#000" class="mr-2"></eva-icon></span>
-            
             {{ selectedDoc.name ||'Docs' }}
           </b-button>
         </div>
+        <div>
+          <b-button-toolbar v-b-toggle.collapse-1 v-show="$route.query.doc && $route.query.doc != 'README.md'" class="d-md-none">
+
+            <b-button-group class="mx-1">
+              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="" @click="openGithub">
+                <eva-icon name="github-outline"></eva-icon>
+              </b-button>
+            </b-button-group>
+
+          </b-button-toolbar>
+        </div>
+        </div>
+      </b-row>
 
         <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
           <b-nav vertical>
@@ -63,17 +104,37 @@
               </b-nav-item>
             </b-nav-item>
           </b-nav>
+
         </b-collapse>
 
-        <div v-else class="d-flex justify-content-center mt-3">
-          <b-spinner variant="primary" label="Loading..."></b-spinner>
+        <div v-else>
+          <b-skeleton width="65%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="35%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="20%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="70%" class="ml-2 mt-4"></b-skeleton>
         </div>
-      
-       
       </b-col>
 
-      <b-col md="8" fluid v-if="!loadingNav">
-        <nuxt-child></nuxt-child>
+      <b-col md="8" lg="9" fluid v-if="!loadingNav">
+        <div id="collapse-1" class="d-md-block d-none d-md-block">
+          <b-button-toolbar v-show="$route.query.doc && $route.query.doc != 'README.md'" class="justify-content-end">
+
+            <b-button-group class="gh-button mx-1">
+              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="d-flex align-self-end" @click="openGithub">
+                <eva-icon name="github-outline"></eva-icon>
+              </b-button>
+            </b-button-group>
+
+          </b-button-toolbar>
+        </div> 
+        <nuxt-child class="mt-3 md-doc"></nuxt-child>
+      </b-col>
+
+      <b-col v-else>
+        <b-skeleton width="65%" height="20%" class="mt-4"></b-skeleton>
+        <b-skeleton width="95%" class="mt-4"></b-skeleton>
+        <b-skeleton width="90%"></b-skeleton>
+        <b-skeleton width="70%"></b-skeleton>
       </b-col>
     </b-row>
   </div>
@@ -95,7 +156,20 @@ export default {
       selectedDoc: {},
       mdContent: "Boo",
       loadingNav: true,
+      search: ''
     };
+  },
+
+  computed: {
+    searchResults() {
+      if(!this.search) return []
+
+      let subdocs = this.docs.map(d => d.children).flat()
+      
+      let results = subdocs.filter(d => d.name.toLowerCase().includes(this.search.toLowerCase()))
+      
+      return results
+    }
   },
 
   methods: {
@@ -117,6 +191,7 @@ export default {
       .then((r) => r.data);
 
     docs = docs.filter((d) => !d.name.startsWith("."));
+    docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
     docs = docs.filter((d) => !d.name.startsWith("README"));
 
     let getSubDocs = async (docs) => {
@@ -182,20 +257,21 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .active{
   font-weight: bold ;
 }
+
 .not-active{
   font-weight: normal ;
 }
 
-.top-row{
+.gh-button{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
+
 a li{
   font-weight: 400;
 }
@@ -203,5 +279,45 @@ a li{
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
   display: none;
+}
+
+.search-results{
+  box-shadow: 0px 4px 10px 0px rgba(220,220,220,1);
+}
+@media (max-width:  767.98px)  {
+  .search-results{
+    right: 15px;
+    width: 95%;
+  }
+ }
+
+@media (min-width:  767.98px)  {
+  .search-results{
+    margin-top: -33px;
+    right: 15px;
+  }
+ }
+
+.md-doc h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.md-doc h2 {
+  font-size: 1.5rem;
+}
+.md-doc h3 {
+  font-size: 1.25rem;
+}
+.md-doc h4 {
+  font-size: 1rem;
+}
+.md-doc h5 {
+  font-size: 0.875rem;
+}
+.md-doc h6 {
+  font-size: 0.75rem;
+}
+.md-doc img {
+  max-width: 100%;
 }
 </style>

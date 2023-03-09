@@ -1,7 +1,7 @@
 <template>
-<div>
-    <vue-markdown :source="source"></vue-markdown>
-</div>   
+    <div>
+        <vue-markdown :source="source"></vue-markdown>
+    </div>   
 </template>
 
 <script>
@@ -39,7 +39,15 @@ export default{
         }else{
             this.source = ''
         }
-      
+
+        // Workaround for links in the md file
+        // eg. [Get support](Login%20to%20Posit%20Workbench.md) should link to 
+        // /knowledge-base/docs/${$route.params.doc}?doc=Login%20to%20Posit%20Workbench.md
+        this.source = this.source.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+            if(p2.includes('http')) return `<a href="${p2}" target="_blank">${p1}</a>` 
+            return `[${p1}](/knowledge-base/docs/${this.$route.params.doc}?doc=${p2})`
+        })
+        
     }
   },
   created(){
