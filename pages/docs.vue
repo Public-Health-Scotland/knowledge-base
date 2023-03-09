@@ -7,9 +7,9 @@
 
             <b-col md="7">
               <b-card-body>
-                <h3>Docs</h3>
+                <h3 @click="$router.push('/docs')" style="cursor: pointer;">Docs</h3>
                 <b-card-text>
-                  <p>for information related to Data Science in PHS</p>
+                  <p>Data Science information and guidance</p>
                 </b-card-text>
               </b-card-body>
             </b-col>
@@ -73,7 +73,7 @@
       </b-row>
 
         <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
-          <b-nav vertical class="mt-3">
+          <b-nav vertical>
             <b-nav-item
               v-for="item in docs"
               :key="item.name"
