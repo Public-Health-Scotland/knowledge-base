@@ -1,7 +1,7 @@
 <template>
-<div>
-    <vue-markdown :source="source"></vue-markdown>
-</div>   
+    <div>
+        <vue-markdown :source="source"></vue-markdown>
+    </div>   
 </template>
 
 <script>

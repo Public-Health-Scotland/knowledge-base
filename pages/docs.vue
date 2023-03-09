@@ -104,10 +104,14 @@
               </b-nav-item>
             </b-nav-item>
           </b-nav>
+
         </b-collapse>
 
-        <div v-else class="d-flex justify-content-center mt-3">
-          <b-spinner variant="primary" label="Loading..."></b-spinner>
+        <div v-else>
+          <b-skeleton width="65%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="35%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="20%" class="ml-2 mt-4"></b-skeleton>
+          <b-skeleton width="70%" class="ml-2 mt-4"></b-skeleton>
         </div>
       </b-col>
 
@@ -124,6 +128,13 @@
           </b-button-toolbar>
         </div> 
         <nuxt-child class="mt-3 md-doc"></nuxt-child>
+      </b-col>
+
+      <b-col v-else>
+        <b-skeleton width="65%" height="20%" class="mt-4"></b-skeleton>
+        <b-skeleton width="95%" class="mt-4"></b-skeleton>
+        <b-skeleton width="90%"></b-skeleton>
+        <b-skeleton width="70%"></b-skeleton>
       </b-col>
     </b-row>
   </div>
@@ -276,7 +287,7 @@ a li{
 @media (max-width:  767.98px)  {
   .search-results{
     right: 15px;
-    width: 97%;
+    width: 95%;
   }
  }
 
