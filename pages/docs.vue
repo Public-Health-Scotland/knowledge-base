@@ -18,13 +18,28 @@
             </b-col>
 
             <b-col md="4">
-                <b-form-input class="search mb-2 d-none d-md-block" type="search" v-model="search" placeholder="Search"/>
+                <b-form-input class="search mt-2" type="search" v-model="search" placeholder="Search"/>
             </b-col>
 
           </b-row>
         </b-card>
       </div>
     </div>
+
+    <b-row class="d-flex" align-h="end">
+      <b-col cols="12" md="7" lg="6" xl="5" >
+         <b-list-group v-if="searchResults.length" class="search-results flex-fill" style="position: absolute; background-color: white; z-index: 500;">
+          <b-list-group-item v-for="r in searchResults" :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search=''">
+            <div class="d-flex flex-row">
+              <i class="mx-2">{{ r.path.split('/')[0] }}:  </i>
+              <NuxtLink :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search = ''" class="mx-2 align-middle">
+                <div>{{ r.name.split('.')[0] }}</div>
+              </NuxtLink>
+            </div>
+          </b-list-group-item>
+        </b-list-group>
+      </b-col>
+    </b-row>
 
     <b-row>
       <b-col cols="12" md="4" lg="3">
@@ -47,7 +62,7 @@
           <b-button-toolbar v-b-toggle.collapse-1 v-show="$route.query.doc && $route.query.doc != 'README.md'" class="d-md-none">
 
             <b-button-group class="mx-1">
-              <b-button variant="outline-dark" class="" @click="openGithub" id="gh-button">
+              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="" @click="openGithub">
                 <eva-icon name="github-outline"></eva-icon>
               </b-button>
             </b-button-group>
@@ -59,7 +74,6 @@
 
         <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
           <b-nav vertical class="mt-3">
-            <b-form-input class="search mb-2 d-md-none" type="search" v-model="search" placeholder="Search"/>
             <b-nav-item
               v-for="item in docs"
               :key="item.name"
@@ -102,19 +116,16 @@
           <b-button-toolbar v-show="$route.query.doc && $route.query.doc != 'README.md'" class="justify-content-end">
 
             <b-button-group class="gh-button mx-1">
-              <b-button variant="outline-dark" class="d-flex align-self-end" @click="openGithub" id="gh-button-2">
+              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="d-flex align-self-end" @click="openGithub">
                 <eva-icon name="github-outline"></eva-icon>
               </b-button>
             </b-button-group>
 
           </b-button-toolbar>
         </div> 
-        <nuxt-child class="mt-3"></nuxt-child>
+        <nuxt-child class="mt-3 md-doc"></nuxt-child>
       </b-col>
     </b-row>
-
-    <b-tooltip target="gh-button" title="View on GitHub"></b-tooltip>
-    <b-tooltip target="gh-button-2" title="View on GitHub"></b-tooltip>
   </div>
 </template>
 
@@ -134,7 +145,20 @@ export default {
       selectedDoc: {},
       mdContent: "Boo",
       loadingNav: true,
+      search: ''
     };
+  },
+
+  computed: {
+    searchResults() {
+      if(!this.search) return []
+
+      let subdocs = this.docs.map(d => d.children).flat()
+      
+      let results = subdocs.filter(d => d.name.toLowerCase().includes(this.search.toLowerCase()))
+      
+      return results
+    }
   },
 
   methods: {
@@ -222,7 +246,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .active{
   font-weight: bold ;
 }
@@ -244,5 +268,45 @@ a li{
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
   display: none;
+}
+
+.search-results{
+  box-shadow: 0px 4px 10px 0px rgba(220,220,220,1);
+}
+@media (max-width:  767.98px)  {
+  .search-results{
+    right: 15px;
+    width: 97%;
+  }
+ }
+
+@media (min-width:  767.98px)  {
+  .search-results{
+    margin-top: -33px;
+    right: 15px;
+  }
+ }
+
+.md-doc h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.md-doc h2 {
+  font-size: 1.5rem;
+}
+.md-doc h3 {
+  font-size: 1.25rem;
+}
+.md-doc h4 {
+  font-size: 1rem;
+}
+.md-doc h5 {
+  font-size: 0.875rem;
+}
+.md-doc h6 {
+  font-size: 0.75rem;
+}
+.md-doc img {
+  max-width: 100%;
 }
 </style>

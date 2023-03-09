@@ -66,6 +66,16 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
+  build: {
+    loaders: {
+      sass: {
+        implementation: require('sass'),
+      },
+      scss: {
+        implementation: require('sass'),
+      },
+    },
+  }
   // build: {
   //   extend(config) {
   //     const vueLoader = config.module.rules.find(rule => rule.loader === 'vue-loader')
