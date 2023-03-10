@@ -2,56 +2,33 @@
   <div>
 
     <div class="title-container">
-      <b-card no-body class="overflow-hidden head-card">
-        <b-row no-gutters>
-
-          <b-col md="7">
+      
+      <b-row no-gutters>
+        <b-col md="7">
+          <b-card no-body class="overflow-hidden head-card"></b-card>
             <b-card-body>
-              <h3>Develop knowledge and skills...</h3>
+              <h3>Develop</h3>
               <b-card-text>
-                Internal contents related to using and learning data science tools in PHS are below, take a look and continue your development now. For a specific learning pathway use the links here:
+                Training and support materials related to Data Science in PHS
               </b-card-text>
               <b-button variant="outline-primary" class="mt-2" @click="$router.push('/develop/r-pathway')">R Pathway</b-button>
             </b-card-body>
-          </b-col>
+          </b-card>
+        </b-col>
+        
+        <b-col md="1">
+        </b-col>
 
-          <b-col md="1">
-          </b-col>
-
-          <b-col md="4" align-self='center' class="d-none d-sm-none d-md-block">
-            <div class="tag-cloud">
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'R'">R</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'git'">git</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'Python'">Python</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'SQL'">SQL</b-button>
-              <b-button class="tag-button" variant="outline-secondary" @click="search = 'Viz'">Viz</b-button>
-            </div>
-          </b-col>
-
-        </b-row>
-      </b-card>
-    </div>
-
-    <b-row align-h="end" class="mb-3">
-
-      <b-col cols='12' md='6' lg="5">
-        <div class="filter-row">
-          <b-form-input class="search" type="search" v-model="search" placeholder="Search"/>
-
+        <b-col md="4" align-self='center'>
+          <b-form-input class="search mt-5" type="search" v-model="search" placeholder="Search"/>
           <b-dropdown
-            class="filter"
-            size="lg"
-            variant="link"
-            toggle-class="text-decoration-none"
-            no-caret
+            class="filter float-right mt-3 mr-3"
+            variant="outline-secondary"
             right
-            offset='-15'>
-            <template #button-content>
-              <eva-icon name="funnel-outline" fill="#bd27b9"></eva-icon><span class="sr-only">Filter</span>
-            </template>
+            text="Category">
             <b-dropdown-form style="width: 200px">
               <b-form-group
-                label="Filter"
+                label="Filter on type:"
                 v-slot="{ ariaDescribedby }">
                 <b-form-checkbox-group
                   v-model="filterSelected"
@@ -67,11 +44,17 @@
               </b-form-group>
             </b-dropdown-form>
           </b-dropdown>
-        </div>
-      </b-col>
-    </b-row>
+        </b-col>
+      </b-row>
 
-    <b-row cols="1" cols-sm="2" cols-lg="3">
+
+      <b-row align-h="end">
+        
+      </b-row>
+
+    </div>
+
+    <b-row cols="1" cols-sm="2" cols-lg="3" class="mt-4">
       <b-col>
         <h4 class="mb-3">Courses</h4>
       </b-col>
