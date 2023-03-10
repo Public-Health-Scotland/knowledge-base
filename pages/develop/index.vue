@@ -8,10 +8,12 @@
           <b-card no-body class="overflow-hidden head-card"></b-card>
             <b-card-body>
               <h3>Develop</h3>
-              <b-card-text>
-                Training and support materials related to Data Science in PHS
+              <b-card-text class="mb-4">
+                Training and support materials related to Data Science
               </b-card-text>
-              <b-button variant="outline-primary" class="mt-2" @click="$router.push('/develop/r-pathway')">R Pathway</b-button>
+              <b-dropdown variant="outline-primary" text="Training Pathways">
+                <b-dropdown-item @click="$router.push('/develop/r-pathway')">R Pathway</b-dropdown-item>
+              </b-dropdown>
             </b-card-body>
           </b-card>
         </b-col>
@@ -22,7 +24,7 @@
         <b-col md="4" align-self='center'>
           <b-form-input class="search mt-5" type="search" v-model="search" placeholder="Search"/>
           <b-dropdown
-            class="filter float-right mt-3 mr-3"
+            class="filter float-right mt-2 mr-3"
             variant="outline-secondary"
             right
             text="Category">
