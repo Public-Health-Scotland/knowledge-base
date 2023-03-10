@@ -39,7 +39,6 @@
                   stacked>
                   <b-form-checkbox value="In-Person Course">In-Person Course</b-form-checkbox>
                   <b-form-checkbox value="Online Course">Online Course</b-form-checkbox>
-                  <b-form-checkbox value="Guidance">Guidance</b-form-checkbox>
                   <b-form-checkbox value="Textbook">Textbook</b-form-checkbox>
                   <b-form-checkbox value="Coming Soon"><i>Coming Soon</i></b-form-checkbox>
                 </b-form-checkbox-group>
@@ -211,7 +210,7 @@ export default {
       selectedCourse: {},
       selectedResource: {},
       search: '',
-      filterSelected: ["Online Course", "In-Person Course", "Textbook", "Guidance"]
+      filterSelected: ["Online Course", "In-Person Course", "Textbook"]
     }
   },
   computed:{
