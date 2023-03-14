@@ -145,7 +145,7 @@ export default {
   name: "Docs",
   watch: {
     $route() {
-      this.selectedDoc = {};
+      // this.selectedDoc = {};
     },
   },
 
