@@ -7,9 +7,9 @@
 
             <b-col md="7">
               <b-card-body>
-                <h3 @click="$router.push('/docs')" style="cursor: pointer;">Docs</h3>
+                <h3 @click="$router.push('/docs')" style="cursor: pointer;">Documentation</h3>
                 <b-card-text>
-                  <p>Data Science information and guidance</p>
+                  <p>Data Science information, guidance, and best practice</p>
                 </b-card-text>
               </b-card-body>
             </b-col>
