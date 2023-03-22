@@ -7,9 +7,14 @@
             <b-card-body>
               <h3>R Pathway</h3>
               <b-card-text>
-                PHS has made efforts to build an infrastructure for R. Here, the pathway for learning and development is laid out, including training and guidance.
+                Here is the pathway for learning and development in R.
               </b-card-text>
             </b-card-body>
+          </b-col>
+          <b-col align-self='center'>
+            <b-button @click="$router.push('/docs/R')" variant="outline-primary">
+              R Documentation
+            </b-button>
           </b-col>
         </b-row>
       </b-card>
@@ -47,13 +52,13 @@
       </b-row>
 
       <div>
-        <b-row cols="1" cols-lg="2">
-          <b-col cols="12" lg="9">
+        <b-row>
+          <b-col>
             <b-row>
               <b-col>
                 <a id="get_started"></a>
                 <h4 class="mt-5">Get Started</h4>
-                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
+                <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
 
                   <b-col
                   class="grid"
@@ -110,7 +115,7 @@
                 <a id="take_it_further"></a>
                 <h4 class="mt-5">Take it Further</h4>
 
-                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
+                <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
 
                   <b-col
                   class="grid"
@@ -167,7 +172,7 @@
                 <a id="get_advanced"></a>
                 <h4 class="mt-5">Get Advanced</h4>
 
-                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
+                <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
 
                   <b-col
                   class="grid"
@@ -224,7 +229,7 @@
               <b-col>
                 <h4 class="mt-5">Related Technologies</h4>
 
-                <b-row cols="1" cols-md="2" class="pr-md-0 pr-lg-5">
+                <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
                   <b-col
                   class="grid"
                   v-for="course in courses.filter( course => course.related.includes('R'))" :key="course.title">
@@ -278,35 +283,6 @@
 
           </b-col>
 
-          <b-col cols="12" lg="3">
-            <b-row>
-              <b-col
-                class="grid">
-                <h4 class="mt-5">Other Resources</h4>
-                <b-list-group
-                v-for="resource in resources.filter(resource => resource.technology == 'R')"
-                :key="resource.title">
-                  <b-list-group-item
-                    v-if="resource.type == 'Guidance'"
-                    :href="resource.richLink"
-                    target="_blank"
-                    class="mb-2 d-flex justify-content-between align-items-center">
-                    {{resource.title}}
-                    <eva-icon class="float-right" name="file-text-outline" fill="#bd27b9"></eva-icon>
-                  </b-list-group-item>
-                  <b-list-group-item
-                    v-else-if="resource.type == 'Textbook'"
-                    :href="resource.link"
-                    class="mb-2 d-flex justify-content-between align-items-center">
-                    {{resource.title}}
-                    <eva-icon class="float-right" name="book-outline" fill="#bd27b9"></eva-icon>
-                  </b-list-group-item>
-                </b-list-group>
-
-              </b-col>
-            </b-row>
-
-          </b-col>
         </b-row>
       </div>
 
