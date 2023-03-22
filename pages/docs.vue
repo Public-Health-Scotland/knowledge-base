@@ -84,7 +84,7 @@
               {{ item.name.split(".")[0] }}
             
               <eva-icon
-                v-if="item.type == 'dir'"
+                v-if="item.type == 'dir' & item.name != 'Glossary'"
                 name="chevron-down-outline"
                 fill="#bd27b9"
               ></eva-icon>
@@ -145,7 +145,6 @@ export default {
   name: "Docs",
   watch: {
     $route() {
-      this.selectedDoc = {};
     },
   },
 
@@ -181,7 +180,7 @@ export default {
     },
   },
 
-  async created() {
+  async created() {  
     let docs = await this.$axios
       .get("/repos/Public-Health-Scotland/technical-docs/contents/", {
         baseURL: "https://api.github.com",
@@ -192,6 +191,7 @@ export default {
 
     docs = docs.filter((d) => !d.name.startsWith("."));
     docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
+    docs = docs.filter((d) => !d.name.startsWith("CODE_OF_CONDUCT"));
     docs = docs.filter((d) => !d.name.startsWith("README"));
 
     let getSubDocs = async (docs) => {
@@ -225,15 +225,18 @@ export default {
     };
     this.docs = await getSubDocs(docs);
 
+    // Sort glossary to the end
+    this.docs.sort((a, b) => {
+      if (a.name == "Glossary") return 1;
+      if (b.name == "Glossary") return -1;
+      return 0;
+    });
+
     // If $route.params.doc is set,  we need to set the selectedDoc
     if (this.$route.params.doc) {
-      // update the param to the correct format
-      this.$route.params.doc = this.$route.params.doc
-        .replace(/-/g, "/")
-        .replace(/_/g, " ")
-        .split(".")[0];
-
-      let doc = this.docs.find((d) => d._path == this.$route.params.doc);
+      let doc = this.docs.find((d) => 
+         d.path == this.$route.params.doc
+      );
 
       // If its not found look in the children
       if (!doc) {

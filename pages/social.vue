@@ -51,6 +51,9 @@
             <img class="icon" src="~/static/teams-logo.png" alt="Teams logo"><b-link href="https://teams.microsoft.com/l/team/19%3ade52fa8e8e3847e0bee59ad4322fbb04%40thread.tacv2/conversations?groupId=1d322b44-bb66-4789-bb8e-1c5cffc733b7&tenantId=10efe0bd-a030-4bca-809c-b5e6745e499a" target="_blank" class="mb-0">PHS People Development Hub</b-link>
           </div>
           <div class="d-flex align-items-center social-link">
+            <img class="icon" src="~/static/teams-logo.png" alt="Teams logo"><b-link href="https://teams.microsoft.com/l/team/19%3aQZ7-PbFVcziG2piHLt1_ifey3I2cwFL0yBuTSS8vVao1%40thread.tacv2/conversations?groupId=106d08f3-9026-40e2-b3c7-87cd87304d58&tenantId=10efe0bd-a030-4bca-809c-b5e6745e499a" target="_blank" class="mb-0">KIND Learning Network</b-link>
+          </div>
+          <div class="d-flex align-items-center social-link">
             <img class="icon" src="~/static/slack-logo.png" alt="Slack logo"><b-link href="https://datasciencescotland.slack.com" target="_blank" class="mb-0">Data Science Scotland</b-link>
           </div>
 

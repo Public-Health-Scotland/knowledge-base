@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vue-markdown :source="source"></vue-markdown>
+        <vue-markdown :source="source" toc></vue-markdown>
     </div>   
 </template>
 
@@ -11,7 +11,8 @@ export default{
     components: { VueMarkdown },
     data(){
         return {
-            source: ''
+            source: '',
+            raw: ''
         }
     },
     watch:{
@@ -22,7 +23,7 @@ export default{
     methods:{
     async getMarkdownFile(){
         this.$route.query.doc = this.$route.query.doc || 'README.md'
-        let path = this.$route.params.doc //+ '/' + this.$route.query.doc
+        let path = this.$route.params.doc
 
         let doc = await this.$axios.get('/repos/Public-Health-Scotland/technical-docs/contents/' + path,{
             baseURL: 'https://api.github.com',
@@ -30,7 +31,8 @@ export default{
             }
         }).then(r => r.data).catch(e => ({}))
 
-        doc = doc.find(d => d.name == this.$route.query.doc)
+        if(Array.isArray(doc))
+            doc = doc.find(d => d.name == this.$route.query.doc)
 
         if(doc.type == 'file'){
             this.source = await this.$axios.get(doc.git_url)
@@ -40,12 +42,17 @@ export default{
             this.source = ''
         }
 
+        this.raw = this.source
+
         // Workaround for links in the md file
         // eg. [Get support](Login%20to%20Posit%20Workbench.md) should link to 
         // /knowledge-base/docs/${$route.params.doc}?doc=Login%20to%20Posit%20Workbench.md
-        this.source = this.source.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
+        console.log(this.$route.query.doc)
+        this.source = this.source.replace(/(?<!\!)\[([^[\]]+)\]\(([^()]*)\)/g, (match, p1, p2) => {
+            if(p2.startsWith('#') & this.$route.query.doc != 'README.md')return `[${p1}](/knowledge-base${this.$route.path.replace(/ /g, '%20')}?doc=${this.$route.query.doc.replace(/ /g, '%20')}${p2})`
+            if(p2.startsWith('#'))return `[${p1}](/knowledge-base${this.$route.path.replace(/ /g, '%20')}${p2})`
             if(p2.includes('http')) return `<a href="${p2}" target="_blank">${p1}</a>` 
-            return `[${p1}](/knowledge-base/docs/${this.$route.params.doc}?doc=${p2})`
+            return `[${p1}](/knowledge-base/docs/${this.$route.params.doc.replace(/ /g, '%20')}?doc=${p2})`
         })
         
     }
@@ -57,4 +64,9 @@ export default{
 }
 </script>
 
+<style>
+.toc-anchor-link{
+    display: none;
+}
+</style>
     
