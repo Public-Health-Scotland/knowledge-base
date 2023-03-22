@@ -45,7 +45,7 @@ export default{
         // /knowledge-base/docs/${$route.params.doc}?doc=Login%20to%20Posit%20Workbench.md
         this.source = this.source.replace(/\[(.*?)\]\((.*?)\)/g, (match, p1, p2) => {
             if(p2.includes('http')) return `<a href="${p2}" target="_blank">${p1}</a>` 
-            return `[${p1}](/knowledge-base/docs/${this.$route.params.doc}?doc=${p2})`
+            return `[${p1}](/knowledge-base/docs/${this.$route.params.doc.replace(/ /g, '%20')}?doc=${p2})`
         })
         
     }

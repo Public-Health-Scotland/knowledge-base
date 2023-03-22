@@ -10,8 +10,9 @@
                 Welcome to the PHS Data Science Knowledge Base. It is here that
                 you'll find access to all resources related to Data Science (R,
                 Python, git, etc.) created by and for PHS staff. This includes
-                in-person and online training, guidance documents, and
-                internally developed textbooks.
+                in-person and online training, internally developed textbooks,
+                and all technical documentation, including guidance, how-tos,
+                and best practice.
               </b-card-text>
               <b-card-text>
                 <strong>Data Science</strong> is used in the broadest possible
