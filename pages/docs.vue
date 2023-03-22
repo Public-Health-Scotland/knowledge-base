@@ -192,6 +192,7 @@ export default {
 
     docs = docs.filter((d) => !d.name.startsWith("."));
     docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
+    docs = docs.filter((d) => !d.name.startsWith("CODE_OF_CONDUCT"));
     docs = docs.filter((d) => !d.name.startsWith("README"));
 
     let getSubDocs = async (docs) => {
