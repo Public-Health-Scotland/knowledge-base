@@ -1,6 +1,6 @@
 <template>
     <div>
-        <vue-markdown :source="source"></vue-markdown>
+        <vue-markdown :source="source" toc></vue-markdown>
     </div>   
 </template>
 
@@ -47,7 +47,10 @@ export default{
         // Workaround for links in the md file
         // eg. [Get support](Login%20to%20Posit%20Workbench.md) should link to 
         // /knowledge-base/docs/${$route.params.doc}?doc=Login%20to%20Posit%20Workbench.md
+        console.log(this.$route.query.doc)
         this.source = this.source.replace(/(?<!\!)\[([^[\]]+)\]\(([^()]*)\)/g, (match, p1, p2) => {
+            if(p2.startsWith('#') & this.$route.query.doc != 'README.md')return `[${p1}](/knowledge-base${this.$route.path.replace(/ /g, '%20')}?doc=${this.$route.query.doc.replace(/ /g, '%20')}${p2})`
+            if(p2.startsWith('#'))return `[${p1}](/knowledge-base${this.$route.path.replace(/ /g, '%20')}${p2})`
             if(p2.includes('http')) return `<a href="${p2}" target="_blank">${p1}</a>` 
             return `[${p1}](/knowledge-base/docs/${this.$route.params.doc.replace(/ /g, '%20')}?doc=${p2})`
         })
@@ -61,4 +64,9 @@ export default{
 }
 </script>
 
+<style>
+.toc-anchor-link{
+    display: none;
+}
+</style>
     

@@ -84,7 +84,7 @@
               {{ item.name.split(".")[0] }}
             
               <eva-icon
-                v-if="item.type == 'dir'"
+                v-if="item.type == 'dir' & item.name != 'Glossary'"
                 name="chevron-down-outline"
                 fill="#bd27b9"
               ></eva-icon>
@@ -225,11 +225,10 @@ export default {
     };
     this.docs = await getSubDocs(docs);
 
-    // Sort the docs
-    // Order by type (dir, file).  dir first then file
+    // Sort glossary to the end
     this.docs.sort((a, b) => {
-      if (a.type == "dir" && b.type == "file") return -1;
-      if (a.type == "file" && b.type == "dir") return 1;
+      if (a.name == "Glossary") return 1;
+      if (b.name == "Glossary") return -1;
       return 0;
     });
 
