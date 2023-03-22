@@ -11,13 +11,13 @@
                 <h3>Get Started</h3>
                 <ul>
                     <li>
-                        <strong><NuxtLink to="/docs/Infrastructure">What is Posit?</NuxtLink></strong>
+                        <strong><NuxtLink to="/docs/Posit%20Infrastructure">What is Posit?</NuxtLink></strong>
                     </li>
                     <li>
-                        <strong><NuxtLink to="/docs/Infrastructure?doc=Posit%20Support.md">Getting support with Posit</NuxtLink></strong>
+                        <strong><NuxtLink to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md">Getting support with Posit</NuxtLink></strong>
                     </li>
                     <li>
-                        <strong><NuxtLink to="/docs/Infrastructure?doc=FAQs.md">Posit Frequently Asked Questions (FAQs)</NuxtLink></strong>
+                        <strong><NuxtLink to="/docs/Posit%20Infrastructure?doc=FAQs.md">Posit Frequently Asked Questions (FAQs)</NuxtLink></strong>
                     </li>
                 </ul>
             </b-col>
