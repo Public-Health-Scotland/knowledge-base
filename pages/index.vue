@@ -70,29 +70,11 @@
           </p>
         </b-col>
         <b-col>
-          <NuxtLink :to="{ path: '/develop', query: { type: ['Guidance'] } }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/nocovwne.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="25"
-              style="width:200px;height:200px"
-              title="Guidance document icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>Guidance</h5>
-          <p>
-            Keeping everyone on the same page, sharing common knowledge. This
-            includes style guides, FAQs, etc.
-          </p>
-        </b-col>
-        <b-col>
           <NuxtLink :to="{ path: '/develop', query: { type: ['Textbook'] } }"
             ><lord-icon
               src="https://cdn.lordicon.com/wxnxiano.json"
               trigger="morph-two-way"
-              colors="primary:#3f3685,secondary:#80ba27"
+              colors="primary:#80ba27,secondary:#3f3685"
               stroke="25"
               style="width:200px;height:200px"
               title="Textbook icon"
@@ -103,6 +85,24 @@
           <p>
             For learning or reference, see a complete textbook on one of the
             technologies.
+          </p>
+        </b-col>
+        <b-col>
+          <NuxtLink :to="{ path: '/docs'}"
+            ><lord-icon
+              src="https://cdn.lordicon.com/nocovwne.json"
+              trigger="hover"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke="25"
+              style="width:200px;height:200px"
+              title="Guidance document icon"
+            >
+            </lord-icon
+          ></NuxtLink>
+          <h5>Documentation</h5>
+          <p>
+            Keeping everyone on the same page, sharing common knowledge. This
+            includes style guides, FAQs, etc.
           </p>
         </b-col>
       </b-row>
