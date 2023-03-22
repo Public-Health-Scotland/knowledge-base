@@ -145,7 +145,6 @@ export default {
   name: "Docs",
   watch: {
     $route() {
-      // this.selectedDoc = {};
     },
   },
 
@@ -181,7 +180,7 @@ export default {
     },
   },
 
-  async created() {
+  async created() {  
     let docs = await this.$axios
       .get("/repos/Public-Health-Scotland/technical-docs/contents/", {
         baseURL: "https://api.github.com",
@@ -226,15 +225,19 @@ export default {
     };
     this.docs = await getSubDocs(docs);
 
+    // Sort the docs
+    // Order by type (dir, file).  dir first then file
+    this.docs.sort((a, b) => {
+      if (a.type == "dir" && b.type == "file") return -1;
+      if (a.type == "file" && b.type == "dir") return 1;
+      return 0;
+    });
+
     // If $route.params.doc is set,  we need to set the selectedDoc
     if (this.$route.params.doc) {
-      // update the param to the correct format
-      this.$route.params.doc = this.$route.params.doc
-        .replace(/-/g, "/")
-        .replace(/_/g, " ")
-        .split(".")[0];
-
-      let doc = this.docs.find((d) => d._path == this.$route.params.doc);
+      let doc = this.docs.find((d) => 
+         d.path == this.$route.params.doc
+      );
 
       // If its not found look in the children
       if (!doc) {
