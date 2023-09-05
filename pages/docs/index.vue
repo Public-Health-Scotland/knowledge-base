@@ -29,7 +29,7 @@
           <li>
             <strong
               ><NuxtLink
-                to="/docs/Quick%20guide%20to%20your%20Posit%20Workbench%20session.md"
+                to="/docs/Posit%20Infrastructure?doc=Quick%20guide%20to%20your%20Posit%20Workbench%20session.md"
                 >Quick guide to Posit Workbench sessions</NuxtLink
               ></strong
             >
