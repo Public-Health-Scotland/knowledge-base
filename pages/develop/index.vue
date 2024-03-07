@@ -55,6 +55,14 @@
 
     </div>
 
+    <b-row cols="1">
+      <b-col>
+        <b-alert show variant="secondary" dismissible>
+        In-person courses, including waitlists, are currently closed. Online courses are still available.
+        </b-alert>
+      </b-col>
+    </b-row>
+
     <b-row cols="1" cols-sm="2" cols-lg="3" class="mt-4">
       <b-col>
         <h4 class="mb-3">Courses</h4>
@@ -89,11 +97,14 @@
                 <b-list-group flush>
                   <b-list-group-item class="d-flex justify-content-between align-items-center" v-if="course.f2f != ''">
                     In-Person Course
-                    <b-button
+                    <!-- <b-button
                       v-b-modal.booking-modal
                       variant="primary"
                       @click="selectedCourse = course">
                       Book
+                    </b-button> -->
+                    <b-button variant="outline-secondary" disabled>
+                      Closed
                     </b-button>
                   </b-list-group-item>
                   <b-list-group-item class="d-flex justify-content-between align-items-center" v-if="course.online != ''">
@@ -354,6 +365,10 @@ export default {
 
   b-dropdown{
     margin-right: 15px;
+  }
+
+  .alert-dismissible{
+    margin-top: 1rem;
   }
 
   .grid{
