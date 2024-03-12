@@ -79,11 +79,14 @@
                           <b-list-group flush>
                             <b-list-group-item class="d-flex justify-content-between align-items-center" v-if="course.f2f != ''">
                               In-Person Course
-                              <b-button
+                              <!-- <b-button
                                 v-b-modal.booking-modal
                                 variant="primary"
                                 @click="selectedCourse = course">
                                 Book
+                              </b-button> -->
+                              <b-button variant="outline-secondary" disabled>
+                                Closed
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item class="d-flex justify-content-between align-items-center" v-if="course.online != ''">
