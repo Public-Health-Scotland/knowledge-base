@@ -24,11 +24,11 @@
           <br>
           <b-card-title>Prior to using Posit Workbench</b-card-title>
           <b-card-text>
-            <li>Make sure you have access to Posit Workbench [link to Access Posit Workbench on Knowledge Base].</li> 
+            <li>Make sure you have access to Posit Workbench. See <strong><NuxtLink
+                to="/docs/Posit%20Infrastructure?doc=How%20to%20Access%20Posit%20Workbench.md"
+                >Access to Posit Workbench</NuxtLink></strong> for guidance.</li> 
             <li>Connect to the VPN.</li> 
-            <br>
-            <br>
-            <br>
+            <br><br><br>
           </b-card-text>
         </b-card>
     </template>
@@ -40,17 +40,94 @@
         border-variant="light">
           <b-card-text>
             <ol type="1">
-              <li>Open a new tab in Microsoft Edge, and navigate to https://pwb.publichealthscotland.org/.</li>
+              <li>Open a new tab in Microsoft Edge, and navigate to the <strong><a href="https://pwb.publichealthscotland.org/auth-sign-in">Posit Workbench</a></strong>.</li>
+              <br>
               <li>Login using your PHS login details</li>
+              <br>
+              <img src="/sign_in.png" alt="Sign in Posit Workbench">
+              <br><br>
               <li>Open a new session by clicking the “+ New Session button”.</li>
-              <li>Select the appropriate memory for your session. Default (1 CPU and 4096MB) will usually be enough. For more guidance on session size see the 
-                <a href="https://public-health-scotland.github.io/knowledge-base/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"> Knowledge Base</a>
+              <br>
+              <img src="/new_session_button_home.png" alt="New session button home">
+              <br><br>
+              <li>Select the appropriate memory for your session. Default (1 CPU and 4096MB) will usually be enough. For more guidance on session size see
+                <strong><NuxtLink
+                to="/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"
+                >Posit Workbench and Kubernetes</NuxtLink
+              ></strong>
               </li>
+              <br>
               <li>Click “Start session” and wait for session to be ready.</li> 
+              <br>
+              <img src="/start_session_popup.png" alt="Start session popup">
             </ol> 
-            <br>
-            <br>
-            <br>
+            <br><br><br>
+          </b-card-text>
+        </b-card>
+      </template>
+    </b-carousel-slide>
+    <b-carousel-slide>
+      <template #img>
+        <b-card
+        title="In Workbench Session"
+        border-variant="light">
+          <b-card-text>
+            <ol type="1">
+              <li>Agree/OK/Yes at the prompt in the Console.</li>
+              <br>
+              <li>If you need a second session, click the <img src = another_session.png alt="New session button"> button.</li>
+            </ol> 
+            <br><br><br>
+          </b-card-text>
+        </b-card>
+      </template>
+    </b-carousel-slide>
+    <b-carousel-slide>
+      <template #img>
+        <b-card
+        title="Best practice"
+        border-variant="light">
+          <b-card-text>
+            <ol type="1">
+              <li>Only request as much memory and as many CPUs you need for your work, not the max you have access to. 
+                This will improve the performance of the Workbench. For more guidance on memory see
+                <strong><NuxtLink
+                to="/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"
+                >Posit Workbench and Kubernetes</NuxtLink
+              ></strong>
+              </li>
+              <br>
+              <li>When you are finished using the workbench, close your session/s <img src = close_session.png alt="Close session button">. 
+                This will free up Workbench memory for other users. 
+                All open sessions will automatically close at 8pm, unless they are marked “NIGHT”. For more guidance see
+                <strong><NuxtLink
+                to="/docs/Posit%20Infrastructure?doc=Overnight%20Sessions.md"
+                >Overnight Sessions</NuxtLink
+              ></strong>
+              </li>
+              <br>
+              <li>When working in a project, first open a small session and then open a bigger session with the project from within the small session.</li>
+            </ol> 
+            <br><br><br>
+          </b-card-text>
+        </b-card>
+      </template>
+    </b-carousel-slide>
+    <b-carousel-slide>
+      <template #img>
+        <b-card
+        title="Troubleshooting"
+        border-variant="light">
+          <b-card-text>
+            <ol type="1">
+              <li>Session closes: Check that you have a big enough session open for your work. 
+                Memory usage can be seen here <img src = memory_indicator.png alt="Memory usage indicator">. If you need more memory, request it from the Data Science Team <strong><NuxtLink
+                to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md"
+                >here</NuxtLink
+              ></strong>
+              </li>
+            </ol> 
+            <br><br><br>
           </b-card-text>
         </b-card>
       </template>
@@ -68,6 +145,9 @@
 
 .carousel-indicators li {
     background-color: #575857;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
 }
 
 .carousel-indicators active {
