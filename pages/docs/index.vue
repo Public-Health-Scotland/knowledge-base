@@ -6,12 +6,22 @@
         <p>
           This page pulls together documentation relating to Data Science in
           Public Health Scotland. This is organised into sections as shown in
-          the navigation on the left-side of this page. You can also use the
-          search bar above which will check document titles to help you find
-          what you're looking for. This is all stored and organised on a GitHub
-          repo, each document has a button to link back, the aim of this is to
-          encourage collaboration on our documentation, allowing us to work as a
-          community to maintain our technical knowledge and guidance.
+          the navigation on the left-side of this page. This is all stored and
+          organised on a GitHub repo, each document has a button to link back,
+          the aim of this is to encourage collaboration on our documentation,
+          allowing us to work as a community to maintain our technical knowledge
+          and guidance.
+        </p>
+        <p>
+          You can use the <strong>search bar</strong> at the top of the page to
+          look for <strong>document titles</strong>. You can also use
+          <code>Ctrl</code> + <code>F</code> (or <code>⌘</code> +
+          <code>F</code> on Mac) to search within the current document. To
+          search across documents, visit the
+          <a href="https://github.com/Public-Health-Scotland/technical-docs"
+            >GitHub repository</a
+          >
+          and use the search function there.
         </p>
       </b-col>
     </b-row>

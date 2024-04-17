@@ -33,51 +33,31 @@
     <div>
       <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
         <b-col>
-          <NuxtLink
-            :to="{ path: '/develop', query: { type: ['In-Person Course'] } }"
+          <NuxtLink :to="{ path: '/develop' }"
             ><lord-icon
-              src="https://cdn.lordicon.com/zpxybbhl.json"
+              src="https://cdn.lordicon.com/rahouxil.json"
               trigger="hover"
               colors="primary:#3f3685,secondary:#80ba27"
-              stroke="25"
-              style="width:200px;height:200px"
-              title="In-person course icon"
+              stroke="light"
+              style="width: 200px; height: 200px"
+              title="Courses icon"
             >
             </lord-icon
           ></NuxtLink>
-          <h5>In-Person Courses</h5>
+          <h5>Courses</h5>
           <p>
-            Internally developed courses ran by the PHS staff who use the tools
-            in their day-to-day jobs.
-          </p>
-        </b-col>
-        <b-col>
-          <NuxtLink
-            :to="{ path: '/develop', query: { type: ['Online Course'] } }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/qhgmphtg.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="25"
-              style="width:200px;height:200px"
-              title="Online course icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>Online Courses</h5>
-          <p>
-            The same courses available online in addition to or instead of the
-            in-person options.
+            Internally developed courses from foundations to specific topics
+            relevant to all data-informed roles.
           </p>
         </b-col>
         <b-col>
           <NuxtLink :to="{ path: '/develop', query: { type: ['Textbook'] } }"
             ><lord-icon
-              src="https://cdn.lordicon.com/wxnxiano.json"
+              src="https://cdn.lordicon.com/lenjvibx.json"
               trigger="morph-two-way"
-              colors="primary:#80ba27,secondary:#3f3685"
-              stroke="25"
-              style="width:200px;height:200px"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke="light"
+              style="width: 200px; height: 200px"
               title="Textbook icon"
             >
             </lord-icon
@@ -89,13 +69,13 @@
           </p>
         </b-col>
         <b-col>
-          <NuxtLink :to="{ path: '/docs'}"
+          <NuxtLink :to="{ path: '/docs' }"
             ><lord-icon
-              src="https://cdn.lordicon.com/nocovwne.json"
+              src="https://cdn.lordicon.com/wzwygmng.json"
               trigger="hover"
               colors="primary:#3f3685,secondary:#80ba27"
-              stroke="25"
-              style="width:200px;height:200px"
+              stroke="light"
+              style="width: 200px; height: 200px"
               title="Guidance document icon"
             >
             </lord-icon
@@ -105,6 +85,21 @@
             Keeping everyone on the same page, sharing common knowledge. This
             includes style guides, FAQs, etc.
           </p>
+        </b-col>
+        <b-col>
+          <NuxtLink :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }"
+            ><lord-icon
+              src="https://cdn.lordicon.com/wzrwaorf.json"
+              trigger="hover"
+              colors="primary:#3f3685,secondary:#80ba27"
+              stroke="light"
+              style="width: 200px; height: 200px"
+              title="FAQs icon"
+            >
+            </lord-icon
+          ></NuxtLink>
+          <h5>FAQs</h5>
+          <p>Frequently asked questions about the Posit infrastructure.</p>
         </b-col>
       </b-row>
     </div>
@@ -164,19 +159,19 @@ export default {
         "Online Course",
         "In-Person Course",
         "Textbook",
-        "Guidance"
-      ]
+        "Guidance",
+      ],
     };
   },
   computed: {
     tags() {
       let tags = [];
-      this.courses.forEach(course => (tags = tags.concat(course.tags)));
+      this.courses.forEach((course) => (tags = tags.concat(course.tags)));
       return [...new Set(tags)];
     },
     types() {
       let types = [];
-      this.courses.forEach(course => (types = types.concat(course.type)));
+      this.courses.forEach((course) => (types = types.concat(course.type)));
       return [...new Set(types)];
     },
 
@@ -187,16 +182,16 @@ export default {
       let courses = this.courses;
 
       if (!this.filterSelected.includes("Coming Soon")) {
-        courses = this.courses.filter(course => course.link != "");
+        courses = this.courses.filter((course) => course.link != "");
       }
 
       if (this.search.length > 0 && this.search.length <= 1) {
-        courses = courses.filter(course => {
+        courses = courses.filter((course) => {
           if (course.tags.includes(this.search.toLowerCase())) return true;
           else return false;
         });
       } else if (this.search.length > 1) {
-        courses = courses.filter(course => {
+        courses = courses.filter((course) => {
           if (course.title.toLowerCase().includes(this.search.toLowerCase()))
             return true;
           else if (
@@ -207,13 +202,13 @@ export default {
         });
       }
 
-      courses = courses.filter(course => {
+      courses = courses.filter((course) => {
         if (this.filterSelected.includes(course.type)) return true;
         else return false;
       });
 
       return courses;
-    }
+    },
   },
 
   methods: {
@@ -222,8 +217,8 @@ export default {
         "https://secret-ocean-49799.herokuapp.com/" + course.link
       );
       this.selectedCourse = course;
-    }
-  }
+    },
+  },
 };
 </script>
 
