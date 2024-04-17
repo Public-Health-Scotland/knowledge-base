@@ -63,6 +63,7 @@
           <footer>
             <b-nav>
               <b-nav-item v-b-modal.accessibility-modal>Accessibility</b-nav-item>
+              <b-nav-item v-b-modal.attribution-modal>Attributions</b-nav-item>
               <b-nav-item href="https://www.publichealthscotland.scot/contact-us/freedom-of-information-foi-and-environmental-information-regulation-eir-requests/" target="_blank">Freedom of Information</b-nav-item>
               <b-nav-item href="https://www.publichealthscotland.scot/terms-and-conditions/" target="_blank">Terms and Conditions</b-nav-item>
               <b-nav-item href="https://www.publichealthscotland.scot/our-privacy-notice/organisational-background/" target="_blank">Privacy notice</b-nav-item>
@@ -95,6 +96,14 @@
 
         <i>This website is currently undergoing development and testing is not yet been complete.</i>
 
+      </b-modal>
+      
+      <b-modal id="attribution-modal" size="lg" scrollable title="Attributions">
+        <h5>Attributions</h5>
+
+        <ul>
+          <li><a href="https://lordicon.com/">Icons on homepage by Lordicon</a></li>
+        </ul>
       </b-modal>
 
       <b-modal id="feedback-modal" size="xl">
