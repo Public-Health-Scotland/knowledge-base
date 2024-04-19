@@ -5,9 +5,9 @@
     id="qsg_carousel"
     style="text-shadow: 0px 0px 2px #000"
     no-animation
-    no-wrap
     :interval="0"
     indicators
+    controls
     img-width="1024"
     img-height="1024"
   >
@@ -28,7 +28,6 @@
                 to="/docs/Posit%20Infrastructure?doc=How%20to%20Access%20Posit%20Workbench.md"
                 >Access to Posit Workbench</NuxtLink></strong> for guidance.</li> 
             <li>Connect to the VPN.</li> 
-            <br><br><br>
           </b-card-text>
         </b-card>
     </template>
@@ -37,6 +36,7 @@
       <template #img>
         <b-card
         title="In browser"
+        sub-title="Complete the following steps in the browser"
         border-variant="light">
           <b-card-text>
             <ol type="1">
@@ -44,8 +44,6 @@
               <br>
               <li>Login using your PHS login details</li>
               <br>
-              <img src="/sign_in.png" alt="Sign in Posit Workbench">
-              <br><br>
               <li>Open a new session by clicking the “+ New Session button”.</li>
               <br>
               <img src="/new_session_button_home.png" alt="New session button home">
@@ -61,7 +59,6 @@
               <br>
               <img src="/start_session_popup.png" alt="Start session popup">
             </ol> 
-            <br><br><br>
           </b-card-text>
         </b-card>
       </template>
@@ -70,14 +67,14 @@
       <template #img>
         <b-card
         title="In Workbench Session"
+        sub-title = "Complete the following steps in the session you just opened"
         border-variant="light">
           <b-card-text>
             <ol type="1">
               <li>Agree/OK/Yes at the prompt in the Console.</li>
               <br>
               <li>If you need a second session, click the <img src = another_session.png alt="New session button"> button.</li>
-            </ol> 
-            <br><br><br>
+            </ol>
           </b-card-text>
         </b-card>
       </template>
@@ -86,6 +83,7 @@
       <template #img>
         <b-card
         title="Best practice"
+        sub-title="Tips on how to make the most out of Posit Workbench for yourself and your colleagues "
         border-variant="light">
           <b-card-text>
             <ol type="1">
@@ -106,9 +104,10 @@
               ></strong>
               </li>
               <br>
-              <li>When working in a project, first open a small session and then open a bigger session with the project from within the small session.</li>
+              <li>When working in a project, first open a small session and then open a bigger session with the project from within the small session. For step-by-step instructions see the 
+                <strong><NuxtLink to="docs/Posit%20Infrastructure?doc=FAQs.md#how-do-i-open-or-switch-to-another-project">FAQ page</NuxtLink></strong>
+                </li>
             </ol> 
-            <br><br><br>
           </b-card-text>
         </b-card>
       </template>
@@ -117,6 +116,7 @@
       <template #img>
         <b-card
         title="Troubleshooting"
+        sub-title="Common issues and where to find help"
         border-variant="light">
           <b-card-text>
             <ol type="1">
@@ -126,8 +126,13 @@
                 >here</NuxtLink
               ></strong>
               </li>
+              <br>
+              <li>For more help with Posit visit the 
+                <strong><a href="https://teams.microsoft.com/l/team/19%3Ae9f55a12b7d94ef49877ff455a07f035%40thread.tacv2/conversations?groupId=ec4250f9-b70a-4f32-9372-a232ccb4f713&tenantId=10efe0bd-a030-4bca-809c-b5e6745e499a">
+                  PHS Data and Intelligence Forum</a></strong> on Microsoft Teams, or see the 
+                  <strong><NuxtLink to = "/docs/Posit%20Infrastructure?doc=FAQs.md">FAQ page</NuxtLink></strong>
+                </li>
             </ol> 
-            <br><br><br>
           </b-card-text>
         </b-card>
       </template>
@@ -143,6 +148,23 @@
   text-shadow: none !important;
 }
 
+.carousel-inner {
+    margin-top: 50px;
+    z-index: 500;
+}
+
+.carousel-indicators {
+  top: -25px;
+  justify-content:center;
+  margin:0;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.carousel-indicators:first-child > .active + .carousel-control-prev {
+  display: none;
+}
+
 .carousel-indicators li {
     background-color: #575857;
     width: 15px;
@@ -154,11 +176,39 @@
     background-color: #000000;
 }
 
-.card-title {
-  font-size: 1.5rem !important;
+.carousel-control-next, .carousel-control-prev {
+    top: -20px;
+    z-index: 400;
+    display: flex;
+    align-items: flex-start;
 }
 
+.carousel-control-prev-icon {
+ background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575857' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575857' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.card-title {
+  font-size: 1.7rem !important;
+    margin-bottom: 1.3rem;
+}
+
+.card-subtitle {
+  font-size: 1.2rem !important;
+    margin-bottom: 1.2rem !important
+}
 .card-text {
   font-weight: normal !important;
 }
+
+.card-body {
+    padding-right: 8rem;
+    padding-left: 8rem;
+    padding-top: 3rem;
+}
+
+
 </style>
