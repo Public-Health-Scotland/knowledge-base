@@ -208,7 +208,7 @@ export default {
         }
       })
 
-      nextCarouselBtn.addEventListener(listenerType, () => {
+      nextCarouselBtn.addEventListener(listenerType, (e) => {
         if ((listenerType === 'keydown' && e.key === 'Enter') || listenerType === 'click') {
           if (carouselIndicators.childNodes[carouselIndicatorsSize].classList.contains('active')) {
             nextCarouselBtn.classList.add(this.hideCarouselButtonClass)
