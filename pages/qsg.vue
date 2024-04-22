@@ -17,8 +17,8 @@
         title="Welcome to the Posit Workbench Quick Start Guide"
         border-variant="light">
           <b-card-text>
-            This quick start guide is aimed at people who have not used Posit workbench before, or those who need a refresher in how to use it. 
-            This guide will take you through how to open Posit Workbench, how to start a new session, best practice when using the workbench, and how to troubleshoot. 
+            This quick start guide is aimed at people who have not used Posit workbench before, or those who need a refresher in how to use it.
+            This guide will take you through how to open Posit Workbench, how to start a new session, best practice when using the workbench, and how to troubleshoot.
             Use the buttons  below to navigate between sections.
           </b-card-text>
           <br>
@@ -26,8 +26,8 @@
           <b-card-text>
             <li>Make sure you have access to Posit Workbench. See <strong><NuxtLink
                 to="/docs/Posit%20Infrastructure?doc=How%20to%20Access%20Posit%20Workbench.md"
-                >Access to Posit Workbench</NuxtLink></strong> for guidance.</li> 
-            <li>Connect to the VPN.</li> 
+                >Access to Posit Workbench</NuxtLink></strong> for guidance.</li>
+            <li>Connect to the VPN.</li>
           </b-card-text>
         </b-card>
     </template>
@@ -55,10 +55,10 @@
               ></strong>
               </li>
               <br>
-              <li>Click “Start session” and wait for session to be ready.</li> 
+              <li>Click “Start session” and wait for session to be ready.</li>
               <br>
               <img src="/start_session_popup.png" alt="Start session popup">
-            </ol> 
+            </ol>
           </b-card-text>
         </b-card>
       </template>
@@ -87,7 +87,7 @@
         border-variant="light">
           <b-card-text>
             <ol type="1">
-              <li>Only request as much memory and as many CPUs you need for your work, not the max you have access to. 
+              <li>Only request as much memory and as many CPUs you need for your work, not the max you have access to.
                 This will improve the performance of the Workbench. For more guidance on memory see
                 <strong><NuxtLink
                 to="/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"
@@ -95,8 +95,8 @@
               ></strong>
               </li>
               <br>
-              <li>When you are finished using the workbench, close your session/s <img src = close_session.png alt="Close session button">. 
-                This will free up Workbench memory for other users. 
+              <li>When you are finished using the workbench, close your session/s <img src = close_session.png alt="Close session button">.
+                This will free up Workbench memory for other users.
                 All open sessions will automatically close at 8pm, unless they are marked “NIGHT”. For more guidance see
                 <strong><NuxtLink
                 to="/docs/Posit%20Infrastructure?doc=Overnight%20Sessions.md"
@@ -104,10 +104,10 @@
               ></strong>
               </li>
               <br>
-              <li>When working in a project, first open a small session and then open a bigger session with the project from within the small session. For step-by-step instructions see the 
+              <li>When working in a project, first open a small session and then open a bigger session with the project from within the small session. For step-by-step instructions see the
                 <strong><NuxtLink to="docs/Posit%20Infrastructure?doc=FAQs.md#how-do-i-open-or-switch-to-another-project">FAQ page</NuxtLink></strong>
                 </li>
-            </ol> 
+            </ol>
           </b-card-text>
         </b-card>
       </template>
@@ -120,19 +120,19 @@
         border-variant="light">
           <b-card-text>
             <ol type="1">
-              <li>Session closes: Check that you have a big enough session open for your work. 
+              <li>Session closes: Check that you have a big enough session open for your work.
                 Memory usage can be seen here <img src = memory_indicator.png alt="Memory usage indicator">. If you need more memory, request it from the Data Science Team <strong><NuxtLink
                 to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md"
                 >here</NuxtLink
               ></strong>
               </li>
               <br>
-              <li>For more help with Posit visit the 
+              <li>For more help with Posit visit the
                 <strong><a href="https://teams.microsoft.com/l/team/19%3Ae9f55a12b7d94ef49877ff455a07f035%40thread.tacv2/conversations?groupId=ec4250f9-b70a-4f32-9372-a232ccb4f713&tenantId=10efe0bd-a030-4bca-809c-b5e6745e499a">
-                  PHS Data and Intelligence Forum</a></strong> on Microsoft Teams, or see the 
+                  PHS Data and Intelligence Forum</a></strong> on Microsoft Teams, or see the
                   <strong><NuxtLink to = "/docs/Posit%20Infrastructure?doc=FAQs.md">FAQ page</NuxtLink></strong>
                 </li>
-            </ol> 
+            </ol>
           </b-card-text>
         </b-card>
       </template>
@@ -141,16 +141,94 @@
 </div>
 </template>
 
+<script>
+export default {
+  data: () => ({
+    hideCarouselButtonClass: 'hide-carousel-button'
+  }),
+  async mounted() {
+    await this.$nextTick()
+    const nextCarouselBtn = document.getElementsByClassName('carousel-control-next')[0]
+    const prevCarouselBtn = document.getElementsByClassName('carousel-control-prev')[0]
+    // Hide the prev carousel button on initial load
+    prevCarouselBtn.classList.add(this.hideCarouselButtonClass)
+
+    const carouselIndicators = document.getElementsByClassName('carousel-indicators')[0]
+    const carouselIndicatorsSize = carouselIndicators.childNodes.length - 1
+
+    // Listeners for on click events
+    this.createCarouselEventListeners({
+      carouselIndicators,
+      listenerType: 'click',
+      carouselIndicatorsSize,
+      nextCarouselBtn,
+      prevCarouselBtn
+    })
+
+    // Listeners for keydown events. Currently restricting it to 'Enter' key.
+    this.createCarouselEventListeners({
+      carouselIndicators,
+      listenerType: 'keydown',
+      carouselIndicatorsSize,
+      nextCarouselBtn,
+      prevCarouselBtn
+    })
+  },
+  methods: {
+    createCarouselEventListeners({
+      carouselIndicators,
+      listenerType,
+      carouselIndicatorsSize,
+      nextCarouselBtn,
+      prevCarouselBtn
+    }) {
+      carouselIndicators.childNodes.forEach((indicator, idx) => {
+        indicator.addEventListener(listenerType, (e) => {
+          if ((listenerType === 'keydown' && e.key === 'Enter') || listenerType === 'click') {
+            if (idx === 0) {
+              prevCarouselBtn.classList.add(this.hideCarouselButtonClass)
+              nextCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+            } else if (idx === carouselIndicatorsSize) {
+              nextCarouselBtn.classList.add(this.hideCarouselButtonClass)
+              prevCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+            } else {
+              prevCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+              nextCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+            }
+          }
+        })
+      })
+
+      prevCarouselBtn.addEventListener(listenerType, (e) => {
+        if ((listenerType === 'keydown' && e.key === 'Enter') || listenerType === 'click') {
+          if (carouselIndicators.childNodes[0].classList.contains('active')) {
+            prevCarouselBtn.classList.add(this.hideCarouselButtonClass)
+          }
+          nextCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+        }
+      })
+
+      nextCarouselBtn.addEventListener(listenerType, () => {
+        if ((listenerType === 'keydown' && e.key === 'Enter') || listenerType === 'click') {
+          if (carouselIndicators.childNodes[carouselIndicatorsSize].classList.contains('active')) {
+            nextCarouselBtn.classList.add(this.hideCarouselButtonClass)
+          }
+          prevCarouselBtn.classList.remove(this.hideCarouselButtonClass)
+        }
+      })
+    }
+  }
+}
+</script>
 
 <style>
-
 .carousel {
   text-shadow: none !important;
 }
 
 .carousel-inner {
-    margin-top: 50px;
-    z-index: 500;
+  margin-top: 80px;
+  z-index: 500;
 }
 
 .carousel-indicators {
@@ -161,26 +239,19 @@
   padding-right:15px;
 }
 
-.carousel-indicators:first-child > .active + .carousel-control-prev {
-  display: none;
-}
-
 .carousel-indicators li {
-    background-color: #575857;
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
+  background-color: #575857;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
 }
 
-.carousel-indicators active {
-    background-color: #000000;
-}
-
-.carousel-control-next, .carousel-control-prev {
-    top: -20px;
-    z-index: 400;
-    display: flex;
-    align-items: flex-start;
+.carousel-control-next,
+.carousel-control-prev {
+  top: -20px;
+  z-index: 400;
+  display: flex;
+  align-items: flex-start;
 }
 
 .carousel-control-prev-icon {
@@ -191,24 +262,31 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%575857' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
 
+.card {
+  margin-top: 2rem;
+  border: none;
+}
+
 .card-title {
   font-size: 1.7rem !important;
-    margin-bottom: 1.3rem;
+  margin-bottom: 1.3rem;
 }
 
 .card-subtitle {
   font-size: 1.2rem !important;
-    margin-bottom: 1.2rem !important
+  margin-bottom: 1.2rem !important
 }
 .card-text {
   font-weight: normal !important;
 }
 
 .card-body {
-    padding-right: 8rem;
-    padding-left: 8rem;
-    padding-top: 3rem;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  padding-top: 3rem;
 }
-
-
+/* Custom class to hide carousel nav buttons */
+.hide-carousel-button {
+  display: none;
+}
 </style>
