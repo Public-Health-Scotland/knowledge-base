@@ -105,38 +105,68 @@
     </div>
 
     <div class="mt-5">
-      <b-row justify-content-between>
-        <b-col>
-          <b-card class="mb-4" title="Learning Pathways">
-            <div class="d-flex mb-4">
-              <b-card-text
-                >Sometimes it's easier to get started when you can plan for the
-                road ahead...</b-card-text
-              >
-            </div>
-            <b-row class="mb-3">
-              <b-col>
-                <b-button
-                  block
-                  variant="outline-primary"
-                  class="mt-2"
-                  @click="$router.push('/develop/r-pathway')"
-                  >R Pathway</b-button
-                >
-              </b-col>
-              <b-col cols="12" md="10">
+      <b-card-group deck>
+        <b-row justify-content-between>
+          <b-col>
+            <b-card class="mb-4" title="Quick Start Guide">
+              <div class="d-flex mb-4">
                 <b-card-text
-                  >The R content has been desgined to be topic-led, letting you
-                  pick up the concepts and tools for when you need them.
-                  However, the R pathway page outlines a structure for all of
-                  the R content. This includes training modules, guidance, and
-                  related technologies.</b-card-text
+                  >For those who are new or need a refresher on Posit Workbench</b-card-text
                 >
-              </b-col>
-            </b-row>
-          </b-card>
-        </b-col>
-      </b-row>
+              </div>
+              <b-row class="mb-3">
+                <b-col>
+                  <b-button
+                    block
+                    variant="outline-primary"
+                    class="mt-2"
+                    @click="$router.push('/qsg')"
+                    >Quick Start Guide</b-button
+                  >
+                </b-col>
+                <b-col cols="12" md="10">
+                  <b-card-text
+                    >The content is made for you to quickly and easily get started with Posit Workbench. 
+                    It includes how to start a session, good practice when using Posit Workbench and troubleshooting tips.
+                    <br><br><br>
+                    </b-card-text
+                  >
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-col>
+          <b-col>
+            <b-card class="mb-4" title="Learning Pathways">
+              <div class="d-flex mb-4">
+                <b-card-text
+                  >Sometimes it's easier to get started when you can plan for the
+                  road ahead...</b-card-text
+                >
+              </div>
+              <b-row class="mb-3">
+                <b-col>
+                  <b-button
+                    block
+                    variant="outline-primary"
+                    class="mt-2"
+                    @click="$router.push('/develop/r-pathway')"
+                    >R Pathway</b-button
+                  >
+                </b-col>
+                <b-col cols="12" md="10">
+                  <b-card-text
+                    >The R content has been desgined to be topic-led, letting you
+                    pick up the concepts and tools for when you need them.
+                    However, the R pathway page outlines a structure for all of
+                    the R content. This includes training modules, guidance, and
+                    related technologies.</b-card-text
+                  >
+                </b-col>
+              </b-row>
+            </b-card>
+          </b-col>
+        </b-row>
+      </b-card-group>
     </div>
   </div>
 </template>
@@ -284,6 +314,9 @@ b-dropdown {
   float: right;
 }
 
+.btn-block {
+    margin-bottom: 20px;
+}
 .coming-soon {
   color: #0078d4;
   float: right;
