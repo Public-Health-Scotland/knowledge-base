@@ -31,8 +31,8 @@
     </div>
 
     <div>
-      <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center">
-        <b-col>
+      <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center mb-3">
+        <b-col class="mb-4">
           <NuxtLink :to="{ path: '/develop' }"
             ><lord-icon
               src="https://cdn.lordicon.com/rahouxil.json"
@@ -44,13 +44,13 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5>Courses</h5>
+          <h5><b-link :to="{ path: '/develop' }">Courses</b-link></h5>
           <p>
             Internally developed courses from foundations to specific topics
             relevant to all data-informed roles.
           </p>
         </b-col>
-        <b-col>
+        <b-col class="mb-4">
           <NuxtLink :to="{ path: '/develop', query: { type: ['Textbook'] } }"
             ><lord-icon
               src="https://cdn.lordicon.com/lenjvibx.json"
@@ -62,13 +62,13 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5>Textbooks</h5>
+          <h5><b-link :to="{ path: '/develop', query: { type: ['Textbook'] } }">Textbooks</b-link></h5>
           <p>
             For learning or reference, see a complete textbook on one of the
             technologies.
           </p>
         </b-col>
-        <b-col>
+        <b-col class="mb-4">
           <NuxtLink :to="{ path: '/docs' }"
             ><lord-icon
               src="https://cdn.lordicon.com/wzwygmng.json"
@@ -80,13 +80,13 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5>Documentation</h5>
+          <h5><b-link :to="{ path: '/docs' }">Documentation</b-link></h5>
           <p>
             Keeping everyone on the same page, sharing common knowledge. This
             includes style guides, FAQs, etc.
           </p>
         </b-col>
-        <b-col>
+        <b-col class="mb-4">
           <NuxtLink :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }"
             ><lord-icon
               src="https://cdn.lordicon.com/wzrwaorf.json"
@@ -98,13 +98,13 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5>FAQs</h5>
+          <h5><b-link :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }">FAQs</b-link></h5>
           <p>Frequently asked questions about the Posit infrastructure.</p>
         </b-col>
       </b-row>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-4">
       <b-row>
           <b-col class="grid">
             <b-card-group deck>
@@ -287,6 +287,15 @@ input {
 
 .tag-button {
   margin: 2px 0;
+}
+
+h5 a {
+  color: black;
+}
+
+h5 a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 b-button {
