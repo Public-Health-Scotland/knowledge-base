@@ -69,7 +69,7 @@
             <b-row class="mb-3">
               <b-col>
                 <b-list-group flush>
-                  <b-list-group-item href="/qsg">
+                  <b-list-group-item href="/quick-start/posit-workbench">
                     <h5 class="mb-1">Posit Workbench</h5>
                     <p class="mb-1">
                       Quick start guide to using Posit Workbench, including access and starting a session.
