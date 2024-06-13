@@ -1,9 +1,9 @@
 <template>
   <div>
 
-        <head>
+        <!-- <head>
           <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
-        </head>
+        </head> -->
 
         <div class="header-container">
           <header>
@@ -58,7 +58,7 @@
         <Nuxt />
       </div>
 
-      <div class="container d-flex justify-content-between align-items-center">
+      <div class="container my-3 d-flex justify-content-between align-items-center">
         <div>
           <footer>
             <b-nav>
@@ -204,8 +204,6 @@ img.logo{
   background-color: #3f3685;
   border-color: #3f3685;
 }
-
-
 
 /* Utility */
 .cursor-pointer{
