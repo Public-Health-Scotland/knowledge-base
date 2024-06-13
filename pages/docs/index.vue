@@ -18,7 +18,7 @@
           <code>Ctrl</code> + <code>F</code> (or <code>⌘</code> +
           <code>F</code> on Mac) to search within the current document. To
           search across documents, visit the
-          <a href="https://github.com/Public-Health-Scotland/technical-docs"
+          <a href="https://github.com/Public-Health-Scotland/technical-docs" target="_blank"
             >GitHub repository</a
           >
           and use the search function there.
@@ -69,13 +69,13 @@
             <b-row class="mb-3">
               <b-col>
                 <b-list-group flush>
-                  <b-list-group-item href="/quick-start/posit-workbench">
+                  <b-list-group-item to='/quick-start/posit-workbench'>
                     <h5 class="mb-1">Posit Workbench</h5>
                     <p class="mb-1">
                       Quick start guide to using Posit Workbench, including access and starting a session.
                     </p>
                   </b-list-group-item>
-                  <b-list-group-item href="#" disabled>
+                  <b-list-group-item to='/quick-start/git' disabled>
                     <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                     <p class="mb-1">
                       Quick start guide to using Git, including installation and configuration on desktop and Posit Workbench.

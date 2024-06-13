@@ -123,13 +123,13 @@
               <b-row class="mb-3">
                 <b-col>
                   <b-list-group flush>
-                    <b-list-group-item href="/quick-start/posit-workbench">
+                    <b-list-group-item to='/quick-start/posit-workbench'>
                       <h5 class="mb-1">Posit Workbench</h5>
                       <p class="mb-1">
                         Quick start guide to using Posit Workbench, including access and starting a session.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item href="#" disabled>
+                    <b-list-group-item to='/quick-start/git' disabled>
                       <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
                         Quick start guide to using Git, including installation and configuration on desktop and Posit Workbench.
@@ -154,13 +154,13 @@
               <b-row class="mb-3">
                 <b-col>
                   <b-list-group flush>
-                    <b-list-group-item href="/develop/r-pathway">
+                    <b-list-group-item to='/develop/r-pathway'>
                       <h5 class="mb-1">R Pathway</h5>
                       <p class="mb-1">
                         A structured pathway to learning R, including topic-led training modules, guidance, and related technologies.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item href="/develop/python-pathway" disabled>
+                    <b-list-group-item to='/develop/python-pathway' disabled>
                       <h5 class="mb-1">Python <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
                         A structured pathway to learning Python, including topic-led training modules, guidance, and related technologies.

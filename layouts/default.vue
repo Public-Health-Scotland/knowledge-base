@@ -39,8 +39,6 @@
                   <NuxtLink to="/docs" tag="b-nav-item">Documentation</NuxtLink>
                   <NuxtLink to="/social" tag="b-nav-item">Social</NuxtLink>
                   
-                  <!-- <b-nav-item href=""><strong>Develop</strong></b-nav-item>
-                  <b-nav-item href=""><strong>Social</strong></b-nav-item> -->
                   <b-nav-item v-b-modal.help-modal><eva-icon name="question-mark-circle-outline" fill="#fff"></eva-icon></b-nav-item>
                   <b-modal id="help-modal" size="lg" title="Help">
 
@@ -102,7 +100,7 @@
         <h5>Attributions</h5>
 
         <ul>
-          <li><a href="https://lordicon.com/">Icons on homepage by Lordicon</a></li>
+          <li><a href="https://lordicon.com/" target="_blank">Icons on homepage by Lordicon</a></li>
         </ul>
       </b-modal>
 
