@@ -1,9 +1,9 @@
 <template>
   <div>
 
-        <head>
+        <!-- <head>
           <script src="https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js"></script>
-        </head>
+        </head> -->
 
         <div class="header-container">
           <header>
@@ -39,8 +39,6 @@
                   <NuxtLink to="/docs" tag="b-nav-item">Documentation</NuxtLink>
                   <NuxtLink to="/social" tag="b-nav-item">Social</NuxtLink>
                   
-                  <!-- <b-nav-item href=""><strong>Develop</strong></b-nav-item>
-                  <b-nav-item href=""><strong>Social</strong></b-nav-item> -->
                   <b-nav-item v-b-modal.help-modal><eva-icon name="question-mark-circle-outline" fill="#fff"></eva-icon></b-nav-item>
                   <b-modal id="help-modal" size="lg" title="Help">
 
@@ -58,7 +56,7 @@
         <Nuxt />
       </div>
 
-      <div class="container d-flex justify-content-between align-items-center">
+      <div class="container my-3 d-flex justify-content-between align-items-center">
         <div>
           <footer>
             <b-nav>
@@ -102,7 +100,7 @@
         <h5>Attributions</h5>
 
         <ul>
-          <li><a href="https://lordicon.com/">Icons on homepage by Lordicon</a></li>
+          <li><a href="https://lordicon.com/" target="_blank">Icons on homepage by Lordicon</a></li>
         </ul>
       </b-modal>
 
@@ -204,8 +202,6 @@ img.logo{
   background-color: #3f3685;
   border-color: #3f3685;
 }
-
-
 
 /* Utility */
 .cursor-pointer{
