@@ -1,81 +1,83 @@
 export default {
   /*
-  ** Nuxt rendering mode
-  ** See https://nuxtjs.org/api/configuration-mode
-  */
+   ** Nuxt rendering mode
+   ** See https://nuxtjs.org/api/configuration-mode
+   */
   ssr: false,
   /*
-  ** Nuxt target
-  ** See https://nuxtjs.org/api/configuration-target
-  */
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
   // target: 'static',
   router: {
-    base: '/knowledge-base/'
+    base: "/knowledge-base/",
   },
-  generate:{
+  generate: {
     fallback: true,
-    dir:"docs"
+    dir: "docs",
   },
   /*
-  ** Headers of the page
-  ** See https://nuxtjs.org/api/configuration-head
-  */
+   ** Headers of the page
+   ** See https://nuxtjs.org/api/configuration-head
+   */
   head: {
     title: "PHS Data Science - Knowledge Base",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || "",
+      },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [
+      {
+        src: "https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js",
+      },
+    ],
   },
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
+   ** Global CSS
+   */
+  css: [],
   /*
-  ** Plugins to load before mounting the App
-  ** https://nuxtjs.org/guide/plugins
-  */
-  plugins: [
-    "@/plugins/eva-icons",
-    "@/plugins/google-analytics"
-  ],
+   ** Plugins to load before mounting the App
+   ** https://nuxtjs.org/guide/plugins
+   */
+  plugins: ["@/plugins/eva-icons", "@/plugins/google-analytics"],
   /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
+   ** Auto import components
+   ** See https://nuxtjs.org/api/configuration-components
+   */
   components: true,
   /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
+   ** Nuxt.js dev-modules
+   */
+  buildModules: [],
   /*
-  ** Nuxt.js modules
-  */
+   ** Nuxt.js modules
+   */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    "bootstrap-vue/nuxt",
+    "@nuxtjs/axios",
   ],
   /*
-  ** Build configuration
-  ** See https://nuxtjs.org/api/configuration-build/
-  */
+   ** Build configuration
+   ** See https://nuxtjs.org/api/configuration-build/
+   */
   build: {
     loaders: {
       sass: {
-        implementation: require('sass'),
+        implementation: require("sass"),
       },
       scss: {
-        implementation: require('sass'),
+        implementation: require("sass"),
       },
     },
-  }
+  },
   // build: {
   //   extend(config) {
   //     const vueLoader = config.module.rules.find(rule => rule.loader === 'vue-loader')
@@ -95,4 +97,4 @@ export default {
   //     }
   //   }
   // }
-}
+};

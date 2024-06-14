@@ -4,36 +4,59 @@
       <div class="title-container">
         <b-card no-body class="overflow-hidden head-card">
           <b-row no-gutters align-v="center">
-
             <b-col md="7">
               <b-card-body>
-                <h3 @click="$router.push('/docs')" style="cursor: pointer;">Documentation</h3>
+                <h3 @click="$router.push('/docs')" style="cursor: pointer">
+                  Documentation
+                </h3>
                 <b-card-text>
                   <p>Data Science information, guidance, and best practice</p>
                 </b-card-text>
               </b-card-body>
             </b-col>
 
-            <b-col md="1">
-            </b-col>
+            <b-col md="1"> </b-col>
 
             <b-col md="4">
-                <b-form-input class="search mt-2" type="search" v-model="search" placeholder="Search"/>
+              <b-form-input
+                class="search mt-2"
+                type="search"
+                v-model="search"
+                placeholder="Search"
+              />
             </b-col>
-
           </b-row>
         </b-card>
       </div>
     </div>
 
     <b-row class="d-flex" align-h="end">
-      <b-col cols="12" md="7" lg="6" xl="5" >
-         <b-list-group v-if="searchResults.length" class="search-results flex-fill" style="position: absolute; background-color: white; z-index: 500;">
-          <b-list-group-item v-for="r in searchResults" :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search=''">
+      <b-col cols="12" md="7" lg="6" xl="5">
+        <b-list-group
+          v-if="searchResults.length"
+          class="search-results flex-fill"
+          style="position: absolute; background-color: white; z-index: 500"
+        >
+          <b-list-group-item
+            v-for="r in searchResults"
+            :key="r.name"
+            :to="{
+              path: '/docs/' + r.path.split('/')[0],
+              query: { doc: r.name },
+            }"
+            @click="search = ''"
+          >
             <div class="d-flex flex-row">
-              <i class="mx-2">{{ r.path.split('/')[0] }}:  </i>
-              <NuxtLink :to="{path: '/docs/' + r.path.split('/')[0], query: { doc: r.name }}" @click="search = ''" class="mx-2 align-middle">
-                <div>{{ r.name.split('.')[0] }}</div>
+              <i class="mx-2">{{ r.path.split("/")[0] }}: </i>
+              <NuxtLink
+                :to="{
+                  path: '/docs/' + r.path.split('/')[0],
+                  query: { doc: r.name },
+                }"
+                @click="search = ''"
+                class="mx-2 align-middle"
+              >
+                <div>{{ r.name.split(".")[0] }}</div>
               </NuxtLink>
             </div>
           </b-list-group-item>
@@ -43,48 +66,69 @@
 
     <b-row>
       <b-col cols="12" md="4" lg="3">
-        
         <!-- Make this nav collapse when the breakpoint is < md -->
         <b-row class="mt-3 mx-1">
-        <div class="d-flex justify-content-between w-100">        
-          <div>
-          <b-button
-            v-b-toggle.collapse-1
-            variant="outline-dark"
-            class="d-md-none mx-1"
-          >
-            <span class="when-closed"><eva-icon name="menu-outline" fill="#000" class="mr-2"></eva-icon></span>
-            <span class="when-open"><eva-icon name="close-outline" fill="#000" class="mr-2"></eva-icon></span>
-            {{ selectedDoc.name ||'Docs' }}
-          </b-button>
-        </div>
-        <div>
-          <b-button-toolbar v-b-toggle.collapse-1 v-show="$route.query.doc && $route.query.doc != 'README.md'" class="d-md-none">
-
-            <b-button-group class="mx-1">
-              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="" @click="openGithub">
-                <eva-icon name="github-outline"></eva-icon>
+          <div class="d-flex justify-content-between w-100">
+            <div>
+              <b-button
+                v-b-toggle.collapse-1
+                variant="outline-dark"
+                class="d-md-none mx-1"
+              >
+                <span class="when-closed"
+                  ><eva-icon
+                    name="menu-outline"
+                    fill="#000"
+                    class="mr-2"
+                  ></eva-icon
+                ></span>
+                <span class="when-open"
+                  ><eva-icon
+                    name="close-outline"
+                    fill="#000"
+                    class="mr-2"
+                  ></eva-icon
+                ></span>
+                {{ selectedDoc.name || "Docs" }}
               </b-button>
-            </b-button-group>
-
-          </b-button-toolbar>
-        </div>
-        </div>
-      </b-row>
+            </div>
+            <div>
+              <b-button-toolbar
+                v-b-toggle.collapse-1
+                v-show="$route.query.doc && $route.query.doc != 'README.md'"
+                class="d-md-none"
+              >
+                <b-button-group class="mx-1">
+                  <b-button
+                    v-b-tooltip.hover
+                    title="View on GitHub"
+                    variant="outline-dark"
+                    class=""
+                    @click="openGithub"
+                  >
+                    <eva-icon name="github-outline"></eva-icon>
+                  </b-button>
+                </b-button-group>
+              </b-button-toolbar>
+            </div>
+          </div>
+        </b-row>
 
         <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
           <b-nav vertical>
             <b-nav-item
               v-for="item in docs"
               :key="item.name"
-              :to="{ path: '/docs/' + item.path}"
-              :active="$route.params.doc ? $route.params.doc == item._path : false"
+              :to="{ path: '/docs/' + item.path }"
+              :active="
+                $route.params.doc ? $route.params.doc == item._path : false
+              "
               @click="selectedDoc = item"
             >
               {{ item.name.split(".")[0] }}
-            
+
               <eva-icon
-                v-if="item.type == 'dir' & item.name != 'Glossary'"
+                v-if="(item.type == 'dir') & (item.name != 'Glossary')"
                 name="chevron-down-outline"
                 fill="#bd27b9"
               ></eva-icon>
@@ -96,15 +140,20 @@
                   path: '/docs/' + item.path,
                   query: { doc: child.name },
                 }"
-                :active="$route.query.doc ? $route.query.doc == child.name : false"
-                :class="[$route.query.doc && $route.query.doc == child.name ? 'active' : 'not-active']"
+                :active="
+                  $route.query.doc ? $route.query.doc == child.name : false
+                "
+                :class="[
+                  $route.query.doc && $route.query.doc == child.name
+                    ? 'active'
+                    : 'not-active',
+                ]"
                 @click="selectedDoc = child"
               >
                 {{ child.name.split(".")[0] }}
               </b-nav-item>
             </b-nav-item>
           </b-nav>
-
         </b-collapse>
 
         <div v-else>
@@ -117,16 +166,23 @@
 
       <b-col md="8" lg="9" fluid v-if="!loadingNav">
         <div id="collapse-1" class="d-md-block d-none d-md-block">
-          <b-button-toolbar v-show="$route.query.doc && $route.query.doc != 'README.md'" class="justify-content-end">
-
+          <b-button-toolbar
+            v-show="$route.query.doc && $route.query.doc != 'README.md'"
+            class="justify-content-end"
+          >
             <b-button-group class="gh-button mx-1">
-              <b-button v-b-tooltip.hover title="View on GitHub" variant="outline-dark" class="d-flex align-self-end" @click="openGithub">
+              <b-button
+                v-b-tooltip.hover
+                title="View on GitHub"
+                variant="outline-dark"
+                class="d-flex align-self-end"
+                @click="openGithub"
+              >
                 <eva-icon name="github-outline"></eva-icon>
               </b-button>
             </b-button-group>
-
           </b-button-toolbar>
-        </div> 
+        </div>
         <nuxt-child class="mt-3 md-doc"></nuxt-child>
       </b-col>
 
@@ -144,8 +200,7 @@
 export default {
   name: "Docs",
   watch: {
-    $route() {
-    },
+    $route() {},
   },
 
   data() {
@@ -155,37 +210,39 @@ export default {
       selectedDoc: {},
       mdContent: "Boo",
       loadingNav: true,
-      search: ''
+      search: "",
     };
   },
 
   computed: {
     searchResults() {
-      if(!this.search) return []
+      if (!this.search) return [];
 
-      let subdocs = this.docs.map(d => d.children).flat()
-      
-      let results = subdocs.filter(d => d.name.toLowerCase().includes(this.search.toLowerCase()))
-      
-      return results
-    }
+      let subdocs = this.docs.map((d) => d.children).flat();
+
+      let results = subdocs.filter((d) =>
+        d.name.toLowerCase().includes(this.search.toLowerCase())
+      );
+
+      return results;
+    },
   },
 
   methods: {
     openGithub() {
+      let link = this.selectedDoc.children.find(
+        (d) => d.name == this.$route.query.doc
+      );
 
-      let link = this.selectedDoc.children.find((d) => d.name == this.$route.query.doc);
-
-      window.open(link.html_url,'_blank')
+      window.open(link.html_url, "_blank");
     },
   },
 
-  async created() {  
+  async created() {
     let docs = await this.$axios
       .get("/repos/Public-Health-Scotland/technical-docs/contents/", {
         baseURL: "https://api.github.com",
-        headers: {
-        }
+        headers: {},
       })
       .then((r) => r.data);
 
@@ -207,9 +264,7 @@ export default {
                 doc.path,
               {
                 baseURL: "https://api.github.com",
-                headers: {
-
-                }
+                headers: {},
               }
             )
             .then((r) => r.data);
@@ -234,9 +289,7 @@ export default {
 
     // If $route.params.doc is set,  we need to set the selectedDoc
     if (this.$route.params.doc) {
-      let doc = this.docs.find((d) => 
-         d.path == this.$route.params.doc
-      );
+      let doc = this.docs.find((d) => d.path == this.$route.params.doc);
 
       // If its not found look in the children
       if (!doc) {
@@ -256,26 +309,25 @@ export default {
 
     this.loadingNav = false;
   },
-  
 };
 </script>
 
 <style lang="scss">
-.active{
-  font-weight: bold ;
+.active {
+  font-weight: bold;
 }
 
-.not-active{
-  font-weight: normal ;
+.not-active {
+  font-weight: normal;
 }
 
-.gh-button{
+.gh-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-a li{
+a li {
   font-weight: 400;
 }
 
@@ -284,22 +336,22 @@ a li{
   display: none;
 }
 
-.search-results{
-  box-shadow: 0px 4px 10px 0px rgba(220,220,220,1);
+.search-results {
+  box-shadow: 0px 4px 10px 0px rgba(220, 220, 220, 1);
 }
-@media (max-width:  767.98px)  {
-  .search-results{
+@media (max-width: 767.98px) {
+  .search-results {
     right: 15px;
     width: 95%;
   }
- }
+}
 
-@media (min-width:  767.98px)  {
-  .search-results{
+@media (min-width: 767.98px) {
+  .search-results {
     margin-top: -33px;
     right: 15px;
   }
- }
+}
 
 .md-doc h1 {
   font-size: 2rem;
