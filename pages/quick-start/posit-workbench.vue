@@ -84,7 +84,7 @@
               <h5 class="mt-3">Logging in</h5>
               <ol class="mt-2">
                 <li>
-                  In a support browser (Microsoft Edge or Google Chrome),
+                  In a supported browser (Microsoft Edge or Google Chrome),
                   navigate to the
                   <a
                     target="_blank"
@@ -137,7 +137,7 @@
               <ol class="mt-2">
                 <li>
                   If 'Join session when ready' was selected from the 'New
-                  session' diaglog box, the session should automatically start
+                  session' dialog box, the session should automatically start
                   and show the selected IDE (e.g. RStudio). Otherwise, select
                   the created session from the list on the Posit Workbench
                   homescreen.
