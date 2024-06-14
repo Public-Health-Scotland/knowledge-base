@@ -106,7 +106,7 @@
                   the top left of the Posit Workbench home screen.
                 </li>
                 <img
-                  src="/quick-start/posit-workbench/new_session_button_home.png"
+                  src="~/static/quick-start/posit-workbench/new_session_button_home.png"
                   alt="New session button home"
                   class="text-image my-4 d-flex justify-content-center"
                 />
@@ -128,7 +128,7 @@
                   minutes of clicking "Start Session".
                 </li>
                 <img
-                  src="/quick-start/posit-workbench/start_session_popup.png"
+                  src="~/static/quick-start/posit-workbench/start_session_popup.png"
                   alt="Start session popup"
                   class="text-image my-4 d-flex justify-content-center"
                 />
@@ -194,7 +194,7 @@
                   on that project or are going to be taking a longer than 10
                   minute break, by clicking
                   <img
-                    src="/quick-start/posit-workbench/close_session.png"
+                    src="~/static/quick-start/posit-workbench/close_session.png"
                     alt="Close session button"
                   />. All open sessions will automatically close at 8pm, unless
                   they are marked “NIGHT”. For more guidance see
@@ -249,7 +249,7 @@
                   memory in your session for the work you're trying to do.
                   Memory usage can be seen here
                   <img
-                    src="/quick-start/posit-workbench/memory_indicator.png"
+                    src="~/static/quick-start/posit-workbench/memory_indicator.png"
                     alt="Memory usage indicator"
                   />. If you need more memory, request it from the Data Science
                   Team by following the guidance
