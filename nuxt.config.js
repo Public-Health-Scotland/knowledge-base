@@ -31,7 +31,7 @@ export default {
         content: process.env.npm_package_description || "",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/static/favicon.ico" }],
     script: [
       {
         src: "https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js",
