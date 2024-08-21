@@ -209,6 +209,25 @@
     "related": []
   },
   {
+    "title": "Information Requests & Parliamentary Questions",
+    "slug": "irpq",
+    "description": "A course to learn the IR and PQ process within PHS.",
+    "overview": "This is the 'Information Requests & Parliamentary Questions' course, which breaks down the overall process of how PHS members should deal with any Information Requests and Parliamentary Questions they may receive as part of their workplace duties. The course is separated into two overarching sections: 'Information Requests' (IRs) and 'Parliamentary Questions (PQs). Within each section, users are shown the overall workflow/process of receiving and responding to IRs and PQs, what considerations users should bear in mind when responding, and what issues they may face. Users are then shown example answers/responses, followed by a 'Knowledge Check' to polish off their learning. The end of the course holds important contacts and information, relevant to IRs and PQs.",
+    "link": "https://scotland.shinyapps.io/phs-learn-irpq/",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learn-irpq/",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "",
+    "level": "",
+    "packages": [],
+    "tags": [""],
+    "prereqs": "none",
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "Introduction to Python",
     "slug": "introduction-to-python",
     "description": "A beginner's course for learning Python from the basics.",
