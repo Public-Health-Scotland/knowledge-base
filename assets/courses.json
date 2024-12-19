@@ -190,6 +190,25 @@
     "related": []
   },
   {
+    "title": "Introduction to Linear Modelling in R",
+    "slug": "linear-modelling-in-r",
+    "description": "Get started with linear modelling in R, learning how to explain your data and make predictions.",
+    "overview": "Linear modelling in R is a powerful tool for understanding relationships between variables in your data. This course is an introduction to linear modelling in R, from the foundations. It covers the basics of linear modelling, including fitting models, interpreting results, and making predictions. This course is designed to be a complete introduction to linear modelling in R, so you can use the first few chapters to learn about linear modelling and leave it there. However, the course continues and shows how that linear modelling code can be integrated into R projects. This will be particularly useful for adopting RAP principles, or ensuring the full pipeline is managed within R.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-linearmodelling/",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learnr-linearmodelling/",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "R",
+    "level": "2",
+    "packages": ["base", "modelr", "ggfortify", "GGally"],
+    "tags": ["r", "modelling"],
+    "prereqs": ["Introduction to R"],
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "SPSS to R",
     "slug": "spss-to-r",
     "description": "A companion to the Intro to R course for SPSS users, understanding the differences and how to start translating SPSS to R.",
