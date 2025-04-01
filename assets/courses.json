@@ -209,6 +209,25 @@
     "related": []
   },
   {
+    "title": "Introduction to Decision Trees in R",
+    "slug": "decision-trees-in-r",
+    "description": "Learn the fundamentals of decision trees in R, from data preparation to model evaluation.",
+    "overview": "This interactive course introduces decision trees, a powerful machine learning technique for classification and regression tasks, using R. You’ll start by understanding the theory behind decision trees before diving into practical implementation with R and common R packages. Through guided exercises, you’ll learn how to process data, build decision tree models, tune and evaluate performance. By the end of the course, you’ll be able to confidently apply decision trees to real-world datasets and interpret their results effectively.",
+    "link": "https://scotland.shinyapps.io/phs-learnr-decisiontrees/",
+    "f2f": "",
+    "online": "https://scotland.shinyapps.io/phs-learnr-decisiontrees/",
+    "image": "",
+    "type": ["Online Course"],
+    "technology": "R",
+    "level": "2",
+    "packages": ["base"],
+    "tags": ["r", "modelling"],
+    "prereqs": ["Introduction to R"],
+    "timetable": "",
+    "materials": "",
+    "related": []
+  },
+  {
     "title": "SPSS to R",
     "slug": "spss-to-r",
     "description": "A companion to the Intro to R course for SPSS users, understanding the differences and how to start translating SPSS to R.",
