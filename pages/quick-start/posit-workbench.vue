@@ -88,7 +88,7 @@
                   navigate to the
                   <a
                     target="_blank"
-                    href="https://pwb.publichealthscotland.org/auth-sign-in"
+                    href="https://pwb-prod.publichealthscotland.org/"
                   >
                     PHS Posit Workbench
                   </a>
