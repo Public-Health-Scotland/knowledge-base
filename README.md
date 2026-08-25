@@ -47,9 +47,13 @@ $ npm run generate
 
 ## Deployment
 
-The site is deployed to GitHub Pages automatically by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) whenever a change is merged to `main`: it runs `npm ci && npm run generate` and publishes the result directly via GitHub Pages deployment - no manual build, no committing `docs/`, and no merging to a `gh-pages` branch. You can also trigger a deploy manually from the Actions tab (`workflow_dispatch`).
+| | |
+|---|---|
+| **Trigger** | Every push to `main` (including a merged pull request), or manually via `workflow_dispatch` from the Actions tab |
+| **Produces** | The live site, published to GitHub Pages |
+| **Comes from** | [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm ci && npm run generate`, which builds the Nuxt app into `docs/` (the `generate.dir` set in `nuxt.config.js`); that output is uploaded and deployed as the Pages artifact |
 
-`docs/` is build output only - it is regenerated on every deploy and is not tracked in git.
+No manual build, no committing `docs/`, and no merging to a `gh-pages` branch - `docs/` is build output only, regenerated on every deploy and not tracked in git (see `.gitignore`).
 
 ## Committing changes
 
@@ -62,11 +66,30 @@ Before opening a pull request against `main`:
 
 ## Releases
 
-Releases are cut manually, when a set of changes is worth marking as a release - not on every merge to `main`.
+A release is a `vX.Y.Z` git tag plus a GitHub Release, cut manually via two chained workflows - separate and independent from deployment, which happens automatically on every merge whether or not a release is ever cut. See [CONTRIBUTING - Branching and Release Process](CONTRIBUTING.md#branching-and-release-process) for the process to follow when using these.
 
-1. Go to the [Actions tab](../../actions/workflows/release-prepare.yml) and run **Prepare Release**, choosing a `patch`, `minor`, or `major` version bump.
-2. This opens a pull request that bumps the version in `package.json` (and `package-lock.json`) - review and merge it like any other PR.
-3. Merging it automatically tags the release (`vX.Y.Z`) and publishes a [GitHub Release](../../releases) with notes generated from the pull requests merged since the last release.
+### 1. Prepare Release
+
+| | |
+|---|---|
+| **Trigger** | Manual - Actions tab → [Prepare Release](../../actions/workflows/release-prepare.yml) → choose `patch`, `minor`, or `major` |
+| **Produces** | A `release/vX.Y.Z` branch, and a pull request from it into `main`, labelled `release` |
+| **Comes from** | [`.github/workflows/release-prepare.yml`](.github/workflows/release-prepare.yml) applies the chosen bump to whatever version is currently in `package.json` on `main`, via `npm version` |
+
+### 2. Publish Release
+
+| | |
+|---|---|
+| **Trigger** | Automatic, when a pull request labelled `release` is merged |
+| **Produces** | A git tag `vX.Y.Z` on `main`, and a [GitHub Release](../../releases) with auto-generated notes |
+| **Comes from** | [`.github/workflows/release-publish.yml`](.github/workflows/release-publish.yml) reads the version from `package.json` on `main` *after* the merge, and generates release notes from the pull requests merged since the previous release tag - nothing is fixed or recorded at the point Prepare Release was triggered |
+
+### Expectations and limitations
+
+* Deployment and releases are independent: every merge to `main` deploys the live site whether or not a release is ever cut.
+* Both release workflows depend on `main`'s pull-request requirement - `workflow_dispatch` cannot bypass branch protection, so a version bump goes through the same review as any other change. If branch protection is ever relaxed and someone pushes to `main` directly, that change won't appear in a release's auto-generated notes (they're generated from merged pull requests, not raw commits).
+* The `release` label is required for `release-publish.yml` to trigger. `release-prepare.yml` creates it automatically if missing - don't remove it from an open release pull request, or the tag/release won't be created on merge.
+* See [CONTRIBUTING - Branching and Release Process](CONTRIBUTING.md#branching-and-release-process) for the sequencing to follow (e.g. merging the release PR last) to make sure a release captures the changes you expect.
 
 ## Contributing
 

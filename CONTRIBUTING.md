@@ -16,6 +16,10 @@ The following is a set of guidelines for contributing, hosted on GitHub. These g
   * [Pull Requests](#pull-requests)
   * [Resources](#resources)
 
+[Branching and Release Process](#branching-and-release-process)
+  * [Everyday changes](#everyday-changes)
+  * [Cutting a release](#cutting-a-release)
+
 [Styleguides](#styleguides)
   * [Git Commit Messages](#git-commit-messages)
   * [JavaScript Styleguide](#javascript-styleguide)
@@ -112,12 +116,30 @@ Please follow these steps to have your contribution considered by the maintainer
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
-> **Note:** pull requests titled `Release vX.Y.Z` with a `release` label are opened automatically by the [Prepare Release workflow](../../actions/workflows/release-prepare.yml) (see [README - Releases](README.md#releases)). Review and merge these the same as any other pull request, merging is what triggers the version tag and GitHub Release.
+> **Note:** pull requests titled `Release vX.Y.Z` with a `release` label are opened automatically by the [Prepare Release workflow](../../actions/workflows/release-prepare.yml). Review and merge these the same as any other pull request - see [Branching and Release Process](#branching-and-release-process) for what merging one does and the order to do things in.
 
 
 ### Resources
 
 If you have a suggestions for content on the social page, have developed internal materials for Data Science, or are looking to help develop a new course, we want to hear from you. The process to do this just now is to email the [PHS Data Science team](phs.datascience@phs.scot). 
+
+
+## Branching and Release Process
+
+### Everyday changes
+
+* Branch from `main`, make your changes, and open a pull request back into `main` (see [Pull Requests](#pull-requests)).
+* `main` requires changes to go through a pull request - direct pushes are blocked by branch protection.
+* Merging a pull request deploys the site automatically (see [README - Deployment](README.md#deployment)). There is no separate step to make a change live - every merge to `main` deploys it, whether or not a release is ever cut.
+
+### Cutting a release
+
+A release (a `vX.Y.Z` git tag and GitHub Release) is a separate, manual milestone marker - it is not required to get a change live, and isn't cut on every merge. See [README - Releases](README.md#releases) for what each of the two release workflows produces and where that data comes from. The points below are the process to follow so a release captures the changes you expect:
+
+* **Trigger "Prepare Release" last** - once everything you want included in this release has already been merged into `main`. The release pull request should be the final thing merged for that release, anything merged into `main` after it is deferred to the next release, not this one.
+* **Don't re-run "Prepare Release" while a release pull request is still open.** It bumps the version from whatever is currently in `package.json` on `main`, which won't reflect the pending bump until that PR merges - running it again would try to bump from the same base version and can produce a conflicting, duplicate pull request.
+* **To add more to a release already in progress**, either merge the additional change into `main` as its own pull request first (the open release PR will pick it up automatically once merged), or push extra commits directly to the `release/vX.Y.Z` branch - it's a normal branch and PR like any other.
+* **Expect a normal merge conflict** if another pull request also touches `package.json` or `package-lock.json` before the release PR merges - resolve it the same way you would for any other conflicting PR.
 
 
 ## Styleguides
