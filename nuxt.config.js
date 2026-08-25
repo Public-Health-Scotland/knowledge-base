@@ -10,7 +10,7 @@ export default {
    */
   // target: 'static',
   router: {
-    base: "/knowledge-base/",
+    base: "/",
   },
   generate: {
     fallback: true,
