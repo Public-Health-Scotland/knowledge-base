@@ -112,6 +112,8 @@ Please follow these steps to have your contribution considered by the maintainer
 
 While the prerequisites above must be satisfied prior to having your pull request reviewed, the reviewer(s) may ask you to complete additional design work, tests, or other changes before your pull request can be ultimately accepted.
 
+> **Note:** pull requests titled `Release vX.Y.Z` with a `release` label are opened automatically by the [Prepare Release workflow](../../actions/workflows/release-prepare.yml) (see [README - Releases](README.md#releases)). Review and merge these the same as any other pull request, merging is what triggers the version tag and GitHub Release.
+
 
 ### Resources
 

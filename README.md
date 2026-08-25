@@ -60,6 +60,14 @@ Before opening a pull request against `main`:
 * **Commit style:** follow the [contribution guidance](CONTRIBUTING.md#git-commit-messages).
 * Changes are made via pull request into `main` - merging triggers the deploy described above.
 
+## Releases
+
+Releases are cut manually, when a set of changes is worth marking as a release - not on every merge to `main`.
+
+1. Go to the [Actions tab](../../actions/workflows/release-prepare.yml) and run **Prepare Release**, choosing a `patch`, `minor`, or `major` version bump.
+2. This opens a pull request that bumps the version in `package.json` (and `package-lock.json`) - review and merge it like any other PR.
+3. Merging it automatically tags the release (`vX.Y.Z`) and publishes a [GitHub Release](../../releases) with notes generated from the pull requests merged since the last release.
+
 ## Contributing
 
 This app currently has one developer, [Russell McCreath](https://github.com/rmccreath) with oversight from the [PHS Data Science team](mailto:phs.datascience@phs.scot). For details on how to contribute, please see the [contribution guidance](https://github.com/Public-Health-Scotland/knowledge-base/blob/master/CONTRIBUTING.md).

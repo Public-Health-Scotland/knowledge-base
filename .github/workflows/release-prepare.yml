@@ -1,0 +1,65 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump type
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bump version
+        id: bump
+        run: |
+          npm version "${{ inputs.bump }}" --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Create release branch and commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "release/v${{ steps.bump.outputs.version }}"
+          git add package.json package-lock.json
+          git commit -m "Release v${{ steps.bump.outputs.version }}"
+          git push origin "release/v${{ steps.bump.outputs.version }}"
+
+      - name: Ensure release label exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create release --color 0E8A16 \
+            --description "Merging this PR tags and publishes a GitHub Release" \
+            --force
+
+      - name: Open release pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create \
+            --title "Release v${{ steps.bump.outputs.version }}" \
+            --base main \
+            --head "release/v${{ steps.bump.outputs.version }}" \
+            --label release \
+            --body "Bumps the version to \`v${{ steps.bump.outputs.version }}\` (${{ inputs.bump }}).
+
+          Merging this PR will automatically tag \`v${{ steps.bump.outputs.version }}\` and publish a GitHub Release with auto-generated notes."
