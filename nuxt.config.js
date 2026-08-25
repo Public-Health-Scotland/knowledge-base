@@ -61,7 +61,36 @@ export default {
    */
   modules: [
     // Doc: https://bootstrap-vue.js.org
-    "bootstrap-vue/nuxt",
+    // Only the component plugins actually used across pages/layouts are
+    // loaded here (no <b-icon>, so the icons bundle is excluded entirely).
+    [
+      "bootstrap-vue/nuxt",
+      {
+        usePretranspiled: true,
+        componentPlugins: [
+          "alert",
+          "breadcrumb",
+          "button",
+          "buttonGroup",
+          "buttonToolbar",
+          "card",
+          "collapse",
+          "dropdown",
+          "formCheckbox",
+          "formGroup",
+          "formInput",
+          "layout",
+          "link",
+          "listGroup",
+          "modal",
+          "nav",
+          "navbar",
+          "skeleton",
+          "tabs",
+        ],
+        directivePlugins: ["modal", "toggle", "tooltip"],
+      },
+    ],
     "@nuxtjs/axios",
   ],
   /*

@@ -45,8 +45,8 @@
         </b-col>
         <b-col cols="12" lg="6">
           <video width="100%" controls>
-            <source src="~/static/phs-r-overview.mp4" type="video/mp4">
-            <track kind="subtitles" srclang="en" src="phs-r-overview_vtt_English.vtt" label="English">
+            <source src="/phs-r-overview.mp4" type="video/mp4">
+            <track kind="subtitles" srclang="en" src="/phs-r-overview_vtt_English.vtt" label="English">
           </video>
         </b-col>
       </b-row>
