@@ -17,3 +17,6 @@ static/sw.js
 .DS_Store
 
 .env
+# Playwright
+test-results/
+playwright-report/
