@@ -10,7 +10,7 @@
               Training and support materials related to Data Science
             </b-card-text>
             <b-dropdown variant="outline-primary" text="Training Pathways">
-              <b-dropdown-item @click="$router.push('/develop/r-pathway')"
+              <b-dropdown-item to="/develop/r-pathway"
                 >R Pathway</b-dropdown-item
               >
             </b-dropdown>
@@ -21,21 +21,21 @@
 
         <b-col md="4" align-self="center">
           <b-form-input
+            v-model="search"
             class="search mt-5"
             type="search"
-            v-model="search"
             placeholder="Search"
           />
           <b-dropdown
-            class="filter float-right mt-2 mr-3"
+            class="filter float-end mt-2 me-3"
             variant="outline-secondary"
             right
             text="Category"
           >
             <b-dropdown-form style="width: 200px">
               <b-form-group
-                label="Filter on type:"
                 v-slot="{ ariaDescribedby }"
+                label="Filter on type:"
               >
                 <b-form-checkbox-group
                   v-model="filterSelected"
@@ -65,7 +65,7 @@
 
     <b-row cols="1">
       <b-col>
-        <b-alert show variant="secondary" dismissible>
+        <b-alert v-model="showClosedNotice" variant="secondary" dismissible>
           In-person courses, including waitlists, are currently closed. Online
           courses are still available.
         </b-alert>
@@ -92,11 +92,11 @@
     </b-row>
 
     <b-row cols="1" cols-sm="2" cols-lg="3">
-      <b-col class="grid" v-for="course in displayCourses" :key="course.title">
-        <b-card-group deck>
+      <b-col v-for="course in displayCourses" :key="course.title" class="grid">
+        <div class="card-deck">
           <b-card class="mb-4">
             <b-card-title>
-              <NuxtLink :to="'develop/' + course.slug" class="course-link">{{
+              <NuxtLink :to="'/develop/' + course.slug" class="course-link">{{
                 course.title
               }}</NuxtLink>
             </b-card-title>
@@ -104,11 +104,11 @@
               {{ course.description }}
             </b-card-text>
 
-            <template v-slot:footer>
+            <template #footer>
               <b-list-group flush>
                 <b-list-group-item
-                  class="d-flex justify-content-between align-items-center"
                   v-if="course.f2f != ''"
+                  class="d-flex justify-content-between align-items-center"
                 >
                   In-Person Course
                   <!-- <b-button
@@ -122,8 +122,8 @@
                   </b-button>
                 </b-list-group-item>
                 <b-list-group-item
-                  class="d-flex justify-content-between align-items-center"
                   v-if="course.online != ''"
+                  class="d-flex justify-content-between align-items-center"
                 >
                   Online Course
                   <b-button
@@ -135,15 +135,15 @@
                   </b-button>
                 </b-list-group-item>
                 <b-list-group-item
-                  class="coming-soon ml-auto"
                   v-if="course.f2f == '' && course.online == ''"
+                  class="coming-soon ms-auto"
                 >
                   <i>Coming Soon</i>
                 </b-list-group-item>
               </b-list-group>
             </template>
           </b-card>
-        </b-card-group>
+        </div>
       </b-col>
     </b-row>
 
@@ -168,21 +168,21 @@
 
     <b-row cols="1" cols-sm="2" cols-lg="3">
       <b-col
-        class="grid"
         v-for="resource in displayResources"
         :key="resource.title"
+        class="grid"
       >
-        <b-card-group deck>
+        <div class="card-deck">
           <b-card :title="resource.title" class="mb-4">
             <b-card-text>
               {{ resource.description }}
             </b-card-text>
 
-            <template v-slot:footer>
+            <template #footer>
               <b-list-group flush>
                 <b-list-group-item
-                  class="d-flex justify-content-between align-items-center"
                   v-if="resource.type == 'Guidance'"
+                  class="d-flex justify-content-between align-items-center"
                 >
                   Guidance
                   <b-button
@@ -194,8 +194,8 @@
                   </b-button>
                 </b-list-group-item>
                 <b-list-group-item
-                  class="d-flex justify-content-between align-items-center"
                   v-if="resource.type == 'Textbook'"
+                  class="d-flex justify-content-between align-items-center"
                 >
                   Textbook
                   <b-button
@@ -209,7 +209,7 @@
               </b-list-group>
             </template>
           </b-card>
-        </b-card-group>
+        </div>
       </b-col>
     </b-row>
 
@@ -250,6 +250,7 @@ export default {
       selectedTags: [],
       selectedTypes: [],
       selectedCourse: {},
+      showClosedNotice: true,
       search: "",
       filterSelected: ["Online Course", "In-Person Course", "Textbook"],
     };
@@ -360,11 +361,13 @@ export default {
     },
   },
 
-  created() {
-    if (this.$route.query.type) {
-      this.filterSelected = this.$route.query.type;
-
-      this.$router.push({ query: {} }); // Clear the query in the URL
+  // Read the filter from the URL in the browser only: pages are pre-rendered
+  // without a query string, so doing this earlier would not match the HTML.
+  mounted() {
+    const { type } = this.$route.query;
+    if (type) {
+      this.filterSelected = [].concat(type);
+      this.$router.replace({ query: {} }); // Clear the query in the URL
     }
   },
 };
@@ -376,7 +379,8 @@ export default {
   align-items: center;
 }
 
-input {
+/* Only the search box; the category checkboxes keep their own size. */
+input.search {
   min-width: 120px;
   flex-grow: 1;
 }

@@ -6,10 +6,10 @@
           <b-row no-gutters align-v="center">
             <b-col md="7">
               <b-card-body>
-                <h3 @click="$router.push('/docs')" style="cursor: pointer">
+                <h3 style="cursor: pointer" @click="$router.push('/docs')">
                   Documentation
                 </h3>
-                <b-card-text>
+                <b-card-text tag="div">
                   <p>Data Science information, guidance, and best practice</p>
                 </b-card-text>
               </b-card-body>
@@ -19,9 +19,9 @@
 
             <b-col md="4">
               <b-form-input
+                v-model="search"
                 class="search mt-2"
                 type="search"
-                v-model="search"
                 placeholder="Search"
               />
             </b-col>
@@ -53,8 +53,8 @@
                   path: '/docs/' + r.path.split('/')[0],
                   query: { doc: r.name },
                 }"
-                @click="search = ''"
                 class="mx-2 align-middle"
+                @click="search = ''"
               >
                 <div>{{ r.name.split(".")[0] }}</div>
               </NuxtLink>
@@ -76,26 +76,24 @@
                 class="d-md-none mx-1"
               >
                 <span class="when-closed"
-                  ><eva-icon
-                    name="menu-outline"
-                    fill="#000"
-                    class="mr-2"
-                  ></eva-icon
-                ></span>
+                  ><Icon
+                    name="eva:menu-outline"
+                    size="24"
+                    class="me-2 icon-dark"
+                /></span>
                 <span class="when-open"
-                  ><eva-icon
-                    name="close-outline"
-                    fill="#000"
-                    class="mr-2"
-                  ></eva-icon
-                ></span>
+                  ><Icon
+                    name="eva:close-outline"
+                    size="24"
+                    class="me-2 icon-dark"
+                /></span>
                 {{ selectedDoc.name || "Docs" }}
               </b-button>
             </div>
             <div>
               <b-button-toolbar
-                v-b-toggle.collapse-1
                 v-show="$route.query.doc && $route.query.doc != 'README.md'"
+                v-b-toggle.collapse-1
                 class="d-md-none"
               >
                 <b-button-group class="mx-1">
@@ -106,7 +104,7 @@
                     class=""
                     @click="openGithub"
                   >
-                    <eva-icon name="github-outline"></eva-icon>
+                    <Icon name="eva:github-outline" size="24" />
                   </b-button>
                 </b-button-group>
               </b-button-toolbar>
@@ -114,7 +112,7 @@
           </div>
         </b-row>
 
-        <b-collapse id="collapse-1" class="d-md-block" v-if="!loadingNav">
+        <b-collapse v-if="!loadingNav" id="collapse-1" class="d-md-block">
           <b-nav vertical>
             <b-nav-item
               v-for="item in docs"
@@ -127,44 +125,46 @@
             >
               {{ item.name.split(".")[0] }}
 
-              <eva-icon
-                v-if="(item.type == 'dir') & (item.name != 'Glossary')"
-                name="chevron-down-outline"
-                fill="#bd27b9"
-              ></eva-icon>
-              <b-nav-item
-                v-if="item._path.startsWith(selectedDoc._path)"
-                v-for="child in item.children"
-                :key="child.name"
-                :to="{
-                  path: '/docs/' + item.path,
-                  query: { doc: child.name },
-                }"
-                :active="
-                  $route.query.doc ? $route.query.doc == child.name : false
-                "
-                :class="[
-                  $route.query.doc && $route.query.doc == child.name
-                    ? 'active'
-                    : 'not-active',
-                ]"
-                @click="selectedDoc = child"
-              >
-                {{ child.name.split(".")[0] }}
-              </b-nav-item>
+              <Icon
+                v-if="item.type == 'dir' && item.name != 'Glossary'"
+                name="eva:chevron-down-outline"
+                size="24"
+                class="icon-accent"
+              />
+              <template v-if="item._path.startsWith(selectedDoc._path)">
+                <b-nav-item
+                  v-for="child in item.children"
+                  :key="child.name"
+                  :to="{
+                    path: '/docs/' + item.path,
+                    query: { doc: child.name },
+                  }"
+                  :active="
+                    $route.query.doc ? $route.query.doc == child.name : false
+                  "
+                  :class="[
+                    $route.query.doc && $route.query.doc == child.name
+                      ? 'active'
+                      : 'not-active',
+                  ]"
+                  @click="selectedDoc = child"
+                >
+                  {{ child.name.split(".")[0] }}
+                </b-nav-item>
+              </template>
             </b-nav-item>
           </b-nav>
         </b-collapse>
 
         <div v-else>
-          <b-skeleton width="65%" class="ml-2 mt-4"></b-skeleton>
-          <b-skeleton width="35%" class="ml-2 mt-4"></b-skeleton>
-          <b-skeleton width="20%" class="ml-2 mt-4"></b-skeleton>
-          <b-skeleton width="70%" class="ml-2 mt-4"></b-skeleton>
+          <b-placeholder :width="65" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="35" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="20" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="70" class="d-block ms-2 mt-4" />
         </div>
       </b-col>
 
-      <b-col md="8" lg="9" fluid v-if="!loadingNav">
+      <b-col v-if="!loadingNav" md="8" lg="9" fluid>
         <div id="collapse-1" class="d-md-block d-none d-md-block">
           <b-button-toolbar
             v-show="$route.query.doc && $route.query.doc != 'README.md'"
@@ -178,30 +178,30 @@
                 class="d-flex align-self-end"
                 @click="openGithub"
               >
-                <eva-icon name="github-outline"></eva-icon>
+                <Icon name="eva:github-outline" size="24" />
               </b-button>
             </b-button-group>
           </b-button-toolbar>
         </div>
-        <nuxt-child class="mt-3 md-doc"></nuxt-child>
+        <NuxtPage class="mt-3 md-doc" />
       </b-col>
 
       <b-col v-else>
-        <b-skeleton width="65%" height="20%" class="mt-4"></b-skeleton>
-        <b-skeleton width="95%" class="mt-4"></b-skeleton>
-        <b-skeleton width="90%"></b-skeleton>
-        <b-skeleton width="70%"></b-skeleton>
+        <b-placeholder :width="65" height="20%" class="d-block mt-4" />
+        <b-placeholder :width="95" class="d-block mt-4" />
+        <b-placeholder :width="90" class="d-block mt-2" />
+        <b-placeholder :width="70" class="d-block mt-2" />
       </b-col>
     </b-row>
   </div>
 </template>
 
 <script>
+const GITHUB_CONTENTS =
+  "https://api.github.com/repos/Public-Health-Scotland/technical-docs/contents/";
+
 export default {
   name: "Docs",
-  watch: {
-    $route() {},
-  },
 
   data() {
     return {
@@ -221,30 +221,19 @@ export default {
       let subdocs = this.docs.map((d) => d.children).flat();
 
       let results = subdocs.filter((d) =>
-        d.name.toLowerCase().includes(this.search.toLowerCase())
+        d.name.toLowerCase().includes(this.search.toLowerCase()),
       );
 
       return results;
     },
   },
-
-  methods: {
-    openGithub() {
-      let link = this.selectedDoc.children.find(
-        (d) => d.name == this.$route.query.doc
-      );
-
-      window.open(link.html_url, "_blank");
-    },
+  watch: {
+    $route() {},
   },
 
-  async created() {
-    let docs = await this.$axios
-      .get("/repos/Public-Health-Scotland/technical-docs/contents/", {
-        baseURL: "https://api.github.com",
-        headers: {},
-      })
-      .then((r) => r.data);
+  // Loaded in the browser only, so pre-rendering doesn't call the GitHub API.
+  async mounted() {
+    let docs = await $fetch(GITHUB_CONTENTS);
 
     docs = docs.filter((d) => !d.name.startsWith("."));
     docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
@@ -258,16 +247,7 @@ export default {
           .replace(/\s/g, "_")
           .split(".")[0];
         if (doc.type == "dir") {
-          let subDocs = await this.$axios
-            .get(
-              "/repos/Public-Health-Scotland/technical-docs/contents/" +
-                doc.path,
-              {
-                baseURL: "https://api.github.com",
-                headers: {},
-              }
-            )
-            .then((r) => r.data);
+          let subDocs = await $fetch(GITHUB_CONTENTS + doc.path);
 
           subDocs = subDocs.filter((d) => !d.name.startsWith("."));
           subDocs = subDocs.filter((d) => !d.name.startsWith("README"));
@@ -309,6 +289,16 @@ export default {
 
     this.loadingNav = false;
   },
+
+  methods: {
+    openGithub() {
+      let link = this.selectedDoc.children.find(
+        (d) => d.name == this.$route.query.doc,
+      );
+
+      window.open(link.html_url, "_blank");
+    },
+  },
 };
 </script>
 
@@ -337,16 +327,17 @@ a li {
 }
 
 .search-results {
-  box-shadow: 0px 4px 10px 0px rgba(220, 220, 220, 1);
+  box-shadow: 0 4px 10px 0 rgb(220 220 220 / 100%);
 }
-@media (max-width: 767.98px) {
+
+@media (width <= 767.98px) {
   .search-results {
     right: 15px;
     width: 95%;
   }
 }
 
-@media (min-width: 767.98px) {
+@media (width >= 767.98px) {
   .search-results {
     margin-top: -33px;
     right: 15px;
@@ -357,21 +348,27 @@ a li {
   font-size: 2rem;
   margin-bottom: 20px;
 }
+
 .md-doc h2 {
   font-size: 1.5rem;
 }
+
 .md-doc h3 {
   font-size: 1.25rem;
 }
+
 .md-doc h4 {
   font-size: 1rem;
 }
+
 .md-doc h5 {
   font-size: 0.875rem;
 }
+
 .md-doc h6 {
   font-size: 0.75rem;
 }
+
 .md-doc img {
   max-width: 100%;
 }

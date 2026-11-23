@@ -1,0 +1,60 @@
+/* Site-wide styles that are not tied to a single page. */
+
+/* Icon colours (icons inherit the text colour). */
+.icon-accent {
+  color: #bd27b9;
+}
+
+.icon-light {
+  color: #fff;
+}
+
+.icon-dark {
+  color: #000;
+}
+
+/* Icons line up with the text beside them. */
+.iconify {
+  vertical-align: middle;
+}
+
+/* Navigation links line up with the taller Help icon and the site title. */
+.navbar-nav {
+  align-items: center;
+}
+
+/*
+ * Loading placeholders: light and rounded, like the Bootstrap 4 skeletons,
+ * instead of Bootstrap 5's darker, square default.
+ */
+.placeholder {
+  min-height: 1rem;
+  background-color: #e9ecef;
+  border-radius: 0.375rem;
+  opacity: 1;
+}
+
+/*
+ * Bootstrap 5 removed `.card-deck`. This reproduces the Bootstrap 4 layout so
+ * card rows look the same after the upgrade - replace with grid classes when
+ * the pages are redesigned.
+ */
+.card-deck .card {
+  margin-bottom: 15px;
+}
+
+@media (width >= 576px) {
+  .card-deck {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .card-deck .card {
+    flex: 1 0 0%;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 15px;
+  }
+}

@@ -1,22 +1,21 @@
-# dependencies
+# Dependencies
 node_modules
 
-# logs
+# Logs
 npm-debug.log
 
-# Nuxt build
-.nuxt
+# Nuxt build and generate output
+.nuxt/
+.output/
+.data/
+dist
+# Output folder used before Nuxt 4
+docs/
 
-# Nuxt generate
-builds
-docs
-
-# pwa service worker
-static/sw.js
+# Playwright
+test-results/
+playwright-report/
 
 .DS_Store
 
 .env
-# Playwright
-test-results/
-playwright-report/

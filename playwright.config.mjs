@@ -2,7 +2,7 @@ import { defineConfig, devices } from "@playwright/test";
 
 // Serves the generated static site the same way GitHub Pages does:
 // unknown paths fall back to 404.html, which boots the client-side router.
-const SITE_DIR = process.env.SITE_DIR || "docs";
+const SITE_DIR = process.env.SITE_DIR || ".output/public";
 const PORT = Number(process.env.PORT || 4173);
 
 export default defineConfig({

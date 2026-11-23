@@ -12,10 +12,7 @@
             </b-card-body>
           </b-col>
           <b-col align-self="center">
-            <b-button
-              @click="$router.push('/docs/R')"
-              variant="outline-primary"
-            >
+            <b-button to="/docs/R" variant="outline-primary">
               R Documentation
             </b-button>
           </b-col>
@@ -41,23 +38,17 @@
               </p>
               <b-row class="mb-3">
                 <b-col class="text-center grid" align-self="center">
-                  <b-button
-                    variant="outline-primary"
-                    @click="$router.push('#get_started')"
+                  <b-button variant="outline-primary" href="#get_started"
                     >Get Started</b-button
                   >
                 </b-col>
                 <b-col class="text-center grid" align-self="center">
-                  <b-button
-                    variant="outline-primary"
-                    @click="$router.push('#take_it_further')"
+                  <b-button variant="outline-primary" href="#take_it_further"
                     >Take it Further</b-button
                   >
                 </b-col>
                 <b-col class="text-center grid" align-self="center">
-                  <b-button
-                    variant="outline-primary"
-                    @click="$router.push('#get_advanced')"
+                  <b-button variant="outline-primary" href="#get_advanced"
                     >Get Advanced</b-button
                   >
                 </b-col>
@@ -87,7 +78,6 @@
                 <h4 class="mt-5">Get Started</h4>
                 <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
                   <b-col
-                    class="grid"
                     v-for="course in courses.filter(
                       (course) =>
                         course.technology == 'R' &&
@@ -95,8 +85,9 @@
                         course.link != '',
                     )"
                     :key="course.title"
+                    class="grid"
                   >
-                    <b-card-group deck>
+                    <div class="card-deck">
                       <b-card class="mb-4">
                         <b-card-title>
                           <NuxtLink
@@ -109,11 +100,11 @@
                           {{ course.description }}
                         </b-card-text>
 
-                        <template v-slot:footer>
+                        <template #footer>
                           <b-list-group flush>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.f2f != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               In-Person Course
                               <!-- <b-button
@@ -127,8 +118,8 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.online != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               Online Course
                               <b-button
@@ -140,15 +131,15 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="coming-soon ml-auto"
                               v-if="course.f2f == '' && course.online == ''"
+                              class="coming-soon ms-auto"
                             >
                               <i>Coming Soon</i>
                             </b-list-group-item>
                           </b-list-group>
                         </template>
                       </b-card>
-                    </b-card-group>
+                    </div>
                   </b-col>
                 </b-row>
               </b-col>
@@ -160,7 +151,6 @@
 
                 <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
                   <b-col
-                    class="grid"
                     v-for="course in courses.filter(
                       (course) =>
                         course.technology == 'R' &&
@@ -168,8 +158,9 @@
                         course.link != '',
                     )"
                     :key="course.title"
+                    class="grid"
                   >
-                    <b-card-group deck>
+                    <div class="card-deck">
                       <b-card class="mb-4">
                         <b-card-title>
                           <NuxtLink
@@ -182,11 +173,11 @@
                           {{ course.description }}
                         </b-card-text>
 
-                        <template v-slot:footer>
+                        <template #footer>
                           <b-list-group flush>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.f2f != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               In-Person Course
                               <!-- <b-button
@@ -200,8 +191,8 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.online != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               Online Course
                               <b-button
@@ -213,15 +204,15 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="coming-soon ml-auto"
                               v-if="course.f2f == '' && course.online == ''"
+                              class="coming-soon ms-auto"
                             >
                               <i>Coming Soon</i>
                             </b-list-group-item>
                           </b-list-group>
                         </template>
                       </b-card>
-                    </b-card-group>
+                    </div>
                   </b-col>
                 </b-row>
               </b-col>
@@ -234,7 +225,6 @@
 
                 <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
                   <b-col
-                    class="grid"
                     v-for="course in courses.filter(
                       (course) =>
                         course.technology == 'R' &&
@@ -242,8 +232,9 @@
                         course.link != '',
                     )"
                     :key="course.title"
+                    class="grid"
                   >
-                    <b-card-group deck>
+                    <div class="card-deck">
                       <b-card class="mb-4">
                         <b-card-title>
                           <NuxtLink
@@ -256,11 +247,11 @@
                           {{ course.description }}
                         </b-card-text>
 
-                        <template v-slot:footer>
+                        <template #footer>
                           <b-list-group flush>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.f2f != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               In-Person Course
                               <!-- <b-button
@@ -274,8 +265,8 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.online != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               Online Course
                               <b-button
@@ -287,15 +278,15 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="coming-soon ml-auto"
                               v-if="course.f2f == '' && course.online == ''"
+                              class="coming-soon ms-auto"
                             >
                               <i>Coming Soon</i>
                             </b-list-group-item>
                           </b-list-group>
                         </template>
                       </b-card>
-                    </b-card-group>
+                    </div>
                   </b-col>
                 </b-row>
               </b-col>
@@ -307,13 +298,13 @@
 
                 <b-row cols="1" cols-md="2" cols-lg="3" class="pr-md-0 pr-lg-5">
                   <b-col
-                    class="grid"
                     v-for="course in courses.filter((course) =>
                       course.related.includes('R'),
                     )"
                     :key="course.title"
+                    class="grid"
                   >
-                    <b-card-group deck>
+                    <div class="card-deck">
                       <b-card class="mb-4">
                         <b-card-title>
                           <NuxtLink
@@ -327,11 +318,11 @@
                           {{ course.description }}
                         </b-card-text>
 
-                        <template v-slot:footer>
+                        <template #footer>
                           <b-list-group flush>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.f2f != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               In-Person Course
                               <!-- <b-button
@@ -345,8 +336,8 @@
                               >
                             </b-list-group-item>
                             <b-list-group-item
-                              class="d-flex justify-content-between align-items-center"
                               v-if="course.online != ''"
+                              class="d-flex justify-content-between align-items-center"
                             >
                               Online Course
                               <b-button
@@ -358,15 +349,15 @@
                               </b-button>
                             </b-list-group-item>
                             <b-list-group-item
-                              class="coming-soon ml-auto"
                               v-if="course.f2f == '' && course.online == ''"
+                              class="coming-soon ms-auto"
                             >
                               <i>Coming Soon</i>
                             </b-list-group-item>
                           </b-list-group>
                         </template>
                       </b-card>
-                    </b-card-group>
+                    </div>
                   </b-col>
                 </b-row>
               </b-col>
@@ -422,7 +413,7 @@ export default {
   align-items: center;
 }
 
-input {
+input.search {
   min-width: 120px;
   flex-grow: 1;
 }
