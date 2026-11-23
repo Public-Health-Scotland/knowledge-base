@@ -83,7 +83,8 @@ npm run lint:changed -- origin/main
 # unit tests
 npm test
 
-# end-to-end tests against the generated site (run `npm run generate` first -
+# end-to-end tests against the generated site, including an axe check of
+# every generated page for WCAG 2.2 AA problems (run `npm run generate` first -
 # the first run needs `npx playwright install chromium`)
 npm run test:e2e
 ```
