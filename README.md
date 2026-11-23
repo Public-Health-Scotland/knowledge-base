@@ -58,7 +58,7 @@ npm run lint:changed -- origin/main
 # unit tests
 npm test
 
-# end-to-end tests against the generated site (run `npm run generate` first;
+# end-to-end tests against the generated site (run `npm run generate` first -
 # the first run needs `npx playwright install chromium`)
 npm run test:e2e
 ```
@@ -69,7 +69,7 @@ npm run test:e2e
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Trigger**    | Every push to `main` (including a merged pull request), or manually via `workflow_dispatch` from the Actions tab                                                                                              |
 | **Produces**   | The live site, published to GitHub Pages                                                                                                                                                                      |
-| **Comes from** | [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm ci && npm run generate`, which builds the Nuxt app into `.output/public`; that output is uploaded and deployed as the Pages artifact |
+| **Comes from** | [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) runs `npm ci && npm run generate`, which builds the Nuxt app into `.output/public` - that output is uploaded and deployed as the Pages artifact |
 
 No manual build, no committing build output, and no merging to a `gh-pages` branch - `.output/` is regenerated on every deploy and not tracked in git (see `.gitignore`).
 

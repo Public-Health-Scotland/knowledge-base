@@ -36,7 +36,7 @@
 
 /*
  * Bootstrap 5 removed `.card-deck`. This reproduces the Bootstrap 4 layout so
- * card rows look the same after the upgrade; replace with grid classes when
+ * card rows look the same after the upgrade - replace with grid classes when
  * the pages are redesigned.
  */
 .card-deck .card {

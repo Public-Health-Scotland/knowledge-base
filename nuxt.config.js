@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // Icons are bundled at build time; the site never calls an icon API.
+  // Icons are bundled at build time - the site never calls an icon API.
   icon: {
     provider: "none",
     fallbackToApi: false,

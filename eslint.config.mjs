@@ -42,6 +42,6 @@ export default [
     files: ["test/**/*.{js,mjs}"],
     languageOptions: { globals: { ...globals.node } },
   },
-  // Formatting is handled by Prettier; this must stay last.
+  // Formatting is handled by Prettier - this must stay last.
   prettier,
 ];
