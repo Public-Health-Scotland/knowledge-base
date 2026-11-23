@@ -14,6 +14,19 @@ export default defineNuxtConfig({
 
   modules: ["@bootstrap-vue-next/nuxt", "@nuxt/icon"],
 
+  // BootstrapVueNext passes both `to` and `href` to NuxtLink, which Nuxt warns
+  // about on every link (bootstrap-vue-next#3316). Its components render
+  // Vue Router's RouterLink instead, which accepts both.
+  bootstrapVueNext: {
+    plugin: {
+      // Set on BLink too, as the module's own BLink default would win.
+      components: {
+        global: { routerComponentName: "RouterLink" },
+        BLink: { routerComponentName: "RouterLink" },
+      },
+    },
+  },
+
   css: ["bootstrap/dist/css/bootstrap.min.css", "~/assets/css/main.css"],
 
   app: {
