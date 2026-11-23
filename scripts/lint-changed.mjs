@@ -5,7 +5,9 @@
 // Usage: node scripts/lint-changed.mjs [base-ref]   (default: origin/main)
 
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const IGNORED_DIRS = [
@@ -55,14 +57,22 @@ function changedFiles(baseRef) {
   return output.split("\0").filter((p) => p && existsSync(p));
 }
 
+const require = createRequire(import.meta.url);
+
+// The tool's own script, run with Node directly. No shell is involved, so
+// file names can't be read as commands (npx goes through a shell on Windows).
+function toolScript(tool) {
+  const manifest = require.resolve(`${tool}/package.json`);
+  const { bin } = JSON.parse(readFileSync(manifest, "utf8"));
+  return join(dirname(manifest), typeof bin === "string" ? bin : bin[tool]);
+}
+
 // Files are passed after "--" so they are never read as options.
-function run(command, options, files) {
+export function run(command, options, files, stdio = "inherit") {
   const result = spawnSync(
-    "npx",
-    ["--no-install", command, ...options, "--", ...files],
-    {
-      stdio: "inherit",
-    },
+    process.execPath,
+    [toolScript(command), ...options, "--", ...files],
+    { stdio },
   );
   return result.status === 0;
 }
