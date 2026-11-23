@@ -57,6 +57,11 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      # Reports problems in technical-docs on the job summary. Content problems
+      # are fixed in technical-docs, so they never fail this repository's CI.
+      - name: Check documentation content
+        run: npm run docs:check -- --format github --advisory
+
       - name: Generate static site
         run: npm run generate
 

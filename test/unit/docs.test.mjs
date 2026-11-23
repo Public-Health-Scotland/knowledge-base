@@ -73,7 +73,7 @@ describe("collectDocs", () => {
 
   it("warns about documents in nested folders", () => {
     expect(warnings).toEqual([
-      '"Section One/Nested" is a folder inside a section; documents in it are not published.',
+      `"Section One/Nested" is a folder inside a section. Documents in it aren't published.`,
     ]);
   });
 

@@ -7,6 +7,7 @@
     <ul>
       <li v-for="doc in page.docs" :key="doc.url">
         <NuxtLink :to="doc.url">{{ doc.title }}</NuxtLink>
+        <p v-if="doc.description" class="mb-2">{{ doc.description }}</p>
       </li>
     </ul>
   </article>
@@ -19,5 +20,9 @@ const props = defineProps({
 
 useHead({
   title: () => `${props.page.title} - PHS Data Science - Knowledge Base`,
+  meta: () =>
+    props.page.description
+      ? [{ name: "description", content: props.page.description }]
+      : [],
 });
 </script>
