@@ -1,7 +1,7 @@
 # Generated output and dependencies
 .nuxt/
 .output/
-docs/
+/docs/
 node_modules/
 .content-src/
 package-lock.json

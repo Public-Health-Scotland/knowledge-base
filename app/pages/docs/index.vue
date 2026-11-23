@@ -18,7 +18,9 @@
           <code>Ctrl</code> + <code>F</code> (or <code>⌘</code> +
           <code>F</code> on Mac) to search within the current document. To
           search across documents, visit the
-          <a href="https://github.com/Public-Health-Scotland/technical-docs" target="_blank"
+          <a
+            href="https://github.com/Public-Health-Scotland/technical-docs"
+            target="_blank"
             >GitHub repository</a
           >
           and use the search function there.
@@ -35,20 +37,20 @@
               <Icon name="eva:star-outline" size="24" class="icon-accent" />
             </div>
             <br />
-            <b-card-text>
-              Get started with key Posit docs. 
-            </b-card-text>
+            <b-card-text> Get started with key Posit docs. </b-card-text>
             <b-list-group flush>
-              <b-list-group-item to="/docs/Posit%20Infrastructure">
+              <b-list-group-item to="/docs/posit-infrastructure/">
                 What is Posit?
               </b-list-group-item>
-              <b-list-group-item to="/docs/Posit%20Infrastructure?doc=Quick%20guide%20to%20your%20Posit%20Workbench%20session.md">
+              <b-list-group-item
+                to="/docs/posit-infrastructure/quick-guide-to-your-posit-workbench-session/"
+              >
                 Quick guide to Posit Workbench sessions
               </b-list-group-item>
-              <b-list-group-item to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md">
+              <b-list-group-item to="/docs/posit-infrastructure/posit-support/">
                 Getting support with Posit
               </b-list-group-item>
-              <b-list-group-item to="/docs/Posit%20Infrastructure?doc=FAQs.md">
+              <b-list-group-item to="/docs/posit-infrastructure/faqs/">
                 Posit Frequently Asked Questions (FAQs)
               </b-list-group-item>
             </b-list-group>
@@ -63,22 +65,25 @@
             <br />
             <div class="d-flex mb-4">
               <b-card-text>
-                Get started with a guided brief overview of setup, access, and best practice.
+                Get started with a guided brief overview of setup, access, and
+                best practice.
               </b-card-text>
             </div>
             <b-row class="mb-3">
               <b-col>
                 <b-list-group flush>
-                  <b-list-group-item to='/quick-start/posit-workbench'>
+                  <b-list-group-item to="/quick-start/posit-workbench">
                     <h5 class="mb-1">Posit Workbench</h5>
                     <p class="mb-1">
-                      Quick start guide to using Posit Workbench, including access and starting a session.
+                      Quick start guide to using Posit Workbench, including
+                      access and starting a session.
                     </p>
                   </b-list-group-item>
                   <b-list-group-item disabled>
                     <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                     <p class="mb-1">
-                      Quick start guide to using Git, including installation and configuration on desktop and Posit Workbench.
+                      Quick start guide to using Git, including installation and
+                      configuration on desktop and Posit Workbench.
                     </p>
                   </b-list-group-item>
                 </b-list-group>

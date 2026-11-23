@@ -26,6 +26,14 @@ jobs:
           # Pull request code runs in this job; don't leave the token in .git.
           persist-credentials: false
 
+      # The docs pages are built from technical-docs, as on deploy.
+      - name: Checkout technical-docs
+        uses: actions/checkout@v4
+        with:
+          repository: Public-Health-Scotland/technical-docs
+          path: .content-src/technical-docs
+          persist-credentials: false
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:

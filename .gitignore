@@ -10,7 +10,10 @@ npm-debug.log
 .data/
 dist
 # Output folder used before Nuxt 4
-docs/
+/docs/
+
+# technical-docs content, from `npm run docs:fetch`
+.content-src/
 
 # Playwright
 test-results/

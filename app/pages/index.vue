@@ -91,7 +91,7 @@
           </p>
         </b-col>
         <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }"
+          <NuxtLink to="/docs/posit-infrastructure/faqs/"
             ><lord-icon
               src="https://cdn.lordicon.com/wzrwaorf.json"
               trigger="hover"
@@ -103,9 +103,7 @@
             </lord-icon
           ></NuxtLink>
           <h5>
-            <b-link :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }"
-              >FAQs</b-link
-            >
+            <b-link to="/docs/posit-infrastructure/faqs/">FAQs</b-link>
           </h5>
           <p>Frequently asked questions about the Posit infrastructure.</p>
         </b-col>

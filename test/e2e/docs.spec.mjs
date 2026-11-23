@@ -1,0 +1,115 @@
+// Documentation pages are built into the site from technical-docs. These
+// tests use the real content, so they check documents that are unlikely to
+// be renamed (the R section and its style guide).
+import { expect, test } from "@playwright/test";
+
+// Records requests to GitHub or for page data. Pages built into the site
+// carry their own data, so none should be made.
+function watchRequests(page) {
+  const requests = [];
+  page.on("request", (request) => {
+    const url = request.url();
+    if (url.includes("api.github.com") || url.includes("/api/")) {
+      requests.push(url);
+    }
+  });
+  return requests;
+}
+
+test.beforeEach(async ({ page }) => {
+  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
+});
+
+const heading = (page, name) =>
+  page.getByRole("heading", { level: 1, name, exact: true });
+
+test("section and document pages are built into the site", async ({ page }) => {
+  const requests = watchRequests(page);
+
+  await page.goto("/docs/r/");
+  await expect(heading(page, "R")).toBeVisible();
+
+  await page.goto("/docs/r/r-style-guide/");
+  await expect(heading(page, "R Style Guide")).toBeVisible();
+  await expect(page).toHaveTitle(/^R Style Guide - /);
+  await expect(
+    page.getByRole("link", { name: "View on GitHub" }),
+  ).toHaveAttribute(
+    "href",
+    /github\.com\/Public-Health-Scotland\/technical-docs\/blob\/main\/R\/R%20Style%20Guide\.md$/,
+  );
+
+  expect(requests).toEqual([]);
+});
+
+test("navigation moves between documents without fetching content", async ({
+  page,
+}) => {
+  await page.goto("/docs/");
+  const requests = watchRequests(page);
+  const nav = page.getByRole("navigation", { name: "Documentation sections" });
+
+  await nav.getByRole("link", { name: "R", exact: true }).click();
+  await expect(page).toHaveURL(/\/docs\/r\/$/);
+  await nav.getByRole("link", { name: "R Style Guide" }).click();
+  await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
+  await expect(heading(page, "R Style Guide")).toBeVisible();
+
+  expect(requests).toEqual([]);
+});
+
+test("search finds documents by title", async ({ page }) => {
+  await page.goto("/docs/");
+  await page
+    .getByRole("searchbox", { name: "Search document titles" })
+    .fill("style guide");
+  await page.getByRole("link", { name: /R Style Guide/ }).click();
+
+  await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
+});
+
+test("links between documents use the new addresses", async ({ page }) => {
+  await page.goto("/docs/posit-infrastructure/");
+  const hrefs = await page
+    .locator("article a[href]")
+    .evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+
+  expect(hrefs).toContain(
+    "/docs/posit-infrastructure/posit-workbench-and-kubernetes/",
+  );
+  expect(hrefs.filter((href) => /\?doc=|^[^h#].*\.md(#|$)/.test(href))).toEqual(
+    [],
+  );
+});
+
+test.describe("addresses from before v3 redirect", () => {
+  for (const [from, to, title] of [
+    [
+      "/docs/Posit%20Infrastructure?doc=FAQs.md#installing-packages",
+      /\/docs\/posit-infrastructure\/faqs\/#installing-packages$/,
+      "Posit Infrastructure - Frequently Asked Questions",
+    ],
+    [
+      "/docs/R?doc=R%20Style%20Guide.md",
+      /\/docs\/r\/r-style-guide\/$/,
+      "R Style Guide",
+    ],
+    ["/docs/R", /\/docs\/r\/$/, "R"],
+    // A document that no longer exists goes to its section.
+    ["/docs/R?doc=Removed%20Doc.md", /\/docs\/r\/$/, "R"],
+  ]) {
+    test(from, async ({ page }) => {
+      const response = await page.goto(from);
+      expect(response.status()).toBe(200);
+      await expect(page).toHaveURL(to);
+      await expect(heading(page, title)).toBeVisible();
+    });
+  }
+});
+
+test("unknown documents show the not-found page", async ({ page }) => {
+  await page.goto("/docs/r/no-such-doc/");
+  await expect(
+    page.getByRole("heading", { name: "Page not found" }),
+  ).toBeVisible();
+});

@@ -12,7 +12,7 @@
             </b-card-body>
           </b-col>
           <b-col align-self="center">
-            <b-button to="/docs/R" variant="outline-primary">
+            <b-button to="/docs/r/" variant="outline-primary">
               R Documentation
             </b-button>
           </b-col>

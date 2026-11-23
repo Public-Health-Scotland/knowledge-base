@@ -31,6 +31,15 @@ export default [
         useRoute: "readonly",
         useRouter: "readonly",
         useRuntimeConfig: "readonly",
+        useFetch: "readonly",
+        navigateTo: "readonly",
+        ref: "readonly",
+        computed: "readonly",
+        onMounted: "readonly",
+        // Auto-imported by Nitro in server/.
+        defineEventHandler: "readonly",
+        getRouterParam: "readonly",
+        useDocs: "readonly",
       },
     },
     rules: {

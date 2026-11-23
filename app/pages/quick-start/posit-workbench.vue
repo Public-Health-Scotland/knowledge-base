@@ -46,7 +46,7 @@
                     You'll need an account in order to access Posit Workbench,
                     this is handled via Service Now with specific guidance here:
                     <NuxtLink
-                      to="/docs/Posit%20Infrastructure?doc=How%20to%20Access%20Posit%20Workbench.md"
+                      to="/docs/posit-infrastructure/how-to-access-posit-workbench/"
                     >
                       Access to Posit Workbench </NuxtLink
                     >.
@@ -115,7 +115,7 @@
                   be enough but a smaller session can also be appropriate for
                   some tasks. For more guidance on session size see
                   <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"
+                    to="/docs/posit-infrastructure/posit-workbench-and-kubernetes/"
                     >Posit Workbench and Kubernetes</NuxtLink
                   >.
                 </li>
@@ -144,7 +144,7 @@
                   In RStudio, you are then asked to confirm you have read and
                   agree to the
                   <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Acceptable%20Usage%20Policy%20for%20Posit%20Workbench.md"
+                    to="/docs/posit-infrastructure/acceptable-usage-policy-for-posit-workbench/"
                     >Acceptable Use Policy</NuxtLink
                   >
                   in the R console with an alternating prompt keyword.
@@ -183,7 +183,7 @@
                   performance and minimise the costs. For more guidance on
                   memory see
                   <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Posit%20Workbench%20and%20Kubernetes.md"
+                    to="/docs/posit-infrastructure/posit-workbench-and-kubernetes/"
                     >Posit Workbench and Kubernetes</NuxtLink
                   >.
                 </li>
@@ -196,8 +196,7 @@
                     alt="Close session button"
                   />. All open sessions will automatically close at 8pm, unless
                   they are marked “NIGHT”. For more guidance see
-                  <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Overnight%20Sessions.md"
+                  <NuxtLink to="/docs/posit-infrastructure/overnight-sessions/"
                     >Overnight Sessions</NuxtLink
                   >.
                 </li>
@@ -210,7 +209,7 @@
                   infrastructure to then launch the larger session. For more
                   guidance see
                   <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=FAQs.md#how-do-i-open-or-switch-to-another-project"
+                    to="/docs/posit-infrastructure/faqs/#how-do-i-open-or-switch-to-another-project"
                     >Project Opener Sessions</NuxtLink
                   >
                   in the FAQs section.
@@ -251,8 +250,7 @@
                     alt="Memory usage indicator"
                   />. If you need more memory, request it from the Data Science
                   Team by following the guidance
-                  <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md"
+                  <NuxtLink to="/docs/posit-infrastructure/posit-support/"
                     >here</NuxtLink
                   >
                 </li>
@@ -261,15 +259,14 @@
                   various packages, especially for geospatial work, that require
                   a different installation process. See the
                   <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=FAQs.md#installing-packages"
+                    to="/docs/posit-infrastructure/faqs/#installing-packages"
                     >Installing Packages</NuxtLink
                   >
                   FAQ section.
                 </li>
                 <li>
                   <strong>Other issues?</strong> There's extensive
-                  <NuxtLink
-                    to="/docs/Posit%20Infrastructure?doc=Posit%20Support.md"
+                  <NuxtLink to="/docs/posit-infrastructure/posit-support/"
                     >Posit Support</NuxtLink
                   >
                   guidance here, including troubleshooting steps, a link to the
