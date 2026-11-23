@@ -62,7 +62,11 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5><b-link :to="{ path: '/develop', query: { type: ['Textbook'] } }">Textbooks</b-link></h5>
+          <h5>
+            <b-link :to="{ path: '/develop', query: { type: ['Textbook'] } }"
+              >Textbooks</b-link
+            >
+          </h5>
           <p>
             For learning or reference, see a complete textbook on one of the
             technologies.
@@ -98,7 +102,11 @@
             >
             </lord-icon
           ></NuxtLink>
-          <h5><b-link :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }">FAQs</b-link></h5>
+          <h5>
+            <b-link :to="{ path: '/docs/Posit%20Infrastructure?doc=FAQs.md' }"
+              >FAQs</b-link
+            >
+          </h5>
           <p>Frequently asked questions about the Posit infrastructure.</p>
         </b-col>
       </b-row>
@@ -106,64 +114,70 @@
 
     <div class="mt-4">
       <b-row>
-          <b-col class="grid">
-            <b-card-group deck>
-              <b-card class="m-4">
+        <b-col class="grid">
+          <b-card-group deck>
+            <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Quick Start Guides</h4>
                 <eva-icon name="flash-outline" fill="#bd27b9"></eva-icon>
               </div>
-            </br>
+              <br />
               <div class="d-flex mb-4">
                 <b-card-text>
-                  Get started with a guided brief overview of setup, access, and best practice.
-                </b-card-text
-                >
+                  Get started with a guided brief overview of setup, access, and
+                  best practice.
+                </b-card-text>
               </div>
               <b-row class="mb-3">
                 <b-col>
                   <b-list-group flush>
-                    <b-list-group-item to='/quick-start/posit-workbench'>
+                    <b-list-group-item to="/quick-start/posit-workbench">
                       <h5 class="mb-1">Posit Workbench</h5>
                       <p class="mb-1">
-                        Quick start guide to using Posit Workbench, including access and starting a session.
+                        Quick start guide to using Posit Workbench, including
+                        access and starting a session.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item to='/quick-start/git' disabled>
+                    <b-list-group-item to="/quick-start/git" disabled>
                       <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
-                        Quick start guide to using Git, including installation and configuration on desktop and Posit Workbench.
+                        Quick start guide to using Git, including installation
+                        and configuration on desktop and Posit Workbench.
                       </p>
                     </b-list-group-item>
                   </b-list-group>
                 </b-col>
               </b-row>
             </b-card>
-            
+
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Learning Pathways</h4>
                 <eva-icon name="compass-outline" fill="#bd27b9"></eva-icon>
               </div>
-            </br>
+              <br />
               <div class="d-flex mb-4">
                 <b-card-text>
-                  Structured learning pathways to find the right courses for your development.
+                  Structured learning pathways to find the right courses for
+                  your development.
                 </b-card-text>
               </div>
               <b-row class="mb-3">
                 <b-col>
                   <b-list-group flush>
-                    <b-list-group-item to='/develop/r-pathway'>
+                    <b-list-group-item to="/develop/r-pathway">
                       <h5 class="mb-1">R Pathway</h5>
                       <p class="mb-1">
-                        A structured pathway to learning R, including topic-led training modules, guidance, and related technologies.
+                        A structured pathway to learning R, including topic-led
+                        training modules, guidance, and related technologies.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item to='/develop/python-pathway' disabled>
+                    <b-list-group-item to="/develop/python-pathway" disabled>
                       <h5 class="mb-1">Python <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
-                        A structured pathway to learning Python, including topic-led training modules, guidance, and related technologies.
+                        A structured pathway to learning Python, including
+                        topic-led training modules, guidance, and related
+                        technologies.
                       </p>
                     </b-list-group-item>
                   </b-list-group>
@@ -178,84 +192,7 @@
 </template>
 
 <script>
-import Multiselect from "vue-multiselect";
-import VueMarkdown from "vue-markdown";
-import courses from "@/assets/courses.json";
-
-export default {
-  components: { Multiselect, VueMarkdown },
-  data() {
-    return {
-      courses,
-      selectedTags: [],
-      selectedTypes: [],
-      selectedCourse: {},
-      search: "",
-      filterSelected: [
-        "Online Course",
-        "In-Person Course",
-        "Textbook",
-        "Guidance",
-      ],
-    };
-  },
-  computed: {
-    tags() {
-      let tags = [];
-      this.courses.forEach((course) => (tags = tags.concat(course.tags)));
-      return [...new Set(tags)];
-    },
-    types() {
-      let types = [];
-      this.courses.forEach((course) => (types = types.concat(course.type)));
-      return [...new Set(types)];
-    },
-
-    displayCourses() {
-      // Add all the courses that have at least 1 matching tags
-      // to the list of selectedTags
-      //
-      let courses = this.courses;
-
-      if (!this.filterSelected.includes("Coming Soon")) {
-        courses = this.courses.filter((course) => course.link != "");
-      }
-
-      if (this.search.length > 0 && this.search.length <= 1) {
-        courses = courses.filter((course) => {
-          if (course.tags.includes(this.search.toLowerCase())) return true;
-          else return false;
-        });
-      } else if (this.search.length > 1) {
-        courses = courses.filter((course) => {
-          if (course.title.toLowerCase().includes(this.search.toLowerCase()))
-            return true;
-          else if (
-            course.description.toLowerCase().includes(this.search.toLowerCase())
-          )
-            return true;
-          else return false;
-        });
-      }
-
-      courses = courses.filter((course) => {
-        if (this.filterSelected.includes(course.type)) return true;
-        else return false;
-      });
-
-      return courses;
-    },
-  },
-
-  methods: {
-    async showGuidance(course) {
-      course.md = await this.$axios.$get(
-        "https://secret-ocean-49799.herokuapp.com/" + course.link
-      );
-      this.selectedCourse = course;
-    },
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -310,20 +247,6 @@ b-dropdown {
   display: grid;
 }
 
-.multiselect__option--highlight,
-.multiselect__option--highlight::after {
-  background: #80ba27 !important;
-}
-
-.multiselect__option--selected.multiselect__option--highlight,
-.multiselect__option--selected.multiselect__option--highlight::after {
-  background: #bd27b9 !important;
-}
-
-.multiselect__tag {
-  background: #80ba27 !important;
-}
-
 .btn-primary {
   background-color: #0078d4;
   float: right;
@@ -332,16 +255,9 @@ b-dropdown {
 .btn-block {
   margin-bottom: 20px;
 }
+
 .coming-soon {
   color: #0078d4;
   float: right;
 }
-.guidance-md {
-  padding: 0 20px;
-}
-.guidance-md img {
-  width: 100%;
-}
 </style>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
