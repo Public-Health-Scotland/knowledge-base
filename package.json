@@ -9,6 +9,7 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
+    "docs:fetch": "node scripts/fetch-docs.mjs",
     "lint": "npm run lint:js && npm run lint:styles && npm run format:check",
     "lint:js": "eslint .",
     "lint:styles": "stylelint \"**/*.{css,scss,vue}\"",
@@ -18,7 +19,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "preview": "nuxt preview",
+    "preview": "http-server .output/public -c-1",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -29,11 +30,12 @@
     "@vueuse/integrations": "^15.0.0",
     "bootstrap": "^5.3.8",
     "bootstrap-vue-next": "^1.2.3",
-    "dompurify": "^3.4.17",
     "focus-trap": "^8.2.4",
+    "github-slugger": "^2.0.0",
     "markdown-it": "^15.0.3",
     "markdown-it-anchor": "^10.1.0",
     "nuxt": "^4.6.4",
+    "sanitize-html": "^2.18.2",
     "vue": "^3.5.45",
     "vue-router": "^5.4.0"
   },

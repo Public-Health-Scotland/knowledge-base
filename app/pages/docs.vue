@@ -6,8 +6,10 @@
           <b-row no-gutters align-v="center">
             <b-col md="7">
               <b-card-body>
-                <h3 style="cursor: pointer" @click="$router.push('/docs')">
-                  Documentation
+                <h3>
+                  <NuxtLink to="/docs/" class="text-reset text-decoration-none">
+                    Documentation
+                  </NuxtLink>
                 </h3>
                 <b-card-text tag="div">
                   <p>Data Science information, guidance, and best practice</p>
@@ -23,6 +25,7 @@
                 class="search mt-2"
                 type="search"
                 placeholder="Search"
+                aria-label="Search document titles"
               />
             </b-col>
           </b-row>
@@ -38,26 +41,14 @@
           style="position: absolute; background-color: white; z-index: 500"
         >
           <b-list-group-item
-            v-for="r in searchResults"
-            :key="r.name"
-            :to="{
-              path: '/docs/' + r.path.split('/')[0],
-              query: { doc: r.name },
-            }"
+            v-for="result in searchResults"
+            :key="result.url"
+            :to="result.url"
             @click="search = ''"
           >
             <div class="d-flex flex-row">
-              <i class="mx-2">{{ r.path.split("/")[0] }}: </i>
-              <NuxtLink
-                :to="{
-                  path: '/docs/' + r.path.split('/')[0],
-                  query: { doc: r.name },
-                }"
-                class="mx-2 align-middle"
-                @click="search = ''"
-              >
-                <div>{{ r.name.split(".")[0] }}</div>
-              </NuxtLink>
+              <i class="mx-2">{{ result.section }}: </i>
+              <span class="mx-2 align-middle">{{ result.name }}</span>
             </div>
           </b-list-group-item>
         </b-list-group>
@@ -66,7 +57,7 @@
 
     <b-row>
       <b-col cols="12" md="4" lg="3">
-        <!-- Make this nav collapse when the breakpoint is < md -->
+        <!-- The navigation collapses below the md breakpoint -->
         <b-row class="mt-3 mx-1">
           <div class="d-flex justify-content-between w-100">
             <div>
@@ -87,219 +78,124 @@
                     size="24"
                     class="me-2 icon-dark"
                 /></span>
-                {{ selectedDoc.name || "Docs" }}
+                {{ currentDoc?.name || currentSection?.name || "Docs" }}
               </b-button>
             </div>
             <div>
-              <b-button-toolbar
-                v-show="$route.query.doc && $route.query.doc != 'README.md'"
-                v-b-toggle.collapse-1
-                class="d-md-none"
-              >
+              <b-button-toolbar v-if="currentDoc" class="d-md-none">
                 <b-button-group class="mx-1">
-                  <b-button
+                  <a
                     v-b-tooltip.hover
                     title="View on GitHub"
-                    variant="outline-dark"
-                    class=""
-                    @click="openGithub"
+                    aria-label="View on GitHub"
+                    class="btn btn-outline-dark"
+                    :href="currentDoc.githubUrl"
+                    target="_blank"
+                    rel="noopener"
                   >
                     <Icon name="eva:github-outline" size="24" />
-                  </b-button>
+                  </a>
                 </b-button-group>
               </b-button-toolbar>
             </div>
           </div>
         </b-row>
 
-        <b-collapse v-if="!loadingNav" id="collapse-1" class="d-md-block">
-          <b-nav vertical>
-            <b-nav-item
-              v-for="item in docs"
-              :key="item.name"
-              :to="{ path: '/docs/' + item.path }"
-              :active="
-                $route.params.doc ? $route.params.doc == item._path : false
-              "
-              @click="selectedDoc = item"
-            >
-              {{ item.name.split(".")[0] }}
-
-              <Icon
-                v-if="item.type == 'dir' && item.name != 'Glossary'"
-                name="eva:chevron-down-outline"
-                size="24"
-                class="icon-accent"
-              />
-              <template v-if="item._path.startsWith(selectedDoc._path)">
-                <b-nav-item
-                  v-for="child in item.children"
-                  :key="child.name"
-                  :to="{
-                    path: '/docs/' + item.path,
-                    query: { doc: child.name },
-                  }"
-                  :active="
-                    $route.query.doc ? $route.query.doc == child.name : false
-                  "
-                  :class="[
-                    $route.query.doc && $route.query.doc == child.name
-                      ? 'active'
-                      : 'not-active',
-                  ]"
-                  @click="selectedDoc = child"
+        <b-collapse id="collapse-1" class="d-md-block">
+          <nav aria-label="Documentation sections">
+            <b-nav vertical>
+              <li
+                v-for="section in sections"
+                :key="section.url"
+                class="nav-item"
+              >
+                <NuxtLink
+                  :to="section.url"
+                  class="nav-link"
+                  :class="section === currentSection ? 'active' : 'not-active'"
                 >
-                  {{ child.name.split(".")[0] }}
-                </b-nav-item>
-              </template>
-            </b-nav-item>
-          </b-nav>
+                  {{ section.name }}
+                  <Icon
+                    v-if="section.docs.length"
+                    name="eva:chevron-down-outline"
+                    size="24"
+                    class="icon-accent"
+                  />
+                </NuxtLink>
+                <ul
+                  v-if="section === currentSection && section.docs.length"
+                  class="nav flex-column ms-3"
+                >
+                  <li
+                    v-for="doc in section.docs"
+                    :key="doc.url"
+                    class="nav-item"
+                  >
+                    <NuxtLink
+                      :to="doc.url"
+                      class="nav-link"
+                      :class="doc === currentDoc ? 'active' : 'not-active'"
+                    >
+                      {{ doc.name }}
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </li>
+            </b-nav>
+          </nav>
         </b-collapse>
-
-        <div v-else>
-          <b-placeholder :width="65" class="d-block ms-2 mt-4" />
-          <b-placeholder :width="35" class="d-block ms-2 mt-4" />
-          <b-placeholder :width="20" class="d-block ms-2 mt-4" />
-          <b-placeholder :width="70" class="d-block ms-2 mt-4" />
-        </div>
       </b-col>
 
-      <b-col v-if="!loadingNav" md="8" lg="9" fluid>
-        <div id="collapse-1" class="d-md-block d-none d-md-block">
-          <b-button-toolbar
-            v-show="$route.query.doc && $route.query.doc != 'README.md'"
-            class="justify-content-end"
-          >
+      <b-col md="8" lg="9" fluid>
+        <div class="d-none d-md-block">
+          <b-button-toolbar v-if="currentDoc" class="justify-content-end">
             <b-button-group class="gh-button mx-1">
-              <b-button
+              <a
                 v-b-tooltip.hover
                 title="View on GitHub"
-                variant="outline-dark"
-                class="d-flex align-self-end"
-                @click="openGithub"
+                aria-label="View on GitHub"
+                class="btn btn-outline-dark d-flex align-self-end"
+                :href="currentDoc.githubUrl"
+                target="_blank"
+                rel="noopener"
               >
                 <Icon name="eva:github-outline" size="24" />
-              </b-button>
+              </a>
             </b-button-group>
           </b-button-toolbar>
         </div>
         <NuxtPage class="mt-3 md-doc" />
       </b-col>
-
-      <b-col v-else>
-        <b-placeholder :width="65" height="20%" class="d-block mt-4" />
-        <b-placeholder :width="95" class="d-block mt-4" />
-        <b-placeholder :width="90" class="d-block mt-2" />
-        <b-placeholder :width="70" class="d-block mt-2" />
-      </b-col>
     </b-row>
   </div>
 </template>
 
-<script>
-const GITHUB_CONTENTS =
-  "https://api.github.com/repos/Public-Health-Scotland/technical-docs/contents/";
+<script setup>
+// Navigation comes from the documentation built into the site, not GitHub.
+const route = useRoute();
+const search = ref("");
 
-export default {
-  name: "Docs",
+const { data: manifest } = await useFetch("/api/docs/manifest.json", {
+  key: "docs-manifest",
+});
+const sections = computed(() => manifest.value?.sections ?? []);
 
-  data() {
-    return {
-      login: null,
-      docs: [],
-      selectedDoc: {},
-      mdContent: "Boo",
-      loadingNav: true,
-      search: "",
-    };
-  },
+const currentSection = computed(() =>
+  sections.value.find((s) => s.slug === route.params.section),
+);
+const currentDoc = computed(() =>
+  currentSection.value?.docs.find((d) => d.slug === route.params.doc),
+);
 
-  computed: {
-    searchResults() {
-      if (!this.search) return [];
-
-      let subdocs = this.docs.map((d) => d.children).flat();
-
-      let results = subdocs.filter((d) =>
-        d.name.toLowerCase().includes(this.search.toLowerCase()),
-      );
-
-      return results;
-    },
-  },
-  watch: {
-    $route() {},
-  },
-
-  // Loaded in the browser only, so pre-rendering doesn't call the GitHub API.
-  async mounted() {
-    let docs = await $fetch(GITHUB_CONTENTS);
-
-    docs = docs.filter((d) => !d.name.startsWith("."));
-    docs = docs.filter((d) => !d.name.startsWith("CONTRIBUTING"));
-    docs = docs.filter((d) => !d.name.startsWith("CODE_OF_CONDUCT"));
-    docs = docs.filter((d) => !d.name.startsWith("README"));
-
-    let getSubDocs = async (docs) => {
-      for (let doc of docs) {
-        doc._path = doc.path
-          .replace(/\//g, "-")
-          .replace(/\s/g, "_")
-          .split(".")[0];
-        if (doc.type == "dir") {
-          let subDocs = await $fetch(GITHUB_CONTENTS + doc.path);
-
-          subDocs = subDocs.filter((d) => !d.name.startsWith("."));
-          subDocs = subDocs.filter((d) => !d.name.startsWith("README"));
-          subDocs = subDocs.filter((d) => d.name.endsWith(".md"));
-          doc.children = subDocs;
-          getSubDocs(subDocs);
-        }
-      }
-      return docs;
-    };
-    this.docs = await getSubDocs(docs);
-
-    // Sort glossary to the end
-    this.docs.sort((a, b) => {
-      if (a.name == "Glossary") return 1;
-      if (b.name == "Glossary") return -1;
-      return 0;
-    });
-
-    // If $route.params.doc is set,  we need to set the selectedDoc
-    if (this.$route.params.doc) {
-      let doc = this.docs.find((d) => d.path == this.$route.params.doc);
-
-      // If its not found look in the children
-      if (!doc) {
-        for (let i = 0; i < this.docs.length; i++) {
-          let d = this.docs[i];
-          if (d.children) {
-            doc = d.children.find((c) => c.name == this.$route.params.doc);
-            if (doc) {
-              break;
-            }
-          }
-        }
-      }
-
-      if (doc) this.selectedDoc = doc;
-    }
-
-    this.loadingNav = false;
-  },
-
-  methods: {
-    openGithub() {
-      let link = this.selectedDoc.children.find(
-        (d) => d.name == this.$route.query.doc,
-      );
-
-      window.open(link.html_url, "_blank");
-    },
-  },
-};
+const searchResults = computed(() => {
+  const query = search.value.trim().toLowerCase();
+  if (!query) return [];
+  return sections.value.flatMap((section) =>
+    section.docs
+      .filter((doc) => `${doc.name} ${doc.title}`.toLowerCase().includes(query))
+      .map((doc) => ({ ...doc, section: section.name })),
+  );
+});
 </script>
 
 <style lang="scss">
@@ -315,10 +211,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-a li {
-  font-weight: 400;
 }
 
 .collapsed > .when-open,

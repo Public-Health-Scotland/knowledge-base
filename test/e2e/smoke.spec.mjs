@@ -15,15 +15,9 @@ const PAGES = [
   { path: "/docs/", heading: "Data Science - the docs" },
 ];
 
-// Keep tests independent of third-party services: block external hosts and
-// stub the GitHub API used by the current docs pages with an empty listing.
+// Keep tests independent of third-party services by blocking external hosts.
 test.beforeEach(async ({ page }) => {
-  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => {
-    if (route.request().url().startsWith("https://api.github.com/")) {
-      return route.fulfill({ json: [] });
-    }
-    return route.abort();
-  });
+  await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) => route.abort());
 });
 
 function collectErrors(page) {

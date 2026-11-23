@@ -4,8 +4,10 @@
     "stylelint-config-recommended-vue/scss"
   ],
   "ignoreFiles": [
+    ".content-src/**",
     ".nuxt/**",
     ".output/**",
+    "dist/**",
     "docs/**",
     "node_modules/**",
     "public/**"

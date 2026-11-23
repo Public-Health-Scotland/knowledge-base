@@ -1,8 +1,17 @@
 name: Deploy to GitHub Pages
 
+# The documentation pages are built from technical-docs, so the site is also
+# rebuilt when that content changes:
+# - every 30 minutes, if technical-docs has changed since the live build;
+# - straight away when technical-docs sends a "docs-updated" event;
+# - by running this workflow manually.
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "*/30 * * * *"
+  repository_dispatch:
+    types: [docs-updated]
   workflow_dispatch:
 
 permissions:
@@ -15,11 +24,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    name: Check for documentation changes
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.compare.outputs.build }}
+    steps:
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Compare live documentation with technical-docs
+        id: compare
+        env:
+          EVENT: ${{ github.event_name }}
+          SITE: ${{ steps.pages.outputs.base_url }}
+        run: |
+          if [ "$EVENT" != "schedule" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          latest=$(git ls-remote https://github.com/Public-Health-Scotland/technical-docs.git refs/heads/main | cut -f1)
+          live=$(curl -fsS "$SITE/docs-version.json" | jq -r '.commit // empty' || true)
+          echo "technical-docs: $latest, live site: ${live:-unknown}"
+          if [ -n "$latest" ] && [ "$latest" = "$live" ]; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          fi
+
   build:
+    needs: check
+    if: needs.check.outputs.build == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Checkout technical-docs
+        uses: actions/checkout@v4
+        with:
+          repository: Public-Health-Scotland/technical-docs
+          path: .content-src/technical-docs
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

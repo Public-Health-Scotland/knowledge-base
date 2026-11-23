@@ -12,10 +12,15 @@ The PHS Data Science Knowledge Base is a web app that collates all resources rel
 │   ├── app.vue                // root component
 │   ├── assets                 // stylesheets and data
 │   │   ├── courses.json       // data for courses and content
+│   │   ├── doc-redirects.json // old documentation addresses and where they moved
 │   │   └── resources.json     // data for other resources (e.g. textbooks)
+│   ├── components             // shared components
 │   ├── layouts
 │   │   └── default.vue        // site-wide template
 │   └── pages                  // one file per route
+├── lib/docs                   // reads and renders technical-docs at build time
+├── modules/docs.js            // adds every doc page to the build
+├── server                     // build-time data for the docs pages
 ├── public                     // files served as-is (images, video, CNAME)
 ├── scripts                    // development scripts
 ├── test
@@ -26,7 +31,7 @@ The PHS Data Science Knowledge Base is a web app that collates all resources rel
 └── package.json
 ```
 
-`.output/` (the generated site) and `.nuxt/` are build output - not committed, gitignored.
+`.output/` (the generated site) and `.nuxt/` are build output, and `.content-src/` holds a copy of technical-docs. None of these are committed.
 
 ## Build Setup
 
@@ -36,15 +41,27 @@ The site is built with [Nuxt 4](https://nuxt.com) (Vue 3) and [Bootstrap 5](http
 # install dependencies
 npm install
 
+# download the documentation from technical-docs (run again to update it)
+npm run docs:fetch
+
 # serve with hot reload at http://localhost:3000
 npm run dev
 
 # generate the static site into .output/public (what CI runs on deploy)
 npm run generate
 
-# preview the generated site locally
-npx http-server .output/public
+# serve the generated site as it will be deployed
+npm run preview
 ```
+
+### Documentation pages
+
+The pages under `/docs/` are built from the [technical-docs](https://github.com/Public-Health-Scotland/technical-docs) repository when the site is generated, so visitors' browsers never call the GitHub API. Each folder in technical-docs is a section (its `README.md` is the section page) and each Markdown file in it is a document, at `/docs/<section>/<document>/`. Addresses are made from the names, e.g. `Posit Infrastructure/FAQs.md` is `/docs/posit-infrastructure/faqs/`.
+
+- To build from your own technical-docs checkout, set `KB_DOCS_DIR`, e.g. `KB_DOCS_DIR=../technical-docs npm run dev`.
+- Links in technical-docs that point to files which don't exist are listed as warnings during `npm run generate`.
+- The live site rebuilds within 30 minutes of a change to technical-docs (see `.github/workflows/deploy.yml`).
+- Older addresses, such as `/docs/Posit%20Infrastructure?doc=FAQs.md`, redirect to the new ones using `app/assets/doc-redirects.json`. If a document is renamed or moved, add its old address there, e.g. `"/docs/r/old-name": "/docs/r/new-name/"`, so bookmarks keep working.
 
 ### Checks
 
