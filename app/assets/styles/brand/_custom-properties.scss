@@ -1,0 +1,15 @@
+// The tokens as CSS custom properties, for page and component styles:
+//   color: var(--phs-purple);
+@use "sass:meta";
+@use "tokens";
+
+:root {
+  @each $name, $value in meta.module-variables("tokens") {
+    @if meta.type-of($value) == color {
+      --#{$name}: #{$value};
+    }
+  }
+
+  --phs-font-sans: #{meta.inspect(tokens.$phs-font-sans)};
+  --phs-font-mono: #{meta.inspect(tokens.$phs-font-mono)};
+}

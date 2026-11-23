@@ -1,0 +1,42 @@
+// Bootstrap's settings, taken from the PHS tokens. The only file that knows
+// about Bootstrap, so a redesign or a shared PHS stylesheet changes it alone.
+$primary: $phs-purple;
+$secondary: $phs-liberty;
+$info: $phs-blue;
+$success: $phs-teal;
+$warning: $phs-green;
+$danger: $phs-rust;
+$light: $phs-surface;
+
+$body-color: $phs-text;
+$link-color: $phs-link;
+$link-hover-color: $phs-link-hover;
+$border-color: $phs-border;
+$secondary-color: $phs-text-muted;
+
+$font-family-sans-serif: $phs-font-sans;
+$font-family-monospace: $phs-font-mono;
+$font-size-base: 1rem;
+
+// Focus is shown with one outline everywhere (assets/css/main.css), so
+// Bootstrap's own focus shadows are turned off.
+$focus-ring-width: 0;
+$input-btn-focus-width: 0;
+$btn-focus-width: 0;
+$input-focus-border-color: $phs-border;
+$form-check-input-checked-bg-color: $phs-purple;
+$form-check-input-checked-border-color: $phs-purple;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: $phs-max-width,
+);
+
+// Links on the purple navigation bar: Bootstrap's default (55% white) is
+// below 4.5:1 on PHS purple, so they're brighter.
+$navbar-dark-color: rgba($phs-white, 0.88);
+$navbar-dark-hover-color: $phs-white;
+$navbar-dark-active-color: $phs-white;

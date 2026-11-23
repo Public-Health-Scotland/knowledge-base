@@ -11,5 +11,23 @@
     "docs/**",
     "node_modules/**",
     "public/**"
+  ],
+  "rules": {
+    "color-no-hex": [
+      true,
+      {
+        "message": "Use a PHS brand colour, e.g. var(--phs-purple). Colours are defined only in app/assets/styles/brand/."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["app/assets/styles/brand/**"],
+      "rules": {
+        "color-no-hex": null,
+        "scss/dollar-variable-empty-line-before": null,
+        "scss/dollar-variable-colon-space-after": null
+      }
+    }
   ]
 }

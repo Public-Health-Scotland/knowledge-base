@@ -1,39 +1,28 @@
 <template>
   <div>
-    <div class="title-container">
-      <b-card no-body class="overflow-hidden head-card">
-        <b-row no-gutters>
-          <b-col sm="12">
-            <b-card-body>
-              <h3>Hey, you ready to learn?</h3>
-              <b-card-text>
-                Welcome to the PHS Data Science Knowledge Base. It is here that
-                you'll find access to all resources related to Data Science (R,
-                Python, git, etc.) created by and for PHS staff. This includes
-                in-person and online training, internally developed textbooks,
-                and all technical documentation, including guidance, how-tos,
-                and best practice.
-              </b-card-text>
-              <b-card-text>
-                <strong>Data Science</strong> is used in the broadest possible
-                sense, capturing introductory content to technologies, and
-                pulling existing and creating new more advanced content from the
-                topic experts across the organisation. If you have something to
-                offer, get in touch by
-                <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry"
-                  >emailing the Data Science team.</a
-                >
-              </b-card-text>
-            </b-card-body>
-          </b-col>
-        </b-row>
-      </b-card>
-    </div>
+    <PageHeader title="Hey, you ready to learn?">
+      <p>
+        Welcome to the PHS Data Science Knowledge Base. It is here that you'll
+        find access to all resources related to Data Science (R, Python, git,
+        etc.) created by and for PHS staff. This includes in-person and online
+        training, internally developed textbooks, and all technical
+        documentation, including guidance, how-tos, and best practice.
+      </p>
+      <p>
+        <strong>Data Science</strong> is used in the broadest possible sense,
+        capturing introductory content to technologies, and pulling existing and
+        creating new more advanced content from the topic experts across the
+        organisation. If you have something to offer, get in touch by
+        <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry"
+          >emailing the Data Science team.</a
+        >
+      </p>
+    </PageHeader>
 
     <div>
       <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center mb-3">
         <b-col v-for="tile in tiles" :key="tile.title" class="mb-4">
-          <!-- The heading's link covers the whole tile (stretched-link), so the
+          <!-- The button's link covers the whole tile (stretched-link), so the
                icon can be clicked too while keyboards still stop only once. -->
           <div class="home-tile" @focusin="play">
             <lord-icon
@@ -45,12 +34,15 @@
               class="home-icon"
               aria-hidden="true"
             />
-            <h5>
-              <b-link :to="tile.to" class="stretched-link">{{
-                tile.title
-              }}</b-link>
-            </h5>
+            <h2 class="h5">{{ tile.title }}</h2>
             <p>{{ tile.text }}</p>
+            <!-- A link styled as a button: it goes to another page, so screen
+                 readers should hear "link" (b-button adds role="button"). -->
+            <NuxtLink
+              :to="tile.to"
+              class="btn btn-primary home-cta stretched-link"
+              >{{ tile.action }}</NuxtLink
+            >
           </div>
         </b-col>
       </b-row>
@@ -144,24 +136,28 @@ const { baseURL } = useRuntimeConfig().app;
 const tiles = [
   {
     title: "Courses",
+    action: "View courses",
     to: { path: "/develop" },
     icon: "courses",
     text: "Internally developed courses from foundations to specific topics relevant to all data-informed roles.",
   },
   {
     title: "Textbooks",
+    action: "View textbooks",
     to: { path: "/develop", query: { type: ["Textbook"] } },
     icon: "textbooks",
     text: "For learning or reference, see a complete textbook on one of the technologies.",
   },
   {
     title: "Documentation",
+    action: "View documentation",
     to: { path: "/docs" },
     icon: "documentation",
     text: "Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.",
   },
   {
     title: "FAQs",
+    action: "View FAQs",
     to: "/docs/posit-infrastructure/faqs/",
     icon: "faqs",
     text: "Frequently asked questions about the Posit infrastructure.",
@@ -200,29 +196,12 @@ input.search {
   flex: 0 1 auto;
 }
 
-.title-container {
-  margin-bottom: 20px;
-}
-
-.head-card {
-  border: none;
-}
-
 .tag-cloud {
   padding: 0 10px;
 }
 
 .tag-button {
   margin: 2px 0;
-}
-
-h5 a {
-  color: black;
-}
-
-h5 a:hover {
-  color: black;
-  text-decoration: none;
 }
 
 b-button {
@@ -237,17 +216,12 @@ b-dropdown {
   display: grid;
 }
 
-.btn-primary {
-  background-color: #0078d4;
-  float: right;
-}
-
 .btn-block {
   margin-bottom: 20px;
 }
 
 .coming-soon {
-  color: #0078d4;
+  color: var(--phs-blue);
   float: right;
 }
 </style>

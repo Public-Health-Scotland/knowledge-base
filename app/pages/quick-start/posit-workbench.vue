@@ -1,17 +1,12 @@
 <template>
   <div>
-    <b-breadcrumb>
+    <PageHeader title="Quick Start - Posit Workbench" />
+    <b-breadcrumb class="mb-4">
       <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
       <b-breadcrumb-item to="/docs"> Documentation </b-breadcrumb-item>
       <b-breadcrumb-item active>Quick Start Guides</b-breadcrumb-item>
       <b-breadcrumb-item active>Posit Workbench</b-breadcrumb-item>
     </b-breadcrumb>
-
-    <b-row class="pt-4">
-      <b-col>
-        <h3>Quick Start - Posit Workbench</h3>
-      </b-col>
-    </b-row>
 
     <div>
       <b-tabs v-model="tabIndex" class="mt-4" align="center">
@@ -338,8 +333,13 @@ export default {
 }
 
 .link {
-  color: #007bff;
+  color: var(--phs-link);
+  text-decoration: underline;
   cursor: pointer;
+}
+
+.link:hover {
+  color: var(--phs-link-hover);
 }
 
 .text-image {

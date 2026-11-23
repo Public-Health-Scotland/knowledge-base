@@ -164,7 +164,7 @@ test("home page tiles have one link each, which the icon is part of", async ({
   await expect(page).toHaveURL(/\/develop\/?$/);
 });
 
-// Resolves with whether the Courses icon finished an animation once its link
+// Resolves with whether the Courses icon finished an animation once its button
 // has keyboard focus.
 async function coursesIconPlaysOnFocus(page) {
   await page.goto("/");
@@ -180,7 +180,7 @@ async function coursesIconPlaysOnFocus(page) {
         setTimeout(() => resolve(false), 3000);
       }),
   );
-  await page.getByRole("link", { name: "Courses", exact: true }).focus();
+  await page.getByRole("link", { name: "View courses" }).focus();
   return played;
 }
 

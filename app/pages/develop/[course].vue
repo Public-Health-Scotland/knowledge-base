@@ -1,18 +1,13 @@
 <template lang="html">
   <div class="">
-    <b-breadcrumb>
+    <PageHeader :title="course.title" />
+    <b-breadcrumb class="mb-4">
       <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
       <b-breadcrumb-item to="/develop">Develop</b-breadcrumb-item>
       <b-breadcrumb-item active>{{ course.title }}</b-breadcrumb-item>
     </b-breadcrumb>
 
-    <b-row class="pt-4">
-      <b-col>
-        <h3>{{ course.title }}</h3>
-      </b-col>
-    </b-row>
-
-    <b-row class="pt-5" cols="1" cols-lg="2">
+    <b-row cols="1" cols-lg="2">
       <b-col cols="12" lg="8" class="pb-5">
         <h4>Description</h4>
         <p>{{ course.description }}</p>
@@ -146,9 +141,9 @@ export default {
 }
 
 .pathway-notice {
-  background-color: #3f3685;
+  background-color: var(--phs-purple);
   border: none;
-  color: #fff;
+  color: var(--phs-white);
   font-size: 1.1rem;
 }
 </style>
