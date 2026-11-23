@@ -1,0 +1,9 @@
+# Generated output and dependencies
+.nuxt/
+docs/
+node_modules/
+.content-src/
+package-lock.json
+
+# Static assets are served as-is
+static/
