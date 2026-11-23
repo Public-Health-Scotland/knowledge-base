@@ -262,6 +262,9 @@ img.logo {
 }
 
 .feedback-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: #3f3685;
   border-color: #3f3685;
 }

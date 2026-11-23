@@ -157,10 +157,10 @@
         </b-collapse>
 
         <div v-else>
-          <b-placeholder :width="65" class="ms-2 mt-4" />
-          <b-placeholder :width="35" class="ms-2 mt-4" />
-          <b-placeholder :width="20" class="ms-2 mt-4" />
-          <b-placeholder :width="70" class="ms-2 mt-4" />
+          <b-placeholder :width="65" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="35" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="20" class="d-block ms-2 mt-4" />
+          <b-placeholder :width="70" class="d-block ms-2 mt-4" />
         </div>
       </b-col>
 
@@ -187,10 +187,10 @@
       </b-col>
 
       <b-col v-else>
-        <b-placeholder :width="65" height="20%" class="mt-4" />
-        <b-placeholder :width="95" class="mt-4" />
-        <b-placeholder :width="90" />
-        <b-placeholder :width="70" />
+        <b-placeholder :width="65" height="20%" class="d-block mt-4" />
+        <b-placeholder :width="95" class="d-block mt-4" />
+        <b-placeholder :width="90" class="d-block mt-2" />
+        <b-placeholder :width="70" class="d-block mt-2" />
       </b-col>
     </b-row>
   </div>

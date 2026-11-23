@@ -205,7 +205,7 @@ export default {};
   align-items: center;
 }
 
-input {
+input.search {
   min-width: 120px;
   flex-grow: 1;
 }

@@ -21,7 +21,7 @@
       <b-col cols="12" lg="4">
         <b-card v-if="course.f2f != ''" class="mb-4">
           <div class="d-flex justify-content-between align-items-center">
-            <h5>In-Person Course</h5>
+            <h5 class="mb-0">In-Person Course</h5>
             <b-button
               v-b-modal.booking-modal
               variant="primary"
@@ -33,7 +33,7 @@
         </b-card>
         <b-card v-if="course.online != ''" class="mb-4">
           <div class="d-flex justify-content-between align-items-center">
-            <h5>Online Course</h5>
+            <h5 class="mb-0">Online Course</h5>
             <b-button :href="course.link" target="_blank" variant="primary">
               Start
             </b-button>

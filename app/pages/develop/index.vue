@@ -379,7 +379,8 @@ export default {
   align-items: center;
 }
 
-input {
+/* Only the search box; the category checkboxes keep their own size. */
+input.search {
   min-width: 120px;
   flex-grow: 1;
 }
