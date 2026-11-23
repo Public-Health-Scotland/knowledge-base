@@ -152,6 +152,8 @@ While a major release is in progress, don't run "Prepare Release" for a patch or
 
 ## Styleguides
 
+A pre-commit hook, set up by `npm install`, fixes formatting in the files you commit and lists any it changed. It stops the commit if something needs fixing by hand. To skip it once, use `git commit --no-verify`. CI runs the same checks.
+
 ### Git Commit Messages
 
 See the [PHS GitHub Guidance](https://github.com/Public-Health-Scotland/GitHub-guidance) for the full guidance document, some main points are highlighted here:

@@ -13,6 +13,7 @@
     "lint:js": "eslint .",
     "lint:styles": "stylelint \"**/*.{css,scss,vue}\"",
     "lint:changed": "node scripts/lint-changed.mjs",
+    "prepare": "node scripts/install-hooks.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
