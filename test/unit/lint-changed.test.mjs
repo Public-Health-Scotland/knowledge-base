@@ -24,8 +24,9 @@ describe("selectFiles", () => {
     const files = selectFiles([
       "docs/index.html",
       ".nuxt/client.js",
+      ".output/public/index.html",
       "node_modules/x/index.js",
-      "static/phs-logo.png",
+      "public/phs-logo.png",
       "package-lock.json",
     ]);
 

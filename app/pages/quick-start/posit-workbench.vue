@@ -1,10 +1,8 @@
 <template>
   <div>
     <b-breadcrumb>
-      <b-breadcrumb-item @click="$router.push('/')">Home</b-breadcrumb-item>
-      <b-breadcrumb-item @click="$router.push('/docs')">
-        Documentation
-      </b-breadcrumb-item>
+      <b-breadcrumb-item to="/">Home</b-breadcrumb-item>
+      <b-breadcrumb-item to="/docs"> Documentation </b-breadcrumb-item>
       <b-breadcrumb-item active>Quick Start Guides</b-breadcrumb-item>
       <b-breadcrumb-item active>Posit Workbench</b-breadcrumb-item>
     </b-breadcrumb>
@@ -16,11 +14,11 @@
     </b-row>
 
     <div>
-      <b-tabs class="mt-4" align="center" v-model="tabIndex">
+      <b-tabs v-model="tabIndex" class="mt-4" align="center">
         <b-tab title="Setup">
           <b-card>
             <h4>Welcome to the Posit Workbench Quick Start Guide</h4>
-            <b-card-text>
+            <b-card-text tag="div">
               This quick start guide is aimed at new Posit Workbench users, or
               those who need a refresher in how to use it. You can navigate
               between sections using the tab buttons at the top or buttons to
@@ -28,12 +26,12 @@
               guide will take you through:
               <ul class="mt-2">
                 <li>Setup</li>
-                <li><span @click="tabIndex = 1" class="link">Access</span></li>
+                <li><span class="link" @click="tabIndex = 1">Access</span></li>
                 <li>
-                  <span @click="tabIndex = 2" class="link">Best Practice</span>
+                  <span class="link" @click="tabIndex = 2">Best Practice</span>
                 </li>
                 <li>
-                  <span @click="tabIndex = 3" class="link"
+                  <span class="link" @click="tabIndex = 3"
                     >Troubleshooting</span
                   >
                 </li>
@@ -41,7 +39,7 @@
             </b-card-text>
             <div class="mt-3">
               <h4 class="mt-5">Setup</h4>
-              <b-card-text>
+              <b-card-text tag="div">
                 <ul class="mt-2">
                   <li>
                     <strong>Setup user account on Posit.</strong>
@@ -68,9 +66,9 @@
             </div>
             <div class="d-flex justify-content-end">
               <b-button
-                @click="tabIndex = 1"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 1"
                 >Next Page</b-button
               >
             </div>
@@ -79,7 +77,7 @@
         <b-tab title="Access">
           <b-card>
             <h4>Accessing Posit Workbench</h4>
-            <b-card-text>
+            <b-card-text tag="div">
               To start using the PHS Posit Workbench, follow the steps below:
               <h5 class="mt-3">Logging in</h5>
               <ol class="mt-2">
@@ -106,7 +104,7 @@
                   the top left of the Posit Workbench home screen.
                 </li>
                 <img
-                  src="~/static/quick-start/posit-workbench/new_session_button_home.png"
+                  src="/quick-start/posit-workbench/new_session_button_home.png"
                   alt="New session button home"
                   class="text-image my-4 d-flex justify-content-center"
                 />
@@ -128,7 +126,7 @@
                   minutes of clicking "Start Session".
                 </li>
                 <img
-                  src="~/static/quick-start/posit-workbench/start_session_popup.png"
+                  src="/quick-start/posit-workbench/start_session_popup.png"
                   alt="Start session popup"
                   class="text-image my-4 d-flex justify-content-center"
                 />
@@ -155,15 +153,15 @@
             </b-card-text>
             <div class="d-flex justify-content-between">
               <b-button
-                @click="tabIndex = 0"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 0"
                 >Prev Page</b-button
               >
               <b-button
-                @click="tabIndex = 2"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 2"
                 >Next Page</b-button
               >
             </div>
@@ -172,7 +170,7 @@
         <b-tab title="Best Practice">
           <b-card>
             <h4>Using Posit Workbench</h4>
-            <b-card-text>
+            <b-card-text tag="div">
               To be able to make the most efficient and robust use of Posit
               Workbench for any task, it is important to follow best practice.
               This includes:
@@ -194,7 +192,7 @@
                   on that project or are going to be taking a longer than 10
                   minute break, by clicking
                   <img
-                    src="~/static/quick-start/posit-workbench/close_session.png"
+                    src="/quick-start/posit-workbench/close_session.png"
                     alt="Close session button"
                   />. All open sessions will automatically close at 8pm, unless
                   they are marked “NIGHT”. For more guidance see
@@ -221,15 +219,15 @@
             </b-card-text>
             <div class="d-flex justify-content-between">
               <b-button
-                @click="tabIndex = 1"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 1"
                 >Prev Page</b-button
               >
               <b-button
-                @click="tabIndex = 3"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 3"
                 >Next Page</b-button
               >
             </div>
@@ -238,7 +236,7 @@
         <b-tab title="Troubleshooting">
           <b-card>
             <h4>Getting Help with Posit Workbench</h4>
-            <b-card-text>
+            <b-card-text tag="div">
               It's a normal part of the process to debug and troubleshoot
               issues. However, sometimes it can make it more difficult when
               you're not sure if it's the infrastructure. Here are some common
@@ -249,7 +247,7 @@
                   memory in your session for the work you're trying to do.
                   Memory usage can be seen here
                   <img
-                    src="~/static/quick-start/posit-workbench/memory_indicator.png"
+                    src="/quick-start/posit-workbench/memory_indicator.png"
                     alt="Memory usage indicator"
                   />. If you need more memory, request it from the Data Science
                   Team by following the guidance
@@ -288,9 +286,9 @@
             </b-card-text>
             <div class="d-flex justify-content-between">
               <b-button
-                @click="tabIndex = 2"
                 variant="outline-primary"
                 class="mt-2"
+                @click="tabIndex = 2"
                 >Prev Page</b-button
               >
             </div>
@@ -331,6 +329,7 @@ export default {
   font-size: 1.2rem !important;
   margin-bottom: 1.2rem !important;
 }
+
 .card-text {
   font-weight: normal !important;
 }

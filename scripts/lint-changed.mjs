@@ -10,9 +10,10 @@ import { pathToFileURL } from "node:url";
 
 const IGNORED_DIRS = [
   ".nuxt/",
+  ".output/",
   "docs/",
   "node_modules/",
-  "static/",
+  "public/",
   ".content-src/",
 ];
 

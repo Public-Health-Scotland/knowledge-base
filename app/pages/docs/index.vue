@@ -32,9 +32,9 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Top Docs</h3>
-              <eva-icon name="star-outline" fill="#bd27b9"></eva-icon>
+              <Icon name="eva:star-outline" size="24" class="icon-accent" />
             </div>
-            </br>
+            <br />
             <b-card-text>
               Get started with key Posit docs. 
             </b-card-text>
@@ -58,9 +58,9 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Quick Start Guides</h3>
-              <eva-icon name="flash-outline" fill="#bd27b9"></eva-icon>
+              <Icon name="eva:flash-outline" size="24" class="icon-accent" />
             </div>
-            </br>
+            <br />
             <div class="d-flex mb-4">
               <b-card-text>
                 Get started with a guided brief overview of setup, access, and best practice.
@@ -75,7 +75,7 @@
                       Quick start guide to using Posit Workbench, including access and starting a session.
                     </p>
                   </b-list-group-item>
-                  <b-list-group-item to='/quick-start/git' disabled>
+                  <b-list-group-item disabled>
                     <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                     <p class="mb-1">
                       Quick start guide to using Git, including installation and configuration on desktop and Posit Workbench.

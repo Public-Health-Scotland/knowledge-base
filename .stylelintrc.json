@@ -3,5 +3,11 @@
     "stylelint-config-standard-scss",
     "stylelint-config-recommended-vue/scss"
   ],
-  "ignoreFiles": [".nuxt/**", "docs/**", "node_modules/**", "static/**"]
+  "ignoreFiles": [
+    ".nuxt/**",
+    ".output/**",
+    "docs/**",
+    "node_modules/**",
+    "public/**"
+  ]
 }

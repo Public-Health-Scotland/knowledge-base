@@ -115,11 +115,11 @@
     <div class="mt-4">
       <b-row>
         <b-col class="grid">
-          <b-card-group deck>
+          <div class="card-deck">
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Quick Start Guides</h4>
-                <eva-icon name="flash-outline" fill="#bd27b9"></eva-icon>
+                <Icon name="eva:flash-outline" size="24" class="icon-accent" />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -138,7 +138,7 @@
                         access and starting a session.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item to="/quick-start/git" disabled>
+                    <b-list-group-item disabled>
                       <h5 class="mb-1">Git <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
                         Quick start guide to using Git, including installation
@@ -153,7 +153,11 @@
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Learning Pathways</h4>
-                <eva-icon name="compass-outline" fill="#bd27b9"></eva-icon>
+                <Icon
+                  name="eva:compass-outline"
+                  size="24"
+                  class="icon-accent"
+                />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -172,7 +176,7 @@
                         training modules, guidance, and related technologies.
                       </p>
                     </b-list-group-item>
-                    <b-list-group-item to="/develop/python-pathway" disabled>
+                    <b-list-group-item disabled>
                       <h5 class="mb-1">Python <em>(Coming Soon)</em></h5>
                       <p class="mb-1">
                         A structured pathway to learning Python, including
@@ -184,7 +188,7 @@
                 </b-col>
               </b-row>
             </b-card>
-          </b-card-group>
+          </div>
         </b-col>
       </b-row>
     </div>
