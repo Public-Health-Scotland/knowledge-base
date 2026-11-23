@@ -31,6 +31,9 @@ export function selectFiles(paths) {
   const kept = paths.filter(
     (p) =>
       p &&
+      // A file name can't be mistaken for a command-line option.
+      !p.startsWith("-") &&
+      ![...p].some((c) => c.charCodeAt(0) < 32) &&
       !IGNORED_DIRS.some((dir) => p.startsWith(dir)) &&
       p !== "package-lock.json",
   );
@@ -45,16 +48,21 @@ export function selectFiles(paths) {
 function changedFiles(baseRef) {
   const output = execFileSync(
     "git",
-    ["diff", "--name-only", "--diff-filter=ACMR", `${baseRef}...HEAD`],
+    ["diff", "-z", "--name-only", "--diff-filter=ACMR", `${baseRef}...HEAD`],
     { encoding: "utf8" },
   );
-  return output.split("\n").filter((p) => p && existsSync(p));
+  return output.split("\0").filter((p) => p && existsSync(p));
 }
 
-function run(command, args) {
-  const result = spawnSync("npx", ["--no-install", command, ...args], {
-    stdio: "inherit",
-  });
+// Files are passed after "--" so they are never read as options.
+function run(command, options, files) {
+  const result = spawnSync(
+    "npx",
+    ["--no-install", command, ...options, "--", ...files],
+    {
+      stdio: "inherit",
+    },
+  );
   return result.status === 0;
 }
 
@@ -70,11 +78,10 @@ function main() {
 
   console.log(`Checking ${total} changed file(s) against ${baseRef}.`);
   const results = [
-    files.eslint.length === 0 || run("eslint", files.eslint),
+    files.eslint.length === 0 || run("eslint", [], files.eslint),
     files.stylelint.length === 0 ||
-      run("stylelint", ["--allow-empty-input", ...files.stylelint]),
-    files.prettier.length === 0 ||
-      run("prettier", ["--check", ...files.prettier]),
+      run("stylelint", ["--allow-empty-input"], files.stylelint),
+    files.prettier.length === 0 || run("prettier", ["--check"], files.prettier),
   ];
 
   if (results.includes(false)) {

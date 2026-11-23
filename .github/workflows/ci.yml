@@ -23,6 +23,8 @@ jobs:
         with:
           # Full history so changed files can be compared with the base branch.
           fetch-depth: 0
+          # Pull request code runs in this job; don't leave the token in .git.
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

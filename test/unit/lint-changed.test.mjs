@@ -37,4 +37,14 @@ describe("selectFiles", () => {
       "pages/index.vue",
     ]);
   });
+
+  test("never passes a file name that could be read as an option", () => {
+    const files = selectFiles([
+      "--config=evil.js",
+      "-c.vue",
+      "pages/a\nb.vue",
+      "pages/index.vue",
+    ]);
+    expect(files.eslint).toEqual(["pages/index.vue"]);
+  });
 });
