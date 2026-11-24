@@ -1,129 +1,67 @@
-export default {
-  /*
-   ** Nuxt rendering mode
-   ** See https://nuxtjs.org/api/configuration-mode
-   */
-  ssr: false,
-  /*
-   ** Nuxt target
-   ** See https://nuxtjs.org/api/configuration-target
-   */
-  // target: 'static',
-  router: {
-    base: "/",
-  },
-  generate: {
-    fallback: true,
-    dir: "docs",
-  },
-  /*
-   ** Headers of the page
-   ** See https://nuxtjs.org/api/configuration-head
-   */
-  head: {
-    title: "PHS Data Science - Knowledge Base",
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || "",
-      },
-    ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    script: [
-      {
-        src: "https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js",
-      },
-    ],
-  },
-  /*
-   ** Global CSS
-   */
-  css: [],
-  /*
-   ** Plugins to load before mounting the App
-   ** https://nuxtjs.org/guide/plugins
-   */
-  plugins: ["@/plugins/eva-icons", "@/plugins/google-analytics"],
-  /*
-   ** Auto import components
-   ** See https://nuxtjs.org/api/configuration-components
-   */
-  components: true,
-  /*
-   ** Nuxt.js dev-modules
-   */
-  buildModules: [],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
-    // Doc: https://bootstrap-vue.js.org
-    // Only the component plugins actually used across pages/layouts are
-    // loaded here (no <b-icon>, so the icons bundle is excluded entirely).
-    [
-      "bootstrap-vue/nuxt",
-      {
-        usePretranspiled: true,
-        componentPlugins: [
-          "alert",
-          "breadcrumb",
-          "button",
-          "buttonGroup",
-          "buttonToolbar",
-          "card",
-          "collapse",
-          "dropdown",
-          "formCheckbox",
-          "formGroup",
-          "formInput",
-          "layout",
-          "link",
-          "listGroup",
-          "modal",
-          "nav",
-          "navbar",
-          "skeleton",
-          "tabs",
-        ],
-        directivePlugins: ["modal", "toggle", "tooltip"],
-      },
-    ],
-    "@nuxtjs/axios",
-  ],
-  /*
-   ** Build configuration
-   ** See https://nuxtjs.org/api/configuration-build/
-   */
-  build: {
-    loaders: {
-      sass: {
-        implementation: require("sass"),
-      },
-      scss: {
-        implementation: require("sass"),
+import { readFileSync } from "node:fs";
+
+// Course pages are generated from the catalogue so each has a real HTML file.
+const courses = JSON.parse(
+  readFileSync(new URL("./app/assets/courses.json", import.meta.url), "utf8"),
+);
+
+export default defineNuxtConfig({
+  compatibilityDate: "2026-11-01",
+
+  // Pages are rendered to static HTML at build time (`nuxt generate`).
+  ssr: true,
+  devtools: { enabled: false },
+
+  modules: ["@bootstrap-vue-next/nuxt", "@nuxt/icon"],
+
+  // BootstrapVueNext passes both `to` and `href` to NuxtLink, which Nuxt warns
+  // about on every link (bootstrap-vue-next#3316). Its components render
+  // Vue Router's RouterLink instead, which accepts both.
+  bootstrapVueNext: {
+    plugin: {
+      // Set on BLink too, as the module's own BLink default would win.
+      components: {
+        global: { routerComponentName: "RouterLink" },
+        BLink: { routerComponentName: "RouterLink" },
       },
     },
   },
-  // build: {
-  //   extend(config) {
-  //     const vueLoader = config.module.rules.find(rule => rule.loader === 'vue-loader')
-  //     vueLoader.options.transformAssetUrls = {
-  //       video: ['src', 'poster'],
-  //       source: 'src',
-  //       img: 'src',
-  //       image: 'xlink:href',
-  //       'b-avatar': 'src',
-  //       'b-img': 'src',
-  //       'b-img-lazy': ['src', 'blank-src'],
-  //       'b-card': 'img-src',
-  //       'b-card-img': 'src',
-  //       'b-card-img-lazy': ['src', 'blank-src'],
-  //       'b-carousel-slide': 'img-src',
-  //       'b-embed': 'src'
-  //     }
-  //   }
-  // }
-};
+
+  css: ["bootstrap/dist/css/bootstrap.min.css", "~/assets/css/main.css"],
+
+  app: {
+    head: {
+      title: "PHS Data Science - Knowledge Base",
+      htmlAttrs: { lang: "en-GB" },
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      script: [
+        { src: "https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js" },
+      ],
+    },
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === "lord-icon",
+    },
+  },
+
+  // Icons are bundled at build time - the site never calls an icon API.
+  icon: {
+    provider: "none",
+    fallbackToApi: false,
+    clientBundle: { scan: true },
+  },
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      failOnError: true,
+      routes: ["/", ...courses.map((course) => `/develop/${course.slug}`)],
+    },
+  },
+});
