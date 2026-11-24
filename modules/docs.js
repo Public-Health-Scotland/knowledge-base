@@ -42,6 +42,7 @@ export default defineNuxtModule({
     // page (such as old addresses) can load it without a server.
     const data = [
       "/api/docs/manifest.json",
+      "/api/docs/search.json",
       ...sections.flatMap((s) => [
         `/api/docs/${s.slug}.json`,
         ...s.docs.map((d) => `/api/docs/${s.slug}/${d.slug}.json`),

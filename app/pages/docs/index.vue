@@ -13,17 +13,8 @@
           and guidance.
         </p>
         <p>
-          You can use the <strong>search bar</strong> at the top of the page to
-          look for <strong>document titles</strong>. You can also use
-          <code>Ctrl</code> + <code>F</code> (or <code>⌘</code> +
-          <code>F</code> on Mac) to search within the current document. To
-          search across documents, visit the
-          <a
-            href="https://github.com/Public-Health-Scotland/technical-docs"
-            target="_blank"
-            >GitHub repository</a
-          >
-          and use the search function there.
+          Use the <strong>search box</strong> at the top of the page to search
+          the text of every document. Results appear as you type.
         </p>
       </b-col>
     </b-row>
