@@ -113,3 +113,34 @@ test("unknown documents show the not-found page", async ({ page }) => {
     page.getByRole("heading", { name: "Page not found" }),
   ).toBeVisible();
 });
+
+test("heading links keep plain addresses and land on the heading", async ({
+  page,
+}) => {
+  await page.goto("/docs/r/r-style-guide/#10---r-user-group");
+  await expect(
+    page.locator('[id="user-content-10---r-user-group"]'),
+  ).toBeInViewport();
+});
+
+test("links within a doc scroll to the heading, and back returns", async ({
+  page,
+}) => {
+  await page.goto("/docs/posit-infrastructure/faqs/");
+  const heading = page.locator('[id="user-content-posit-connect"]');
+  await page
+    .locator("article")
+    .getByRole("link", { name: "Posit Connect", exact: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL(/\/faqs\/#posit-connect$/);
+  await expect(heading).toBeInViewport();
+  // Clear of the navbar, not hidden under it.
+  const box = await heading.boundingBox();
+  expect(box.y).toBeGreaterThanOrEqual(0);
+
+  await page.goBack();
+  await expect(heading).not.toBeInViewport();
+  await page.goForward();
+  await expect(heading).toBeInViewport();
+});
