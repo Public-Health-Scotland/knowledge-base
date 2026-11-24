@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { collectDocs, docTitle, slugify } from "../../lib/docs/collect.mjs";
+import { renderMarkdown } from "../../lib/docs/render.mjs";
 import { addUrls, docsManifest, loadDocs } from "../../lib/docs/index.mjs";
 import {
   findRedirect,
@@ -125,8 +126,8 @@ describe("loadDocs", () => {
     expect(html).toContain('<a href="mailto:team@example.com">');
   });
 
-  it("gives headings GitHub's ids", () => {
-    expect(html).toContain('<h2 id="why-cant-i-log-in">');
+  it("gives headings GitHub's ids, prefixed as GitHub does", () => {
+    expect(html).toContain('<h2 id="user-content-why-cant-i-log-in">');
   });
 
   it("removes scripts", () => {
@@ -217,5 +218,45 @@ describe("redirects", () => {
     expect(
       findSiteRedirect(redirects, "https://example.com/docs/x"),
     ).toBeUndefined();
+  });
+});
+
+describe("ids in rendered docs", () => {
+  const links = {
+    resolve: (path) => (path === "R/Guide.md" ? "/docs/r/guide/" : null),
+    exists: () => true,
+    legacy: () => "/docs/r/guide/#naming",
+    fallback: (path) => path,
+  };
+  const render = (source) => renderMarkdown(source, { path: "R/a.md", links });
+
+  it("prefixes every id and anchor name from a doc", () => {
+    expect(
+      render(
+        '## Installing packages\n\n<h2 id="__NUXT_DATA__">x</h2>\n<a name="main-content">a</a>',
+      ),
+    ).toBe(
+      '<h2 id="user-content-installing-packages">Installing packages</h2>\n<h2 id="user-content-__NUXT_DATA__">x</h2>\n<a name="user-content-main-content">a</a>',
+    );
+  });
+
+  it("keeps links to headings in the plain form", () => {
+    expect(render("[a](#installing-packages)")).toContain(
+      'href="#installing-packages"',
+    );
+    expect(render("[b](Guide.md#naming)")).toContain(
+      'href="/docs/r/guide/#naming"',
+    );
+    expect(
+      render(
+        "[c](https://kb.publichealthscotland.scot/docs/R?doc=Guide.md#naming)",
+      ),
+    ).toContain('href="/docs/r/guide/#naming"');
+  });
+
+  it("leaves ids that already have the prefix alone", () => {
+    expect(render('<h2 id="user-content-x">x</h2>')).toBe(
+      '<h2 id="user-content-x">x</h2>',
+    );
   });
 });

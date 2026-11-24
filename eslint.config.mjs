@@ -26,6 +26,7 @@ export default [
         // Auto-imported by Nuxt.
         $fetch: "readonly",
         defineNuxtConfig: "readonly",
+        defineNuxtPlugin: "readonly",
         createError: "readonly",
         useHead: "readonly",
         useRoute: "readonly",
