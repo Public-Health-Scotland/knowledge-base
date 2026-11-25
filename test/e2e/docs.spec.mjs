@@ -61,9 +61,13 @@ test("navigation moves between documents without fetching content", async ({
 test("search finds documents by title", async ({ page }) => {
   await page.goto("/docs/");
   await page
-    .getByRole("searchbox", { name: "Search document titles" })
-    .fill("style guide");
-  await page.getByRole("link", { name: /R Style Guide/ }).click();
+    .getByRole("combobox", { name: "Search the documentation" })
+    .fill("r style guide");
+  await page
+    .getByRole("option")
+    .filter({ hasText: "R Style Guide" })
+    .first()
+    .click();
 
   await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
 });
@@ -143,4 +147,38 @@ test("links within a doc scroll to the heading, and back returns", async ({
   await expect(heading).not.toBeInViewport();
   await page.goForward();
   await expect(heading).toBeInViewport();
+});
+
+test("search finds documents by their text and opens one from the keyboard", async ({
+  page,
+}) => {
+  await page.goto("/docs/");
+  const requests = watchRequests(page);
+  const search = page.getByRole("combobox", {
+    name: "Search the documentation",
+  });
+  const results = page.getByRole("listbox", { name: "Search results" });
+
+  // The search text is only downloaded once someone starts searching.
+  await page.waitForLoadState("networkidle");
+  expect(requests).toEqual([]);
+
+  await search.fill("lintr");
+  await expect(results.getByRole("option").first()).toContainText(
+    "R Style Guide",
+  );
+  await expect(search).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator(".docs-search [role=status]")).toHaveText(
+    /\d+ results?\./,
+  );
+
+  await search.press("Escape");
+  await expect(results).toBeHidden();
+  await search.press("ArrowDown");
+  await expect(search).toHaveAttribute("aria-activedescendant", /option-0$/);
+  await search.press("Enter");
+
+  await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
+  await expect(heading(page, "R Style Guide")).toBeVisible();
+  expect(requests).toEqual([expect.stringContaining("/api/docs/search.json")]);
 });

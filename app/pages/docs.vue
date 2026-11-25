@@ -2,7 +2,7 @@
   <div>
     <div class="top-row">
       <div class="title-container">
-        <b-card no-body class="overflow-hidden head-card">
+        <b-card no-body class="head-card">
           <b-row no-gutters align-v="center">
             <b-col md="7">
               <b-card-body>
@@ -20,40 +20,12 @@
             <b-col md="1"> </b-col>
 
             <b-col md="4">
-              <b-form-input
-                v-model="search"
-                class="search mt-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search document titles"
-              />
+              <DocsSearch class="mt-2" />
             </b-col>
           </b-row>
         </b-card>
       </div>
     </div>
-
-    <b-row class="d-flex" align-h="end">
-      <b-col cols="12" md="7" lg="6" xl="5">
-        <b-list-group
-          v-if="searchResults.length"
-          class="search-results flex-fill"
-          style="position: absolute; background-color: white; z-index: 500"
-        >
-          <b-list-group-item
-            v-for="result in searchResults"
-            :key="result.url"
-            :to="result.url"
-            @click="search = ''"
-          >
-            <div class="d-flex flex-row">
-              <i class="mx-2">{{ result.section }}: </i>
-              <span class="mx-2 align-middle">{{ result.name }}</span>
-            </div>
-          </b-list-group-item>
-        </b-list-group>
-      </b-col>
-    </b-row>
 
     <b-row>
       <b-col cols="12" md="4" lg="3">
@@ -173,7 +145,6 @@
 <script setup>
 // Navigation comes from the documentation built into the site, not GitHub.
 const route = useRoute();
-const search = ref("");
 
 const { data: manifest } = await useFetch("/api/docs/manifest.json", {
   key: "docs-manifest",
@@ -186,16 +157,6 @@ const currentSection = computed(() =>
 const currentDoc = computed(() =>
   currentSection.value?.docs.find((d) => d.slug === route.params.doc),
 );
-
-const searchResults = computed(() => {
-  const query = search.value.trim().toLowerCase();
-  if (!query) return [];
-  return sections.value.flatMap((section) =>
-    section.docs
-      .filter((doc) => `${doc.name} ${doc.title}`.toLowerCase().includes(query))
-      .map((doc) => ({ ...doc, section: section.name })),
-  );
-});
 </script>
 
 <style lang="scss">
@@ -216,24 +177,6 @@ const searchResults = computed(() => {
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
   display: none;
-}
-
-.search-results {
-  box-shadow: 0 4px 10px 0 rgb(220 220 220 / 100%);
-}
-
-@media (width <= 767.98px) {
-  .search-results {
-    right: 15px;
-    width: 95%;
-  }
-}
-
-@media (width >= 767.98px) {
-  .search-results {
-    margin-top: -33px;
-    right: 15px;
-  }
 }
 
 .md-doc h1 {
