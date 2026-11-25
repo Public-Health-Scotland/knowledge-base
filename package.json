@@ -26,6 +26,7 @@
   "dependencies": {
     "@bootstrap-vue-next/nuxt": "^1.0.0",
     "@floating-ui/vue": "^2.0.1",
+    "@lordicon/element": "^3.0.2",
     "@nuxt/icon": "^2.6.2",
     "@vueuse/core": "^15.0.0",
     "@vueuse/integrations": "^15.0.0",
@@ -45,7 +46,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@iconify-json/eva": "^1.2.3",
+    "@iconify-json/lucide": "^1.2.153",
     "@playwright/test": "^1.65.0",
     "eslint": "^10.14.0",
     "eslint-config-prettier": "^10.1.8",

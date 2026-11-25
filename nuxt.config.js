@@ -42,15 +42,6 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-      script: [
-        { src: "https://cdn.lordicon.com/libs/frhvbuzj/lord-icon-2.0.2.js" },
-      ],
-    },
-  },
-
-  vue: {
-    compilerOptions: {
-      isCustomElement: (tag) => tag === "lord-icon",
     },
   },
 
@@ -59,6 +50,12 @@ export default defineNuxtConfig({
     provider: "none",
     fallbackToApi: false,
     clientBundle: { scan: true },
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === "lord-icon",
+    },
   },
 
   nitro: {

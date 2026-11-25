@@ -25,7 +25,7 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Top Docs</h3>
-              <Icon name="eva:star-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:star" size="24" class="icon-accent" />
             </div>
             <br />
             <b-card-text> Get started with key Posit docs. </b-card-text>
@@ -51,7 +51,7 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Quick Start Guides</h3>
-              <Icon name="eva:flash-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:zap" size="24" class="icon-accent" />
             </div>
             <br />
             <div class="d-flex mb-4">

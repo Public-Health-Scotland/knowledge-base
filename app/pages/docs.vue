@@ -39,16 +39,10 @@
                 class="d-md-none mx-1"
               >
                 <span class="when-closed"
-                  ><Icon
-                    name="eva:menu-outline"
-                    size="24"
-                    class="me-2 icon-dark"
+                  ><Icon name="lucide:menu" size="24" class="me-2 icon-dark"
                 /></span>
                 <span class="when-open"
-                  ><Icon
-                    name="eva:close-outline"
-                    size="24"
-                    class="me-2 icon-dark"
+                  ><Icon name="lucide:x" size="24" class="me-2 icon-dark"
                 /></span>
                 {{ currentDoc?.name || currentSection?.name || "Docs" }}
               </b-button>
@@ -72,7 +66,7 @@
                   {{ section.name }}
                   <Icon
                     v-if="section.docs.length"
-                    name="eva:chevron-down-outline"
+                    name="lucide:chevron-down"
                     size="24"
                     class="icon-accent"
                   />
