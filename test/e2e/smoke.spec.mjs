@@ -13,6 +13,10 @@ const PAGES = [
     heading: "Quick Start - Posit Workbench",
   },
   { path: "/docs/", heading: "Data Science - the docs" },
+  {
+    path: "/accessibility/",
+    heading: "Accessibility statement for the Data Science Knowledge Base",
+  },
 ];
 
 // Keep tests independent of third-party services by blocking external hosts.
@@ -42,7 +46,11 @@ for (const { path, heading } of PAGES) {
     await expect(
       page.getByRole("heading", { name: heading, exact: true }),
     ).toBeVisible();
-    await expect(page.getByRole("img", { name: "PHS Logo" })).toBeVisible();
+    await expect(
+      page.getByRole("link", {
+        name: "Public Health Scotland - Knowledge Base home",
+      }),
+    ).toBeVisible();
     expect(errors).toEqual([]);
   });
 }
@@ -96,16 +104,33 @@ test("help dialog opens from the navigation and closes", async ({ page }) => {
   await expect(dialog).toBeHidden();
 });
 
-test("accessibility information opens from the footer", async ({ page }) => {
+test("the accessibility statement is linked from every page", async ({
+  page,
+}) => {
   await page.goto("/");
   await page
     .locator("footer")
-    .getByText("Accessibility", { exact: true })
+    .getByRole("link", { name: "Accessibility", exact: true })
     .click();
 
+  await expect(page).toHaveURL(/\/accessibility\/$/);
   await expect(
-    page.getByRole("dialog", { name: "Accessibility" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Accessibility statement for the Data Science Knowledge Base",
+    }),
   ).toBeVisible();
+});
+
+test("a skip link takes keyboard users to the main content", async ({
+  page,
+}) => {
+  await page.goto("/develop/");
+  await page.keyboard.press("Tab");
+  const skip = page.getByRole("link", { name: "Skip to main content" });
+  await expect(skip).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("main")).toBeFocused();
 });
 
 test("pages not generated at build time are served through the app", async ({

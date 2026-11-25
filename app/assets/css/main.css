@@ -160,3 +160,13 @@ a:not(.btn, .nav-link, .dropdown-item, .list-group-item, .navbar-brand):hover {
     margin-left: 15px;
   }
 }
+
+/* The skip link shows on the purple bar, so its focus outline is white. */
+.skip-link:focus-visible {
+  outline-color: var(--phs-white);
+}
+
+/* The main content is focused by the skip link, without an outline. */
+#main-content:focus {
+  outline: none;
+}
