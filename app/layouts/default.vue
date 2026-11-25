@@ -14,7 +14,7 @@
       </header>
     </div>
 
-    <div class="nav-container">
+    <div class="nav-container d-print-none">
       <b-navbar toggleable="sm" data-bs-theme="dark" :container="false">
         <div class="container">
           <b-navbar-brand to="/">Data Science Knowledge Base</b-navbar-brand>
@@ -73,7 +73,7 @@
       class="container my-3 d-flex justify-content-between align-items-center"
     >
       <div>
-        <footer>
+        <footer class="d-print-none">
           <b-nav>
             <b-nav-item v-b-modal.accessibility-modal>Accessibility</b-nav-item>
             <b-nav-item v-b-modal.attribution-modal>Attributions</b-nav-item>

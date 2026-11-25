@@ -61,6 +61,7 @@ The pages under `/docs/` are built from the [technical-docs](https://github.com/
 - To build from your own technical-docs checkout, set `KB_DOCS_DIR`, e.g. `KB_DOCS_DIR=../technical-docs npm run dev`.
 - Links in technical-docs that point to files which don't exist are listed as warnings during `npm run generate`.
 - A doc can start with optional details between two `---` lines: `title`, `description`, `order` (position in its section), `author`, `last_reviewed` and `review_interval` (months). They're read in `lib/docs/frontmatter.mjs`. A value that can't be used is reported and ignored, so it never stops the build.
+- Docs pages show breadcrumbs, a contents list (from `##` and `###` headings), previous and next links in section order, and copy buttons on code. GitHub callouts such as `> [!NOTE]` and `> [!WARNING]` are shown with their label. Styles are in `app/assets/css/content.css`.
 - Search on the docs pages looks through the text of every doc. The build saves it as `/api/docs/search.json` (`lib/docs/search-index.mjs`), which is only downloaded when someone starts typing in the search box.
 - `npm run docs:check` checks the content and explains how to fix each problem. The rules, their wording and the reference for technical-docs' contributing guide (`npm run docs:check -- --rules`) are all in `lib/docs/rules.mjs`. CI runs it as a report only, since content problems are fixed in technical-docs.
 - The live site rebuilds within 30 minutes of a change to technical-docs (see `.github/workflows/deploy.yml`).

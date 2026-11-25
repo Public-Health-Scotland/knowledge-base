@@ -7,8 +7,8 @@
           This page pulls together documentation relating to Data Science in
           Public Health Scotland. This is organised into sections as shown in
           the navigation on the left-side of this page. This is all stored and
-          organised on a GitHub repo, each document has a button to link back,
-          the aim of this is to encourage collaboration on our documentation,
+          organised on a GitHub repo, each document links back to it there, the
+          aim of this is to encourage collaboration on our documentation,
           allowing us to work as a community to maintain our technical knowledge
           and guidance.
         </p>

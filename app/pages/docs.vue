@@ -19,7 +19,7 @@
 
             <b-col md="1"> </b-col>
 
-            <b-col md="4">
+            <b-col md="4" class="d-print-none">
               <DocsSearch class="mt-2" />
             </b-col>
           </b-row>
@@ -28,7 +28,7 @@
     </div>
 
     <b-row>
-      <b-col cols="12" md="4" lg="3">
+      <b-col cols="12" md="4" lg="3" class="d-print-none">
         <!-- The navigation collapses below the md breakpoint -->
         <b-row class="mt-3 mx-1">
           <div class="d-flex justify-content-between w-100">
@@ -52,23 +52,6 @@
                 /></span>
                 {{ currentDoc?.name || currentSection?.name || "Docs" }}
               </b-button>
-            </div>
-            <div>
-              <b-button-toolbar v-if="currentDoc" class="d-md-none">
-                <b-button-group class="mx-1">
-                  <a
-                    v-b-tooltip.hover
-                    title="View on GitHub"
-                    aria-label="View on GitHub"
-                    class="btn btn-outline-dark"
-                    :href="currentDoc.githubUrl"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <Icon name="eva:github-outline" size="24" />
-                  </a>
-                </b-button-group>
-              </b-button-toolbar>
             </div>
           </div>
         </b-row>
@@ -119,24 +102,7 @@
       </b-col>
 
       <b-col md="8" lg="9" fluid>
-        <div class="d-none d-md-block">
-          <b-button-toolbar v-if="currentDoc" class="justify-content-end">
-            <b-button-group class="gh-button mx-1">
-              <a
-                v-b-tooltip.hover
-                title="View on GitHub"
-                aria-label="View on GitHub"
-                class="btn btn-outline-dark d-flex align-self-end"
-                :href="currentDoc.githubUrl"
-                target="_blank"
-                rel="noopener"
-              >
-                <Icon name="eva:github-outline" size="24" />
-              </a>
-            </b-button-group>
-          </b-button-toolbar>
-        </div>
-        <NuxtPage class="mt-3 md-doc" />
+        <NuxtPage class="mt-4 md-doc" />
       </b-col>
     </b-row>
   </div>
@@ -166,12 +132,6 @@ const currentDoc = computed(() =>
 
 .not-active {
   font-weight: normal;
-}
-
-.gh-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .collapsed > .when-open,

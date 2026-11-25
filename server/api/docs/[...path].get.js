@@ -21,11 +21,19 @@ export default defineEventHandler((event) => {
     : section && {
         ...section,
         // Listed on the section page when it has no README.
-        docs: section.docs.map(({ title, url }) => ({ title, url })),
+        docs: section.docs.map(({ title, url, description }) => ({
+          title,
+          url,
+          description,
+        })),
       };
 
   if (!page || path.split("/").length > 2) {
     throw createError({ statusCode: 404, statusMessage: "Document not found" });
   }
-  return { ...page, section: { name: section.name, url: section.url } };
+  // A doc's breadcrumbs go through its section. A section page is the
+  // section, so it has no section of its own.
+  return docSlug
+    ? { ...page, section: { name: section.name, url: section.url } }
+    : page;
 });
