@@ -1,35 +1,23 @@
 <template>
   <div>
-    <div class="title-container">
-      <b-row no-gutters>
-        <b-col md="7">
-          <b-card no-body class="overflow-hidden head-card"></b-card>
-          <b-card-body>
-            <h3>Develop</h3>
-            <b-card-text class="mb-4">
-              Training and support materials related to Data Science
-            </b-card-text>
-            <b-dropdown variant="outline-primary" text="Training Pathways">
-              <b-dropdown-item to="/develop/r-pathway"
-                >R Pathway</b-dropdown-item
-              >
-            </b-dropdown>
-          </b-card-body>
-        </b-col>
-
-        <b-col md="1"> </b-col>
-
-        <b-col md="4" align-self="center">
+    <PageHeader title="Develop">
+      <p>Training and support materials related to Data Science</p>
+      <b-dropdown variant="primary" text="Training Pathways">
+        <b-dropdown-item to="/develop/r-pathway">R Pathway</b-dropdown-item>
+      </b-dropdown>
+      <template #aside>
+        <div class="d-flex gap-2">
           <b-form-input
             v-model="search"
-            class="search mt-5"
+            class="search"
             type="search"
             placeholder="Search"
+            aria-label="Search courses and resources"
           />
           <b-dropdown
-            class="filter float-end mt-2 me-3"
-            variant="outline-secondary"
-            right
+            class="filter"
+            variant="outline-primary"
+            end
             text="Category"
           >
             <b-dropdown-form style="width: 200px">
@@ -57,11 +45,9 @@
               </b-form-group>
             </b-dropdown-form>
           </b-dropdown>
-        </b-col>
-      </b-row>
-
-      <b-row align-h="end"> </b-row>
-    </div>
+        </div>
+      </template>
+    </PageHeader>
 
     <b-row cols="1">
       <b-col>
@@ -117,9 +103,7 @@
                       @click="selectedCourse = course">
                       Book
                     </b-button> -->
-                  <b-button variant="outline-secondary" disabled>
-                    Closed
-                  </b-button>
+                  <b-button variant="secondary" disabled> Closed </b-button>
                 </b-list-group-item>
                 <b-list-group-item
                   v-if="course.online != ''"
@@ -129,7 +113,7 @@
                   <b-button
                     :href="course.online"
                     target="_blank"
-                    variant="primary"
+                    variant="info"
                   >
                     Start
                   </b-button>
@@ -389,10 +373,6 @@ input.search {
   flex: 0 1 auto;
 }
 
-.head-card {
-  border: none;
-}
-
 .tag-cloud {
   padding: 0 10px;
 }
@@ -418,20 +398,11 @@ b-dropdown {
 }
 
 .card-footer {
-  background-color: #fff;
-}
-
-.btn-primary {
-  background-color: #0078d4;
-  float: right;
-}
-
-.course-link {
-  color: black;
+  background-color: var(--phs-white);
 }
 
 .coming-soon {
-  color: #0078d4;
+  color: var(--phs-blue);
 }
 
 footer {

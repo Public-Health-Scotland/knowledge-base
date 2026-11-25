@@ -209,17 +209,6 @@
 
 <style>
 html {
-  font-family:
-    "Source Sans Pro",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
-  font-size: 14px;
-  word-spacing: 1px;
   text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -251,7 +240,7 @@ header {
 }
 
 header.h1 {
-  color: #bd27b9;
+  color: var(--phs-accent);
 }
 
 img.logo {
@@ -261,7 +250,7 @@ img.logo {
 }
 
 .nav-container {
-  background-color: #3f3685;
+  background-color: var(--phs-purple);
   position: relative;
   margin-bottom: 30px;
 }
@@ -269,11 +258,11 @@ img.logo {
 .nav-header {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: var(--phs-white);
   margin: 5px;
 }
 
-.router-link-exact-active {
+.navbar .router-link-exact-active {
   font-weight: bold;
 }
 
@@ -281,18 +270,18 @@ img.logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #3f3685;
-  border-color: #3f3685;
+  background-color: var(--phs-purple);
+  border-color: var(--phs-purple);
 }
 
 .feedback-button:hover {
-  background-color: #2f2863;
-  border-color: #2f2863;
+  background-color: var(--phs-purple-80);
+  border-color: var(--phs-purple-80);
 }
 
 .feedback-button:focus {
-  background-color: #3f3685;
-  border-color: #3f3685;
+  background-color: var(--phs-purple);
+  border-color: var(--phs-purple);
 }
 
 /* Utility */

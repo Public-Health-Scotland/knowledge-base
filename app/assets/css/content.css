@@ -40,7 +40,7 @@
 
 .doc-panel {
   font-size: 0.9rem;
-  border-left: 3px solid #e9ecef;
+  border-left: 3px solid var(--phs-graphite-30);
   padding-left: 0.75rem;
 }
 
@@ -63,7 +63,7 @@
 
 .doc-about dt {
   font-weight: 400;
-  color: #495057;
+  color: var(--phs-text-muted);
 }
 
 .doc-about dd {
@@ -73,7 +73,7 @@
 .doc-actions {
   margin: 0.75rem 0 0;
   padding-top: 0.75rem;
-  border-top: 1px solid #e9ecef;
+  border-top: 1px solid var(--phs-graphite-30);
 }
 
 .doc-actions a {
@@ -104,7 +104,7 @@
   margin: 1rem 0;
   padding: 0.75rem 1rem;
   border-left: 0.3rem solid var(--alert-colour);
-  background-color: #f8f9fa;
+  background-color: var(--phs-surface);
 }
 
 .kb-content .markdown-alert > :last-child {
@@ -118,43 +118,43 @@
 }
 
 .kb-content .markdown-alert-note {
-  --alert-colour: #0a58ca;
+  --alert-colour: var(--phs-note);
 }
 
 .kb-content .markdown-alert-tip {
-  --alert-colour: #146c43;
+  --alert-colour: var(--phs-tip);
 }
 
 .kb-content .markdown-alert-important {
-  --alert-colour: #3f3685;
+  --alert-colour: var(--phs-important);
 }
 
 .kb-content .markdown-alert-warning {
-  --alert-colour: #8a5300;
+  --alert-colour: var(--phs-warning);
 }
 
 .kb-content .markdown-alert-caution {
-  --alert-colour: #b02a37;
+  --alert-colour: var(--phs-caution);
 }
 
 .kb-content blockquote {
   margin: 1rem 0;
   padding: 0.5rem 1rem;
-  border-left: 0.3rem solid #dee2e6;
-  color: #495057;
+  border-left: 0.3rem solid var(--phs-border);
+  color: var(--phs-text-muted);
 }
 
 /* Code */
 .kb-content code {
   color: inherit;
-  background-color: #f1f3f5;
+  background-color: var(--phs-graphite-10);
   padding: 0.1em 0.3em;
   border-radius: 0.25rem;
 }
 
 .kb-content pre {
   padding: 1rem;
-  background-color: #f1f3f5;
+  background-color: var(--phs-graphite-10);
   border-radius: 0.375rem;
   overflow-x: auto;
 }
@@ -173,9 +173,9 @@
 .kb-content .code-language {
   margin: 0;
   padding: 0.5rem 1rem 0;
-  background-color: #f1f3f5;
+  background-color: var(--phs-graphite-10);
   border-radius: 0.375rem 0.375rem 0 0;
-  color: #495057;
+  color: var(--phs-text-muted);
   font-size: 0.8125rem;
   font-weight: 600;
   user-select: none;
@@ -191,7 +191,7 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--phs-border);
 }
 
 /* Tables scroll sideways in their own box rather than widening the page. */
@@ -207,19 +207,19 @@
 
 .kb-content th,
 .kb-content td {
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--phs-border);
   padding: 0.4rem 0.6rem;
   vertical-align: top;
 }
 
 .kb-content th {
-  background-color: #f8f9fa;
+  background-color: var(--phs-surface);
 }
 
 /* Scrolling boxes show where keyboard focus is. */
 .kb-content pre:focus-visible,
 .kb-content .table-scroll:focus-visible {
-  outline: 3px solid #3f3685;
+  outline: 3px solid var(--phs-focus);
   outline-offset: 2px;
 }
 
@@ -234,7 +234,7 @@
   gap: 1rem;
   margin: 1.5rem 0;
   padding-top: 1rem;
-  border-top: 1px solid #dee2e6;
+  border-top: 1px solid var(--phs-border);
 }
 
 .doc-pager-link {
@@ -255,7 +255,7 @@
 
 .doc-pager-label {
   font-size: 0.85rem;
-  color: #495057;
+  color: var(--phs-text-muted);
 }
 
 /* Windows High Contrast and other forced colours. */

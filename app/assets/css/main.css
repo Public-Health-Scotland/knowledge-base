@@ -1,15 +1,105 @@
 /* Site-wide styles that are not tied to a single page. */
 
+/*
+ * Keyboard focus looks the same everywhere: a thick PHS magenta outline, or
+ * white on the purple navigation bar. Bootstrap's components remove the
+ * outline on focus, so they're listed to put it back.
+ */
+:focus-visible,
+.btn:focus-visible,
+.btn-close:focus-visible,
+.nav-link:focus-visible,
+.navbar-toggler:focus-visible,
+.dropdown-item:focus-visible,
+.list-group-item-action:focus-visible,
+.page-link:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+  outline: 3px solid var(--phs-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.nav-container :focus-visible,
+.nav-container .nav-link:focus-visible,
+.nav-container .btn:focus-visible {
+  outline-color: var(--phs-white);
+}
+
+/* Links are underlined and turn darker blue on hover (Bootstrap's link
+   colours, from the brand tokens). */
+a:not(.btn, .nav-link, .dropdown-item, .list-group-item, .navbar-brand):hover {
+  text-decoration: underline;
+}
+
+/*
+ * Page headers (components/PageHeader.vue): the same size and spacing on
+ * every page, so moving between pages doesn't shift the content.
+ */
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.page-header-main {
+  flex: 1 1 32rem;
+}
+
+/* Lines up with the title, whatever is under the title on each page. */
+.page-header-aside {
+  flex: 0 1 20rem;
+  align-self: flex-start;
+}
+
+.page-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.page-intro > :last-child {
+  margin-bottom: 0;
+}
+
 /* Icon colours (icons inherit the text colour). */
 .icon-accent {
-  color: #bd27b9;
+  color: var(--phs-accent);
 }
 
-/* Home page tiles. The size is set before the icon loads, so nothing moves. */
+/*
+ * Home page tiles: icon, heading, text and a button that sits at the bottom
+ * of the tile, so the buttons line up and are the same size in each row.
+ */
 .home-tile {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
+.home-tile p {
+  flex-grow: 1;
+}
+
+.home-cta {
+  width: 100%;
+  max-width: 14rem;
+}
+
+/* The button's link covers the tile, so the button shows it's hovered too. */
+.home-tile:hover .home-cta {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+
+/* The icon's size is set before it loads, so nothing moves. */
 .home-icon {
   display: block;
   width: 200px;
@@ -18,11 +108,11 @@
 }
 
 .icon-light {
-  color: #fff;
+  color: var(--phs-white);
 }
 
 .icon-dark {
-  color: #000;
+  color: var(--phs-black);
 }
 
 /* Icons line up with the text beside them. */
@@ -41,7 +131,7 @@
  */
 .placeholder {
   min-height: 1rem;
-  background-color: #e9ecef;
+  background-color: var(--phs-graphite-30);
   border-radius: 0.375rem;
   opacity: 1;
 }

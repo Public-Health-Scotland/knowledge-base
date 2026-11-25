@@ -67,6 +67,10 @@ The pages under `/docs/` are built from the [technical-docs](https://github.com/
 - The live site rebuilds within 30 minutes of a change to technical-docs (see `.github/workflows/deploy.yml`).
 - Older addresses, such as `/docs/Posit%20Infrastructure?doc=FAQs.md`, redirect to the new ones using `app/assets/doc-redirects.json`. If a document is renamed or moved, add its old address there, e.g. `"/docs/r/old-name": "/docs/r/new-name/"`, so bookmarks keep working.
 
+### Styles and brand
+
+Colours, fonts and spacing come from the PHS brand tokens in `app/assets/styles/brand/`, which Bootstrap is built from. Pages use them as CSS custom properties, e.g. `color: var(--phs-purple)`. Stylelint rejects hex colours anywhere else, and `test/unit/brand.test.mjs` checks text colours meet WCAG AA contrast. The token names match PHS's shared brand tokens, so the folder can be replaced by published PHS web styles later. Fonts (Source Sans 3 and Source Code Pro) are bundled with the site.
+
 ### Checks
 
 ```bash

@@ -1,0 +1,92 @@
+// PHS brand tokens: the one place colours, fonts and spacing are defined.
+// Names match the PHS brand tokens used in phsshiny (phs-purple,
+// phs-purple-80 and so on), so this folder can be swapped for shared PHS web
+// styles (phsstyles) when they're published, without changing components.
+// Values are the PHS digital colour palette.
+
+// Main palette and tints
+$phs-purple: #3f3685;
+$phs-purple-80: #655e9d;
+$phs-purple-50: #9f9bc2;
+$phs-purple-30: #c5c3da;
+$phs-purple-10: #ecebf3;
+$phs-magenta: #9b4393;
+$phs-magenta-80: #af69a9;
+$phs-magenta-50: #cda1c9;
+$phs-magenta-30: #e1c7df;
+$phs-magenta-10: #f5ecf4;
+$phs-blue: #0078d4;
+$phs-blue-80: #3393dd;
+$phs-blue-50: #80bcea;
+$phs-blue-30: #b3d7f2;
+$phs-blue-10: #e6f2fb;
+$phs-green: #83bb26;
+$phs-green-80: #9cc951;
+$phs-green-50: #c1dd93;
+$phs-green-30: #daebbe;
+$phs-green-10: #f3f8e9;
+
+// Supporting palette and tints
+$phs-graphite: #948da3;
+$phs-graphite-80: #a9a4b5;
+$phs-graphite-50: #cac6d1;
+$phs-graphite-30: #dfdde3;
+$phs-graphite-10: #f4f4f6;
+$phs-teal: #1e7f84;
+$phs-teal-80: #4b999d;
+$phs-teal-50: #8fbfc2;
+$phs-teal-30: #bcd9da;
+$phs-teal-10: #e9f2f3;
+$phs-liberty: #6b5c85;
+$phs-liberty-80: #897d9d;
+$phs-liberty-50: #b5aec2;
+$phs-liberty-30: #d3ceda;
+$phs-liberty-10: #f0eff3;
+$phs-rust: #c73918;
+$phs-rust-80: #d26146;
+$phs-rust-50: #e39c8c;
+$phs-rust-30: #eec4ba;
+$phs-rust-10: #f9ebe8;
+
+// Neutrals
+$phs-white: #fff;
+$phs-black: #000;
+$phs-text: #212529;
+$phs-text-muted: #545b62;
+$phs-border: #dee2e6;
+$phs-surface: #f8f9fa;
+
+// Roles: what a colour is for. Text colours meet WCAG AA (4.5:1) on white
+// and on $phs-surface, and test/unit/brand.test.mjs checks them. Links are
+// PHS blue, as the style guide asks, which meets 4.5:1 on white only, so
+// links go on white backgrounds. They turn darker blue on hover.
+$phs-link: $phs-blue;
+$phs-link-hover: #005a9e;
+$phs-focus: $phs-magenta;
+$phs-accent: $phs-magenta;
+$phs-note: #005a9e;
+$phs-tip: #1a6b6f;
+$phs-important: $phs-purple;
+$phs-warning: #8a4b00;
+$phs-caution: #a32f14;
+
+// Type
+$phs-font-sans:
+  "Source Sans 3",
+  -apple-system,
+  "Segoe UI",
+  "Roboto",
+  "Helvetica Neue",
+  "Arial",
+  sans-serif;
+$phs-font-mono:
+  "Source Code Pro", "SFMono-Regular", "Menlo", "Consolas", monospace;
+
+// Layout: a 4px spacing scale and the widest the content gets.
+$phs-space-1: 0.25rem;
+$phs-space-2: 0.5rem;
+$phs-space-3: 0.75rem;
+$phs-space-4: 1rem;
+$phs-space-6: 1.5rem;
+$phs-space-8: 2rem;
+$phs-max-width: 1290px;

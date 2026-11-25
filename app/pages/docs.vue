@@ -1,31 +1,12 @@
 <template>
   <div>
-    <div class="top-row">
-      <div class="title-container">
-        <b-card no-body class="head-card">
-          <b-row no-gutters align-v="center">
-            <b-col md="7">
-              <b-card-body>
-                <h3>
-                  <NuxtLink to="/docs/" class="text-reset text-decoration-none">
-                    Documentation
-                  </NuxtLink>
-                </h3>
-                <b-card-text tag="div">
-                  <p>Data Science information, guidance, and best practice</p>
-                </b-card-text>
-              </b-card-body>
-            </b-col>
-
-            <b-col md="1"> </b-col>
-
-            <b-col md="4" class="d-print-none">
-              <DocsSearch class="mt-2" />
-            </b-col>
-          </b-row>
-        </b-card>
-      </div>
-    </div>
+    <!-- Every docs page has its own h1, so the banner title isn't one. -->
+    <PageHeader title="Documentation" tag="p">
+      <p>Data Science information, guidance, and best practice</p>
+      <template #aside>
+        <DocsSearch />
+      </template>
+    </PageHeader>
 
     <b-row>
       <b-col cols="12" md="4" lg="3" class="d-print-none">

@@ -1,24 +1,13 @@
 <template>
   <div>
-    <div class="title-container">
-      <b-card no-body class="overflow-hidden head-card">
-        <b-row no-gutters>
-          <b-col sm="12" md="9">
-            <b-card-body>
-              <h3>R Pathway</h3>
-              <b-card-text>
-                Here is the pathway for learning and development in R.
-              </b-card-text>
-            </b-card-body>
-          </b-col>
-          <b-col align-self="center">
-            <b-button to="/docs/r/" variant="outline-primary">
-              R Documentation
-            </b-button>
-          </b-col>
-        </b-row>
-      </b-card>
-    </div>
+    <PageHeader title="R Pathway">
+      <p>Here is the pathway for learning and development in R.</p>
+      <template #aside>
+        <b-button to="/docs/r/" variant="outline-primary">
+          R Documentation
+        </b-button>
+      </template>
+    </PageHeader>
 
     <div>
       <b-row cols="1" cols-md="2">
@@ -125,7 +114,7 @@
                               <b-button
                                 :href="course.online"
                                 target="_blank"
-                                variant="primary"
+                                variant="info"
                               >
                                 Start
                               </b-button>
@@ -198,7 +187,7 @@
                               <b-button
                                 :href="course.online"
                                 target="_blank"
-                                variant="primary"
+                                variant="info"
                               >
                                 Start
                               </b-button>
@@ -272,7 +261,7 @@
                               <b-button
                                 :href="course.online"
                                 target="_blank"
-                                variant="primary"
+                                variant="info"
                               >
                                 Start
                               </b-button>
@@ -343,7 +332,7 @@
                               <b-button
                                 :href="course.online"
                                 target="_blank"
-                                variant="primary"
+                                variant="info"
                               >
                                 Start
                               </b-button>
@@ -422,14 +411,6 @@ input.search {
   flex: 0 1 auto;
 }
 
-.title-container {
-  margin-bottom: 20px;
-}
-
-.head-card {
-  border: none;
-}
-
 .tag-cloud {
   padding: 0 10px;
 }
@@ -450,13 +431,8 @@ b-dropdown {
   display: grid;
 }
 
-.btn-primary {
-  background-color: #0078d4;
-  float: right;
-}
-
 .coming-soon {
-  color: #0078d4;
+  color: var(--phs-blue);
   float: right;
 }
 
