@@ -61,9 +61,13 @@ test("navigation moves between documents without fetching content", async ({
 test("search finds documents by title", async ({ page }) => {
   await page.goto("/docs/");
   await page
-    .getByRole("searchbox", { name: "Search document titles" })
-    .fill("style guide");
-  await page.getByRole("link", { name: /R Style Guide/ }).click();
+    .getByRole("combobox", { name: "Search the documentation" })
+    .fill("r style guide");
+  await page
+    .getByRole("option")
+    .filter({ hasText: "R Style Guide" })
+    .first()
+    .click();
 
   await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
 });
@@ -143,4 +147,108 @@ test("links within a doc scroll to the heading, and back returns", async ({
   await expect(heading).not.toBeInViewport();
   await page.goForward();
   await expect(heading).toBeInViewport();
+});
+
+test("search finds documents by their text and opens one from the keyboard", async ({
+  page,
+}) => {
+  await page.goto("/docs/");
+  const requests = watchRequests(page);
+  const search = page.getByRole("combobox", {
+    name: "Search the documentation",
+  });
+  const results = page.getByRole("listbox", { name: "Search results" });
+
+  // The search text is only downloaded once someone starts searching.
+  await page.waitForLoadState("networkidle");
+  expect(requests).toEqual([]);
+
+  await search.fill("lintr");
+  await expect(results.getByRole("option").first()).toContainText(
+    "R Style Guide",
+  );
+  await expect(search).toHaveAttribute("aria-expanded", "true");
+  await expect(page.locator(".docs-search [role=status]")).toHaveText(
+    /\d+ results?\./,
+  );
+
+  await search.press("Escape");
+  await expect(results).toBeHidden();
+  await search.press("ArrowDown");
+  await expect(search).toHaveAttribute("aria-activedescendant", /option-0$/);
+  await search.press("Enter");
+
+  await expect(page).toHaveURL(/\/docs\/r\/r-style-guide\/$/);
+  await expect(heading(page, "R Style Guide")).toBeVisible();
+  expect(requests).toEqual([expect.stringContaining("/api/docs/search.json")]);
+});
+
+test("document pages have breadcrumbs, contents and page details", async ({
+  page,
+}) => {
+  await page.goto("/docs/r/r-style-guide/");
+
+  const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
+  await expect(breadcrumb.getByRole("link")).toHaveText(["Documentation", "R"]);
+  await expect(breadcrumb.locator("[aria-current=page]")).toHaveText(
+    "R Style Guide",
+  );
+
+  const contents = page.getByRole("navigation", { name: "On this page" });
+  const first = contents.getByRole("link").first();
+  const target = (await first.getAttribute("href")).slice(1);
+  expect(target).not.toMatch(/^user-content-/);
+  await expect(
+    page.locator(`article [id="user-content-${target}"]`),
+  ).toHaveCount(1);
+
+  await expect(
+    page.getByRole("link", { name: "Suggest a change" }),
+  ).toHaveAttribute("href", /\/technical-docs\/edit\/main\/R\//);
+
+  // Docs aren't given an order yet, so none are linked in turn.
+  await expect(
+    page.getByRole("navigation", { name: "Previous and next documents" }),
+  ).toHaveCount(0);
+});
+
+test("section pages are the last breadcrumb, not a page inside themselves", async ({
+  page,
+}) => {
+  await page.goto("/docs/r/");
+  const breadcrumb = page.getByRole("navigation", { name: "Breadcrumb" });
+  await expect(breadcrumb.getByRole("link")).toHaveText(["Documentation"]);
+  await expect(breadcrumb.locator("[aria-current=page]")).toHaveText("R");
+});
+
+test("code is coloured by its language", async ({ page }) => {
+  await page.goto("/docs/r/r-style-guide/");
+  await expect(
+    page.locator("article pre code span.line span[style*=color]").first(),
+  ).toBeVisible();
+});
+
+test("code blocks have a copy button that says when it worked", async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/docs/r/r-style-guide/");
+
+  const button = page.getByRole("button", { name: "Copy code" }).first();
+  await button.click();
+  await expect(button).toHaveText("Copied");
+  await expect(page.locator(".doc-page [role=status]")).toHaveText(
+    "Code copied",
+  );
+  const copied = await page.evaluate(() => navigator.clipboard.readText());
+  expect(copied.length).toBeGreaterThan(0);
+
+  // The language label is shown but isn't copied with the code.
+  const block = page.locator(".code-block", { has: button });
+  await expect(block.locator(".code-language")).toHaveText("R");
+  expect(copied).not.toMatch(/^R\n/);
+  expect(copied).toBe(
+    (await block.locator("pre").innerText()).replace(/\n$/, ""),
+  );
 });

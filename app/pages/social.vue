@@ -9,21 +9,12 @@
       </b-col>
     </b-row> -->
 
-    <div class="title-container">
-      <b-card no-body class="overflow-hidden head-card">
-        <b-row no-gutters>
-          <b-col md="7">
-            <b-card-body>
-              <h3>Hey, it's time to get sociable!</h3>
-              <b-card-text>
-                Below you will find a curated assortment of Data Science content
-                and links for social and support channels.
-              </b-card-text>
-            </b-card-body>
-          </b-col>
-        </b-row>
-      </b-card>
-    </div>
+    <PageHeader title="Hey, it's time to get sociable!">
+      <p>
+        Below you will find a curated assortment of Data Science content and
+        links for social and support channels.
+      </p>
+    </PageHeader>
 
     <b-row>
       <b-col xs="12" md="8">
@@ -31,7 +22,7 @@
           <div class="d-flex justify-content-between">
             <h4>Announcements</h4>
             <Icon
-              name="eva:alert-circle-outline"
+              name="lucide:circle-exclamation-point"
               size="24"
               class="icon-accent"
             />
@@ -57,7 +48,7 @@
         <b-card class="mb-4">
           <div class="d-flex justify-content-between">
             <h4>Social Links</h4>
-            <Icon name="eva:people-outline" size="24" class="icon-accent" />
+            <Icon name="lucide:users" size="24" class="icon-accent" />
           </div>
           <div class="d-flex align-items-center social-link">
             <img class="icon" src="/teams-logo.png" alt="Teams logo" /><b-link
@@ -100,7 +91,7 @@
         <b-card class="mb-4">
           <div class="d-flex justify-content-between">
             <h4>Spotlight</h4>
-            <Icon name="eva:bulb-outline" size="24" class="icon-accent" />
+            <Icon name="lucide:lightbulb" size="24" class="icon-accent" />
           </div>
           <br />
           <h6>Package Development</h6>
@@ -135,13 +126,13 @@
         <b-card class="mb-4">
           <div class="d-flex justify-content-between">
             <h4>External Reading</h4>
-            <Icon name="eva:bookmark-outline" size="24" class="icon-accent" />
+            <Icon name="lucide:bookmark" size="24" class="icon-accent" />
           </div>
           <br />
 
           <b-row class="d-flex justify-content-between list-section">
             <b-col cols="1" class="text-center" align-self="center">
-              <Icon name="eva:book-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:book" size="24" class="icon-accent" />
             </b-col>
             <b-col>
               <a target="_blank" href="https://r4ds.had.co.nz/index.html"
@@ -159,7 +150,7 @@
 
           <b-row class="d-flex justify-content-between list-section">
             <b-col cols="1" class="text-center" align-self="center">
-              <Icon name="eva:book-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:book" size="24" class="icon-accent" />
             </b-col>
             <b-col>
               <a target="_blank" href="http://adv-r.had.co.nz/">Advanced R</a>
@@ -175,11 +166,7 @@
 
           <b-row class="d-flex justify-content-between list-section">
             <b-col cols="1" class="text-center" align-self="center">
-              <Icon
-                name="eva:file-text-outline"
-                size="24"
-                class="icon-accent"
-              />
+              <Icon name="lucide:file-text" size="24" class="icon-accent" />
             </b-col>
             <b-col>
               <a

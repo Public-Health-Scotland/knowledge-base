@@ -1,111 +1,49 @@
 <template>
   <div>
-    <div class="title-container">
-      <b-card no-body class="overflow-hidden head-card">
-        <b-row no-gutters>
-          <b-col sm="12">
-            <b-card-body>
-              <h3>Hey, you ready to learn?</h3>
-              <b-card-text>
-                Welcome to the PHS Data Science Knowledge Base. It is here that
-                you'll find access to all resources related to Data Science (R,
-                Python, git, etc.) created by and for PHS staff. This includes
-                in-person and online training, internally developed textbooks,
-                and all technical documentation, including guidance, how-tos,
-                and best practice.
-              </b-card-text>
-              <b-card-text>
-                <strong>Data Science</strong> is used in the broadest possible
-                sense, capturing introductory content to technologies, and
-                pulling existing and creating new more advanced content from the
-                topic experts across the organisation. If you have something to
-                offer, get in touch by
-                <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry"
-                  >emailing the Data Science team.</a
-                >
-              </b-card-text>
-            </b-card-body>
-          </b-col>
-        </b-row>
-      </b-card>
-    </div>
+    <PageHeader title="Hey, you ready to learn?">
+      <p>
+        Welcome to the PHS Data Science Knowledge Base. It is here that you'll
+        find access to all resources related to Data Science (R, Python, git,
+        etc.) created by and for PHS staff. This includes in-person and online
+        training, internally developed textbooks, and all technical
+        documentation, including guidance, how-tos, and best practice.
+      </p>
+      <p>
+        <strong>Data Science</strong> is used in the broadest possible sense,
+        capturing introductory content to technologies, and pulling existing and
+        creating new more advanced content from the topic experts across the
+        organisation. If you have something to offer, get in touch by
+        <a href="mailto:phs.datascience@phs.scot?Subject=DSKB - Enquiry"
+          >emailing the Data Science team.</a
+        >
+      </p>
+    </PageHeader>
 
     <div>
       <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center mb-3">
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/develop' }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/rahouxil.json"
+        <b-col v-for="tile in tiles" :key="tile.title" class="mb-4">
+          <!-- The button's link covers the whole tile (stretched-link), so the
+               icon can be clicked too while keyboards still stop only once. -->
+          <div class="home-tile" @focusin="play">
+            <lord-icon
+              :src="`${baseURL}icons/lordicon/${tile.icon}.json`"
               trigger="hover"
+              target=".home-tile"
               colors="primary:#3f3685,secondary:#80ba27"
               stroke="light"
-              style="width: 200px; height: 200px"
-              title="Courses icon"
+              class="home-icon"
+              aria-hidden="true"
+            />
+            <h2 class="h5">{{ tile.title }}</h2>
+            <p>{{ tile.text }}</p>
+            <!-- A link styled as a button: it goes to another page, so screen
+                 readers should hear "link" (b-button adds role="button"). -->
+            <NuxtLink
+              :to="tile.to"
+              class="btn btn-primary home-cta stretched-link"
+              >{{ tile.action }}</NuxtLink
             >
-            </lord-icon
-          ></NuxtLink>
-          <h5><b-link :to="{ path: '/develop' }">Courses</b-link></h5>
-          <p>
-            Internally developed courses from foundations to specific topics
-            relevant to all data-informed roles.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/develop', query: { type: ['Textbook'] } }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/lenjvibx.json"
-              trigger="morph-two-way"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="Textbook icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>
-            <b-link :to="{ path: '/develop', query: { type: ['Textbook'] } }"
-              >Textbooks</b-link
-            >
-          </h5>
-          <p>
-            For learning or reference, see a complete textbook on one of the
-            technologies.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/docs' }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/wzwygmng.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="Guidance document icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5><b-link :to="{ path: '/docs' }">Documentation</b-link></h5>
-          <p>
-            Keeping everyone on the same page, sharing common knowledge. This
-            includes style guides, FAQs, etc.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink to="/docs/posit-infrastructure/faqs/"
-            ><lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="FAQs icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>
-            <b-link to="/docs/posit-infrastructure/faqs/">FAQs</b-link>
-          </h5>
-          <p>Frequently asked questions about the Posit infrastructure.</p>
+          </div>
         </b-col>
       </b-row>
     </div>
@@ -117,7 +55,7 @@
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Quick Start Guides</h4>
-                <Icon name="eva:flash-outline" size="24" class="icon-accent" />
+                <Icon name="lucide:zap" size="24" class="icon-accent" />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -151,11 +89,7 @@
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Learning Pathways</h4>
-                <Icon
-                  name="eva:compass-outline"
-                  size="24"
-                  class="icon-accent"
-                />
+                <Icon name="lucide:compass" size="24" class="icon-accent" />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -193,8 +127,58 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+const { baseURL } = useRuntimeConfig().app;
+
+// Animated icons by Lordicon, served with the site. Each plays once when its
+// tile is hovered or its link gets keyboard focus, and stays still for people
+// who ask for reduced motion.
+const tiles = [
+  {
+    title: "Courses",
+    action: "View courses",
+    to: { path: "/develop" },
+    icon: "courses",
+    text: "Internally developed courses from foundations to specific topics relevant to all data-informed roles.",
+  },
+  {
+    title: "Textbooks",
+    action: "View textbooks",
+    to: { path: "/develop", query: { type: ["Textbook"] } },
+    icon: "textbooks",
+    text: "For learning or reference, see a complete textbook on one of the technologies.",
+  },
+  {
+    title: "Documentation",
+    action: "View documentation",
+    to: { path: "/docs" },
+    icon: "documentation",
+    text: "Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.",
+  },
+  {
+    title: "FAQs",
+    action: "View FAQs",
+    to: "/docs/posit-infrastructure/faqs/",
+    icon: "faqs",
+    text: "Frequently asked questions about the Posit infrastructure.",
+  },
+];
+
+// The hover trigger follows the pointer over the tile. Keyboard focus lands on
+// the link inside, so it plays the icon here.
+function play(event) {
+  const icon = event.currentTarget.querySelector("lord-icon");
+  if (!icon?.play) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  icon.play({ from: "start" });
+}
+
+// The element is only needed here, so it loads with this page.
+onMounted(async () => {
+  if (customElements.get("lord-icon")) return;
+  const { defineElement } = await import("@lordicon/element");
+  if (!customElements.get("lord-icon")) defineElement();
+});
 </script>
 
 <style>
@@ -212,29 +196,12 @@ input.search {
   flex: 0 1 auto;
 }
 
-.title-container {
-  margin-bottom: 20px;
-}
-
-.head-card {
-  border: none;
-}
-
 .tag-cloud {
   padding: 0 10px;
 }
 
 .tag-button {
   margin: 2px 0;
-}
-
-h5 a {
-  color: black;
-}
-
-h5 a:hover {
-  color: black;
-  text-decoration: none;
 }
 
 b-button {
@@ -249,17 +216,12 @@ b-dropdown {
   display: grid;
 }
 
-.btn-primary {
-  background-color: #0078d4;
-  float: right;
-}
-
 .btn-block {
   margin-bottom: 20px;
 }
 
 .coming-soon {
-  color: #0078d4;
+  color: var(--phs-blue);
   float: right;
 }
 </style>

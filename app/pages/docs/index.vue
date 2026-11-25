@@ -7,23 +7,14 @@
           This page pulls together documentation relating to Data Science in
           Public Health Scotland. This is organised into sections as shown in
           the navigation on the left-side of this page. This is all stored and
-          organised on a GitHub repo, each document has a button to link back,
-          the aim of this is to encourage collaboration on our documentation,
+          organised on a GitHub repo, each document links back to it there, the
+          aim of this is to encourage collaboration on our documentation,
           allowing us to work as a community to maintain our technical knowledge
           and guidance.
         </p>
         <p>
-          You can use the <strong>search bar</strong> at the top of the page to
-          look for <strong>document titles</strong>. You can also use
-          <code>Ctrl</code> + <code>F</code> (or <code>⌘</code> +
-          <code>F</code> on Mac) to search within the current document. To
-          search across documents, visit the
-          <a
-            href="https://github.com/Public-Health-Scotland/technical-docs"
-            target="_blank"
-            >GitHub repository</a
-          >
-          and use the search function there.
+          Use the <strong>search box</strong> at the top of the page to search
+          the text of every document. Results appear as you type.
         </p>
       </b-col>
     </b-row>
@@ -34,7 +25,7 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Top Docs</h3>
-              <Icon name="eva:star-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:star" size="24" class="icon-accent" />
             </div>
             <br />
             <b-card-text> Get started with key Posit docs. </b-card-text>
@@ -60,7 +51,7 @@
           <b-card class="m-3">
             <div class="d-flex justify-content-between align-items-center">
               <h3>Quick Start Guides</h3>
-              <Icon name="eva:flash-outline" size="24" class="icon-accent" />
+              <Icon name="lucide:zap" size="24" class="icon-accent" />
             </div>
             <br />
             <div class="d-flex mb-4">

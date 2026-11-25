@@ -13,6 +13,10 @@ const PAGES = [
     heading: "Quick Start - Posit Workbench",
   },
   { path: "/docs/", heading: "Data Science - the docs" },
+  {
+    path: "/accessibility/",
+    heading: "Accessibility statement for the Data Science Knowledge Base",
+  },
 ];
 
 // Keep tests independent of third-party services by blocking external hosts.
@@ -42,7 +46,11 @@ for (const { path, heading } of PAGES) {
     await expect(
       page.getByRole("heading", { name: heading, exact: true }),
     ).toBeVisible();
-    await expect(page.getByRole("img", { name: "PHS Logo" })).toBeVisible();
+    await expect(
+      page.getByRole("link", {
+        name: "Public Health Scotland - Knowledge Base home",
+      }),
+    ).toBeVisible();
     expect(errors).toEqual([]);
   });
 }
@@ -96,16 +104,33 @@ test("help dialog opens from the navigation and closes", async ({ page }) => {
   await expect(dialog).toBeHidden();
 });
 
-test("accessibility information opens from the footer", async ({ page }) => {
+test("the accessibility statement is linked from every page", async ({
+  page,
+}) => {
   await page.goto("/");
   await page
     .locator("footer")
-    .getByText("Accessibility", { exact: true })
+    .getByRole("link", { name: "Accessibility", exact: true })
     .click();
 
+  await expect(page).toHaveURL(/\/accessibility\/$/);
   await expect(
-    page.getByRole("dialog", { name: "Accessibility" }),
+    page.getByRole("heading", {
+      level: 1,
+      name: "Accessibility statement for the Data Science Knowledge Base",
+    }),
   ).toBeVisible();
+});
+
+test("a skip link takes keyboard users to the main content", async ({
+  page,
+}) => {
+  await page.goto("/develop/");
+  await page.keyboard.press("Tab");
+  const skip = page.getByRole("link", { name: "Skip to main content" });
+  await expect(skip).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("main")).toBeFocused();
 });
 
 test("pages not generated at build time are served through the app", async ({
@@ -116,4 +141,83 @@ test("pages not generated at build time are served through the app", async ({
   await expect(
     page.getByRole("heading", { name: "Introduction to R", exact: true }),
   ).toBeVisible();
+});
+
+// Scripts, styles, fonts and icons are all served with the site, so pages
+// work on networks that block other hosts and share nothing with them.
+test("pages load nothing from other websites", async ({ page }) => {
+  const external = [];
+  page.on("request", (request) => {
+    if (!request.url().startsWith("http://127.0.0.1")) {
+      external.push(request.url());
+    }
+  });
+  for (const { path } of PAGES) {
+    await page.goto(path);
+    await page.waitForLoadState("networkidle");
+  }
+  expect(external).toEqual([]);
+});
+
+test("the feedback form loads when its dialog opens", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("iframe")).toHaveCount(0);
+  await page.getByRole("button", { name: "Feedback" }).click();
+  await expect(page.locator("iframe")).toHaveAttribute(
+    "src",
+    /^https:\/\/forms\.office\.com\//,
+  );
+});
+
+test("home page tiles have one link each, which the icon is part of", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const tiles = page.locator(".home-tile");
+  await expect(tiles).toHaveCount(4);
+  for (const tile of await tiles.all()) {
+    await expect(tile.getByRole("link")).toHaveCount(1);
+  }
+  await expect(page.locator(".home-tile lord-icon").first()).toHaveAttribute(
+    "aria-hidden",
+    "true",
+  );
+
+  // The link's stretched area sits over the icon, so a click there follows it.
+  const icon = await page.locator(".home-tile lord-icon").first().boundingBox();
+  await page.mouse.click(icon.x + icon.width / 2, icon.y + icon.height / 2);
+  await expect(page).toHaveURL(/\/develop\/?$/);
+});
+
+// Resolves with whether the Courses icon finished an animation once its button
+// has keyboard focus.
+async function coursesIconPlaysOnFocus(page) {
+  await page.goto("/");
+  const icon = page.locator(".home-tile lord-icon").first();
+  await icon.evaluate(async (element) => {
+    await customElements.whenDefined("lord-icon");
+    await element.readyPromise;
+  });
+  const played = icon.evaluate(
+    (element) =>
+      new Promise((resolve) => {
+        element.addEventListener("complete", () => resolve(true));
+        setTimeout(() => resolve(false), 3000);
+      }),
+  );
+  await page.getByRole("link", { name: "View courses" }).focus();
+  return played;
+}
+
+test("home page icons play when their link gets keyboard focus", async ({
+  page,
+}) => {
+  expect(await coursesIconPlaysOnFocus(page)).toBe(true);
+});
+
+test("home page icons stay still for people who ask for less motion", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(await coursesIconPlaysOnFocus(page)).toBe(false);
 });

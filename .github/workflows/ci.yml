@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # Full history so changed files can be compared with the base branch.
           fetch-depth: 0
@@ -28,14 +28,14 @@ jobs:
 
       # The docs pages are built from technical-docs, as on deploy.
       - name: Checkout technical-docs
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: Public-Health-Scotland/technical-docs
           path: .content-src/technical-docs
           persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -57,6 +57,11 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      # Reports problems in technical-docs on the job summary. Content problems
+      # are fixed in technical-docs, so they never fail this repository's CI.
+      - name: Check documentation content
+        run: npm run docs:check -- --format github --advisory
+
       - name: Generate static site
         run: npm run generate
 
@@ -68,7 +73,7 @@ jobs:
 
       - name: Upload test traces
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-traces
           path: test-results/

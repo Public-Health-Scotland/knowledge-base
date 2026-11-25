@@ -1,62 +1,15 @@
 <template>
   <div>
-    <div class="top-row">
-      <div class="title-container">
-        <b-card no-body class="overflow-hidden head-card">
-          <b-row no-gutters align-v="center">
-            <b-col md="7">
-              <b-card-body>
-                <h3>
-                  <NuxtLink to="/docs/" class="text-reset text-decoration-none">
-                    Documentation
-                  </NuxtLink>
-                </h3>
-                <b-card-text tag="div">
-                  <p>Data Science information, guidance, and best practice</p>
-                </b-card-text>
-              </b-card-body>
-            </b-col>
-
-            <b-col md="1"> </b-col>
-
-            <b-col md="4">
-              <b-form-input
-                v-model="search"
-                class="search mt-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search document titles"
-              />
-            </b-col>
-          </b-row>
-        </b-card>
-      </div>
-    </div>
-
-    <b-row class="d-flex" align-h="end">
-      <b-col cols="12" md="7" lg="6" xl="5">
-        <b-list-group
-          v-if="searchResults.length"
-          class="search-results flex-fill"
-          style="position: absolute; background-color: white; z-index: 500"
-        >
-          <b-list-group-item
-            v-for="result in searchResults"
-            :key="result.url"
-            :to="result.url"
-            @click="search = ''"
-          >
-            <div class="d-flex flex-row">
-              <i class="mx-2">{{ result.section }}: </i>
-              <span class="mx-2 align-middle">{{ result.name }}</span>
-            </div>
-          </b-list-group-item>
-        </b-list-group>
-      </b-col>
-    </b-row>
+    <!-- Every docs page has its own h1, so the banner title isn't one. -->
+    <PageHeader title="Documentation" tag="p">
+      <p>Data Science information, guidance, and best practice</p>
+      <template #aside>
+        <DocsSearch />
+      </template>
+    </PageHeader>
 
     <b-row>
-      <b-col cols="12" md="4" lg="3">
+      <b-col cols="12" md="4" lg="3" class="d-print-none">
         <!-- The navigation collapses below the md breakpoint -->
         <b-row class="mt-3 mx-1">
           <div class="d-flex justify-content-between w-100">
@@ -67,36 +20,13 @@
                 class="d-md-none mx-1"
               >
                 <span class="when-closed"
-                  ><Icon
-                    name="eva:menu-outline"
-                    size="24"
-                    class="me-2 icon-dark"
+                  ><Icon name="lucide:menu" size="24" class="me-2 icon-dark"
                 /></span>
                 <span class="when-open"
-                  ><Icon
-                    name="eva:close-outline"
-                    size="24"
-                    class="me-2 icon-dark"
+                  ><Icon name="lucide:x" size="24" class="me-2 icon-dark"
                 /></span>
                 {{ currentDoc?.name || currentSection?.name || "Docs" }}
               </b-button>
-            </div>
-            <div>
-              <b-button-toolbar v-if="currentDoc" class="d-md-none">
-                <b-button-group class="mx-1">
-                  <a
-                    v-b-tooltip.hover
-                    title="View on GitHub"
-                    aria-label="View on GitHub"
-                    class="btn btn-outline-dark"
-                    :href="currentDoc.githubUrl"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <Icon name="eva:github-outline" size="24" />
-                  </a>
-                </b-button-group>
-              </b-button-toolbar>
             </div>
           </div>
         </b-row>
@@ -117,7 +47,7 @@
                   {{ section.name }}
                   <Icon
                     v-if="section.docs.length"
-                    name="eva:chevron-down-outline"
+                    name="lucide:chevron-down"
                     size="24"
                     class="icon-accent"
                   />
@@ -147,24 +77,7 @@
       </b-col>
 
       <b-col md="8" lg="9" fluid>
-        <div class="d-none d-md-block">
-          <b-button-toolbar v-if="currentDoc" class="justify-content-end">
-            <b-button-group class="gh-button mx-1">
-              <a
-                v-b-tooltip.hover
-                title="View on GitHub"
-                aria-label="View on GitHub"
-                class="btn btn-outline-dark d-flex align-self-end"
-                :href="currentDoc.githubUrl"
-                target="_blank"
-                rel="noopener"
-              >
-                <Icon name="eva:github-outline" size="24" />
-              </a>
-            </b-button-group>
-          </b-button-toolbar>
-        </div>
-        <NuxtPage class="mt-3 md-doc" />
+        <NuxtPage class="mt-4 md-doc" />
       </b-col>
     </b-row>
   </div>
@@ -173,7 +86,6 @@
 <script setup>
 // Navigation comes from the documentation built into the site, not GitHub.
 const route = useRoute();
-const search = ref("");
 
 const { data: manifest } = await useFetch("/api/docs/manifest.json", {
   key: "docs-manifest",
@@ -186,16 +98,6 @@ const currentSection = computed(() =>
 const currentDoc = computed(() =>
   currentSection.value?.docs.find((d) => d.slug === route.params.doc),
 );
-
-const searchResults = computed(() => {
-  const query = search.value.trim().toLowerCase();
-  if (!query) return [];
-  return sections.value.flatMap((section) =>
-    section.docs
-      .filter((doc) => `${doc.name} ${doc.title}`.toLowerCase().includes(query))
-      .map((doc) => ({ ...doc, section: section.name })),
-  );
-});
 </script>
 
 <style lang="scss">
@@ -207,33 +109,9 @@ const searchResults = computed(() => {
   font-weight: normal;
 }
 
-.gh-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .collapsed > .when-open,
 .not-collapsed > .when-closed {
   display: none;
-}
-
-.search-results {
-  box-shadow: 0 4px 10px 0 rgb(220 220 220 / 100%);
-}
-
-@media (width <= 767.98px) {
-  .search-results {
-    right: 15px;
-    width: 95%;
-  }
-}
-
-@media (width >= 767.98px) {
-  .search-results {
-    margin-top: -33px;
-    right: 15px;
-  }
 }
 
 .md-doc h1 {
