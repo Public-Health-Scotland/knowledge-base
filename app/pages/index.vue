@@ -32,80 +32,26 @@
 
     <div>
       <b-row cols="1" cols-sm="2" cols-lg="4" class="text-center mb-3">
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/develop' }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/rahouxil.json"
+        <b-col v-for="tile in tiles" :key="tile.title" class="mb-4">
+          <!-- The heading's link covers the whole tile (stretched-link), so the
+               icon can be clicked too while keyboards still stop only once. -->
+          <div class="home-tile" @focusin="play">
+            <lord-icon
+              :src="`${baseURL}icons/lordicon/${tile.icon}.json`"
               trigger="hover"
+              target=".home-tile"
               colors="primary:#3f3685,secondary:#80ba27"
               stroke="light"
-              style="width: 200px; height: 200px"
-              title="Courses icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5><b-link :to="{ path: '/develop' }">Courses</b-link></h5>
-          <p>
-            Internally developed courses from foundations to specific topics
-            relevant to all data-informed roles.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/develop', query: { type: ['Textbook'] } }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/lenjvibx.json"
-              trigger="morph-two-way"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="Textbook icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>
-            <b-link :to="{ path: '/develop', query: { type: ['Textbook'] } }"
-              >Textbooks</b-link
-            >
-          </h5>
-          <p>
-            For learning or reference, see a complete textbook on one of the
-            technologies.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink :to="{ path: '/docs' }"
-            ><lord-icon
-              src="https://cdn.lordicon.com/wzwygmng.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="Guidance document icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5><b-link :to="{ path: '/docs' }">Documentation</b-link></h5>
-          <p>
-            Keeping everyone on the same page, sharing common knowledge. This
-            includes style guides, FAQs, etc.
-          </p>
-        </b-col>
-        <b-col class="mb-4">
-          <NuxtLink to="/docs/posit-infrastructure/faqs/"
-            ><lord-icon
-              src="https://cdn.lordicon.com/wzrwaorf.json"
-              trigger="hover"
-              colors="primary:#3f3685,secondary:#80ba27"
-              stroke="light"
-              style="width: 200px; height: 200px"
-              title="FAQs icon"
-            >
-            </lord-icon
-          ></NuxtLink>
-          <h5>
-            <b-link to="/docs/posit-infrastructure/faqs/">FAQs</b-link>
-          </h5>
-          <p>Frequently asked questions about the Posit infrastructure.</p>
+              class="home-icon"
+              aria-hidden="true"
+            />
+            <h5>
+              <b-link :to="tile.to" class="stretched-link">{{
+                tile.title
+              }}</b-link>
+            </h5>
+            <p>{{ tile.text }}</p>
+          </div>
         </b-col>
       </b-row>
     </div>
@@ -117,7 +63,7 @@
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Quick Start Guides</h4>
-                <Icon name="eva:flash-outline" size="24" class="icon-accent" />
+                <Icon name="lucide:zap" size="24" class="icon-accent" />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -151,11 +97,7 @@
             <b-card class="m-4">
               <div class="d-flex justify-content-between align-items-center">
                 <h4>Learning Pathways</h4>
-                <Icon
-                  name="eva:compass-outline"
-                  size="24"
-                  class="icon-accent"
-                />
+                <Icon name="lucide:compass" size="24" class="icon-accent" />
               </div>
               <br />
               <div class="d-flex mb-4">
@@ -193,8 +135,54 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+const { baseURL } = useRuntimeConfig().app;
+
+// Animated icons by Lordicon, served with the site. Each plays once when its
+// tile is hovered or its link gets keyboard focus, and stays still for people
+// who ask for reduced motion.
+const tiles = [
+  {
+    title: "Courses",
+    to: { path: "/develop" },
+    icon: "courses",
+    text: "Internally developed courses from foundations to specific topics relevant to all data-informed roles.",
+  },
+  {
+    title: "Textbooks",
+    to: { path: "/develop", query: { type: ["Textbook"] } },
+    icon: "textbooks",
+    text: "For learning or reference, see a complete textbook on one of the technologies.",
+  },
+  {
+    title: "Documentation",
+    to: { path: "/docs" },
+    icon: "documentation",
+    text: "Keeping everyone on the same page, sharing common knowledge. This includes style guides, FAQs, etc.",
+  },
+  {
+    title: "FAQs",
+    to: "/docs/posit-infrastructure/faqs/",
+    icon: "faqs",
+    text: "Frequently asked questions about the Posit infrastructure.",
+  },
+];
+
+// The hover trigger follows the pointer over the tile. Keyboard focus lands on
+// the link inside, so it plays the icon here.
+function play(event) {
+  const icon = event.currentTarget.querySelector("lord-icon");
+  if (!icon?.play) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  icon.play({ from: "start" });
+}
+
+// The element is only needed here, so it loads with this page.
+onMounted(async () => {
+  if (customElements.get("lord-icon")) return;
+  const { defineElement } = await import("@lordicon/element");
+  if (!customElements.get("lord-icon")) defineElement();
+});
 </script>
 
 <style>

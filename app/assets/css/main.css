@@ -5,6 +5,18 @@
   color: #bd27b9;
 }
 
+/* Home page tiles. The size is set before the icon loads, so nothing moves. */
+.home-tile {
+  position: relative;
+}
+
+.home-icon {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.25rem;
+}
+
 .icon-light {
   color: #fff;
 }

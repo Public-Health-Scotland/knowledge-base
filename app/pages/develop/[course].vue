@@ -89,7 +89,7 @@
       </b-col>
     </b-row>
 
-    <b-modal id="booking-modal" size="xl">
+    <b-modal id="booking-modal" size="xl" lazy>
       If this content doesn't load,
       <a target="_blank" :href="course.f2f">click here</a> to open in a browser
       tab.

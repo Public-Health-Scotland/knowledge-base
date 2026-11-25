@@ -367,7 +367,7 @@
       </div>
     </div>
 
-    <b-modal id="booking-modal" size="xl">
+    <b-modal id="booking-modal" size="xl" lazy>
       If this content doesn't load,
       <a target="_blank" :href="selectedCourse.f2f">click here</a> to open in a
       browser tab.

@@ -27,13 +27,13 @@
       <ul class="doc-actions list-unstyled d-print-none">
         <li v-if="page.editUrl">
           <a :href="page.editUrl" target="_blank" rel="noopener noreferrer">
-            <Icon name="eva:edit-outline" size="18" aria-hidden="true" />
+            <Icon name="lucide:square-pen" size="18" aria-hidden="true" />
             Suggest a change
           </a>
         </li>
         <li v-if="page.githubUrl">
           <a :href="page.githubUrl" target="_blank" rel="noopener noreferrer">
-            <Icon name="eva:github-outline" size="18" aria-hidden="true" />
+            <Icon name="lucide:github" size="18" aria-hidden="true" />
             View on GitHub
           </a>
         </li>

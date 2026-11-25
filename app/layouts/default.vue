@@ -29,7 +29,7 @@
 
               <b-nav-item v-b-modal.help-modal aria-label="Help"
                 ><Icon
-                  name="eva:question-mark-circle-outline"
+                  name="lucide:circle-question-mark"
                   size="24"
                   class="icon-light"
               /></b-nav-item>
@@ -102,7 +102,7 @@
           class="feedback-button"
           pill
           aria-label="Feedback"
-          ><Icon name="eva:message-square-outline" size="24" class="icon-light"
+          ><Icon name="lucide:message-square" size="24" class="icon-light"
         /></b-button>
       </div>
     </div>
@@ -157,14 +157,30 @@
 
       <ul>
         <li>
-          <a href="https://lordicon.com/" target="_blank"
-            >Icons on homepage by Lordicon</a
+          Icons by
+          <a
+            href="https://lucide.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Lucide</a
           >
+          (ISC licence)
+        </li>
+        <li>
+          Animated icons on the home page by
+          <a
+            href="https://lordicon.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Lordicon</a
+          >
+          (free licence)
         </li>
       </ul>
     </b-modal>
 
-    <b-modal id="feedback-modal" size="xl">
+    <!-- lazy: the form loads from Microsoft only when the dialog opens. -->
+    <b-modal id="feedback-modal" size="xl" lazy>
       If this content doesn't load,
       <a target="_blank" href="https://forms.office.com/r/RhjP2yNq4y"
         >click here</a
